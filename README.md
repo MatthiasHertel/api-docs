@@ -31,7 +31,6 @@ to the `includes` section in `index.md`.
 ### Deploying
 
 
- 1. Commit your changes to the markdown source: git commit -a -m "Update index.md"
- 2. Push the markdown source changes to Github: git push
- 3. Add "gh-pages" as a local branch pointing to the remote [(GitHub doc)](https://help.github.com/articles/creating-project-pages-manually/)
- 4. Compile to HTML, and push the HTML to Github pages: rake publish
+ 1. Merge your markdown changes into `origin/master`
+ 2. Run `rake publish` to compile the changes and push to github pages
+    deployment
