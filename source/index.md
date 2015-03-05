@@ -56,6 +56,33 @@ requests.get(
 
 ## Pagination
 
-All API requests that return lists will return paginated results with links to the previous and next pages.
+```shell
+curl -H "Authorization: Token <api-token>" "https://platform.rescale.com/api/jobs/?page_size=2&page=4"
+```
+
+```python
+import requests
+
+requests.get(
+  'https://platform.rescale.com/api/jobs/',
+  params={'page_size': 2, 'page': 4},
+  headers={'Authorization': 'Token <api-token>'}
+)
+```
+```json
+{
+  "count":123,
+  "prev":null,
+  "results": [
+
+  ],
+  "next":"https://platform.rescale.com/api/jobs/?page_size=2&page=5"
+}
+```
+
+All API requests for lists of objects will return paginated results. The `page`
+and `page_size` query parameters can be used to control pagination.
+
+
 
 Some info about `page_size` and `page` parameters here
