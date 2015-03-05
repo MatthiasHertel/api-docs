@@ -39,10 +39,10 @@ requests to be authenticated by passing an https header of the form:
   Replace &lt;api-token&gt; with the value of your api token.
 </aside>
 
-If you don't have an api key, you can generate one [here](httpss://platform-stage.rescale.com/user/settings/api-key/).
+If you don't have an api key, you can generate one [here](https://platform.rescale.com/user/settings/api-key/).
 
 ```shell
-curl -H "Authorization: Token <api-token>" httpss://platform.rescale.com/api/jobs/
+curl -H "Authorization: Token <api-token>" https://platform.rescale.com/api/jobs/
 ```
 
 ```python
