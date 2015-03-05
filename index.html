@@ -1,1 +1,892 @@
-Test
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Rescale API Reference</title>
+
+    <link href="stylesheets/screen.css" rel="stylesheet" type="text/css" media="screen" />
+    <link href="stylesheets/print.css" rel="stylesheet" type="text/css" media="print" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+      <script src="javascripts/all.js" type="text/javascript"></script>
+
+      <script>
+        $(function() {
+          setupLanguages(["shell","python"]);
+        });
+      </script>
+  </head>
+
+  <body class="index">
+    <a href="#" id="nav-button">
+      <span>
+        NAV
+        <img src="images/navbar.png" />
+      </span>
+    </a>
+    <div class="tocify-wrapper">
+      <img src="images/logo.png" />
+        <div class="lang-selector">
+              <a href="#" data-language-name="shell">cURL</a>
+              <a href="#" data-language-name="python">python</a>
+        </div>
+        <div class="search">
+          <input type="text" class="search" id="input-search" placeholder="Search">
+        </div>
+        <ul class="search-results"></ul>
+      <div id="toc">
+      </div>
+        <ul class="toc-footer">
+            <li><a href='https://rescale.com/signup'>Sign Up for Rescale</a></li>
+            <li><a href='https://github.com/tripit/slate'>Documentation Powered by Slate</a></li>
+        </ul>
+    </div>
+    <div class="page-wrapper">
+      <div class="dark-box"></div>
+      <div class="content">
+        <h1 id="introduction">Introduction</h1>
+
+<p>Welcome to the Rescale REST API! Using the API you can upload input files, create jobs, and view the status of existing jobs.
+This documentation inludes examples using cURL and python. The python exampless use <a href="https://docs.python-requests.org/en/latest/">requests</a> for https.</p>
+
+<p>All request paths must include the trailing slash (e.g. <code class="prettyprint">/api/jobs/</code> instead of <code class="prettyprint">/api/jobs</code>)</p>
+
+<h2 id="authentication">Authentication</h2>
+
+<p>The Rescale API uses authentication tokens to authentication each request. The API requires all
+requests to be authenticated by passing an https header of the form:</p>
+
+<p><code class="prettyprint">Authorization: Token &lt;api-token&gt;</code></p>
+
+<aside class="notice">
+  Replace &lt;api-token&gt; with the value of your api token.
+</aside>
+
+<p>If you don&rsquo;t have an api key, you can generate one <a href="httpss://platform-stage.rescale.com/user/settings/api-key/">here</a>.</p>
+<pre><code class="highlight shell">curl -H <span class="s2">"Authorization: Token &lt;api-token&gt;"</span> httpss://platform.rescale.com/api/jobs/
+</code></pre>
+<pre><code class="highlight python"><span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+  <span class="s">'https://platform.rescale.com/api/jobs/'</span><span class="p">,</span>
+  <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Token &lt;api-token&gt;'</span><span class="p">}</span>
+<span class="p">)</span>
+</code></pre>
+
+<h2 id="pagination">Pagination</h2>
+
+<p>All API requests that return lists will return paginated results with links to the previous and next pages.</p>
+
+<p>Some info about <code class="prettyprint">page_size</code> and <code class="prettyprint">page</code> parameters here</p>
+
+          <h1 id="informational-endpoints">Informational Endpoints</h1>
+
+<p>The Rescale API provides several top-level endpoints that provide
+information about options available in the system as a whole.</p>
+
+<h2 id="core-types">Core Types</h2>
+
+<p><code class="prettyprint">GET https://platform.rescale.com/api/coretypes/</code></p>
+<pre><code class="highlight shell">curl -H <span class="s2">"Authorization: Token &lt;api-token&gt;"</span> https://platform.rescale.com/api/coretypes/
+</code></pre>
+<pre><code class="highlight python"><span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+  <span class="s">'https://platform.rescale.com/api/coretypes/'</span><span class="p">,</span>
+  <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Token &lt;api-token&gt;'</span><span class="p">}</span>
+<span class="p">)</span>
+</code></pre>
+
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre><code class="highlight json"><span class="p">{</span><span class="w">
+  </span><span class="s2">"count"</span><span class="p">:</span><span class="mi">14</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"previous"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"results"</span><span class="p">:[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"hasSsd"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"code"</span><span class="p">:</span><span class="s2">"standard-plus"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"compute"</span><span class="p">:</span><span class="s2">"3.00"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"Marble"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"isDeprecated"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"price"</span><span class="p">:</span><span class="mf">0.1</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"remoteVizAllowed"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"storage"</span><span class="p">:</span><span class="mi">40</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"lowPriorityPrice"</span><span class="p">:</span><span class="s2">"0.050"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"walltimeRequired"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"displayOrder"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"io"</span><span class="p">:</span><span class="s2">"Standard"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"memory"</span><span class="p">:</span><span class="mi">3750</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"cores"</span><span class="p">:[</span><span class="w">
+        </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="mi">4</span><span class="p">,</span><span class="w">
+        </span><span class="mi">8</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="s2">"isPrimary"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"processorInfo"</span><span class="p">:</span><span class="s2">"Intel Xeon E5-2670 v2 (Ivy Bridge) - single threaded"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"storageIo"</span><span class="p">:</span><span class="s2">"2 GB/s read, 1GB/s write"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"description"</span><span class="p">:</span><span class="s2">"Standard"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"hasSsd"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"code"</span><span class="p">:</span><span class="s2">"test"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"compute"</span><span class="p">:</span><span class="s2">"1.00"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"HPC Test"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"isDeprecated"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"price"</span><span class="p">:</span><span class="mf">0.25</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"remoteVizAllowed"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"storage"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"lowPriorityPrice"</span><span class="p">:</span><span class="s2">"0.100"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"walltimeRequired"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"displayOrder"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"io"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"memory"</span><span class="p">:</span><span class="mi">1500</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"cores"</span><span class="p">:[</span><span class="w">
+        </span><span class="mi">1</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="s2">"isPrimary"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"processorInfo"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"storageIo"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"description"</span><span class="p">:</span><span class="s2">""</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"next"</span><span class="p">:</span><span class="s2">"https://platform.rescale.com/api/coretypes?page=2"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>This endpoint lists informations on all core types available in the
+Rescale API. The <code class="prettyprint">code</code> property can be used in subsequent requests to
+submit jobs.</p>
+
+<h3 id="response-properties">Response Properties</h3>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>hasSsd</td>
+<td>boolean</td>
+<td>Indicates whether this core type has SSD drives</td>
+</tr>
+<tr>
+<td>code</td>
+<td>String</td>
+<td>A unique identifier for this core type, used in other requests</td>
+</tr>
+<tr>
+<td>compute</td>
+<td>String</td>
+<td>TODO</td>
+</tr>
+<tr>
+<td>name</td>
+<td>String</td>
+<td>The display name</td>
+</tr>
+<tr>
+<td>isDeprecated</td>
+<td>boolean</td>
+<td>Indicates if this core type is deprecated. If true, it cannot be used to submit jobs</td>
+</tr>
+<tr>
+<td>price</td>
+<td>Decimal</td>
+<td>Price per core hour for on-demand jobs</td>
+</tr>
+<tr>
+<td>remoteVizAllowed</td>
+<td>boolean</td>
+<td>Indicates if this coretype can be used for remote visualization clusters</td>
+</tr>
+<tr>
+<td>storage</td>
+<td>Integer</td>
+<td>The amount of per-core storage in GB</td>
+</tr>
+<tr>
+<td>lowPriorityPrice</td>
+<td>String</td>
+<td>The price per core hour for low priority jobs</td>
+</tr>
+<tr>
+<td>walltimeRequired</td>
+<td>boolean</td>
+<td>Indicates if jobs submitted with this core type must specify a maximum walltime</td>
+</tr>
+<tr>
+<td>displayOrder</td>
+<td>Integer</td>
+<td>An integer for sorting core type displays</td>
+</tr>
+<tr>
+<td>io</td>
+<td>String</td>
+<td>Indicates the amount of IO available on this coretype, e.g.  <code class="prettyprint">10 GB/s</code></td>
+</tr>
+<tr>
+<td>memory</td>
+<td>Integer</td>
+<td>The amount of per-core memory in MB</td>
+</tr>
+<tr>
+<td>cores</td>
+<td>Array&lt;Integer&gt;</td>
+<td>The number of cores on instances of this core type, with an entry for each instance size</td>
+</tr>
+<tr>
+<td>isPrimary</td>
+<td>boolean</td>
+<td>Indicates if this is a primary (default) core type</td>
+</tr>
+<tr>
+<td>processorInfo</td>
+<td>String</td>
+<td>Processor Information</td>
+</tr>
+<tr>
+<td>storageIo</td>
+<td>String</td>
+<td>Same as <code class="prettyprint">storage</code></td>
+</tr>
+<tr>
+<td>description</td>
+<td>String</td>
+<td>A description of this core type</td>
+</tr>
+</tbody></table>
+
+<h2 id="analyses">Analyses</h2>
+
+<p><code class="prettyprint">GET https://platform.rescale.com/api/analyses/</code></p>
+<pre><code class="highlight shell">curl -H <span class="s2">"Authorization: Token &lt;api-token&gt;"</span> https://platform.rescale.com/api/remote-viz-config/
+</code></pre>
+<pre><code class="highlight python"><span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+  <span class="s">'https://platform.rescale.com/api/analyses/'</span><span class="p">,</span>
+  <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Token &lt;api-token&gt;'</span><span class="p">}</span>
+<span class="p">)</span>
+</code></pre>
+
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre><code class="highlight json"><span class="p">{</span><span class="w">
+  </span><span class="s2">"count"</span><span class="p">:</span><span class="mi">88</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"previous"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"results"</span><span class="p">:[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"industries"</span><span class="p">:[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"Aerospace"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"icon"</span><span class="p">:</span><span class="kc">null</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"Automotive"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"icon"</span><span class="p">:</span><span class="kc">null</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="s2">"code"</span><span class="p">:</span><span class="s2">"abaqus"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"description"</span><span class="p">:</span><span class="s2">"&lt;p&gt;&lt;b&gt;Abaqus FEA&lt;/b&gt; is a software suite for finite element analysis and computer-aided engineering.  The Abaqus product suite consists of four core software products.  &lt;i&gt;Abaqus/CAE&lt;/i&gt;, &lt;i&gt;Abaqus/CFD&lt;/i&gt;, &lt;i&gt;Abaqus/Standard&lt;/i&gt;, and &lt;i&gt;Abaqus/Explicit&lt;/i&gt;.&lt;/p&gt;&lt;p&gt;&lt;i&gt;Abaqus CAE&lt;/i&gt; is a software application used for both pre-processing and visualizing finite element analysis results.  &lt;i&gt;Abaqus/CFD&lt;/i&gt; provides computational fluid dynamics capabilities, while &lt;i&gt;Abaqus/Standard&lt;/i&gt; and &lt;i&gt;Abaqus/Explicit&lt;/i&gt; are finite element analyzers that employ implicit and explicit integration schemes, respectively.&lt;/p&gt;"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"versions"</span><span class="p">:[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"eula"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"allowedCoreTypes"</span><span class="p">:[</span><span class="w">
+            </span><span class="s2">"gpu-kepler"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"gpu-tesla"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"hi-io"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"hi-mem"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"hi-mem-hpc"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"hpc"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"hpc-3"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"hpc-plus"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"lo-mem"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"standard"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"standard-plus"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"test"</span><span class="w">
+          </span><span class="p">],</span><span class="w">
+          </span><span class="s2">"stdCommand"</span><span class="p">:</span><span class="s2">"abaqus job=&lt;job&gt; interactive"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"version"</span><span class="p">:</span><span class="s2">"6.14-1"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"mpiCommand"</span><span class="p">:</span><span class="s2">"abaqus job=&lt;job&gt; cpus=&lt;mpi-ranks&gt; mp_mode=mpi interactive"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"versionCode"</span><span class="p">:</span><span class="s2">"6.14.1-pcmpi"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"smpCommand"</span><span class="p">:</span><span class="s2">"abaqus job=&lt;job&gt; cpus=&lt;smp-ranks&gt; interactive"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"eula"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"allowedCoreTypes"</span><span class="p">:[</span><span class="w">
+            </span><span class="s2">"gpu-kepler"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"gpu-tesla"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"hi-io"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"hi-mem"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"hi-mem-hpc"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"hpc"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"hpc-3"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"hpc-plus"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"lo-mem"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"standard"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"standard-plus"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"test"</span><span class="w">
+          </span><span class="p">],</span><span class="w">
+          </span><span class="s2">"stdCommand"</span><span class="p">:</span><span class="s2">"abaqus job=&lt;job&gt; interactive"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"version"</span><span class="p">:</span><span class="s2">"6.13-5"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"mpiCommand"</span><span class="p">:</span><span class="s2">"abaqus job=&lt;job&gt; cpus=&lt;mpi-ranks&gt; mp_mode=mpi interactive"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"versionCode"</span><span class="p">:</span><span class="s2">"6.13.5-ibm"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"smpCommand"</span><span class="p">:</span><span class="s2">"abaqus job=&lt;job&gt; cpus=&lt;smp-ranks&gt; interactive"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"eula"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"allowedCoreTypes"</span><span class="p">:[</span><span class="w">
+            </span><span class="s2">"gpu-kepler"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"gpu-tesla"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"hi-io"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"hi-mem"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"hi-mem-hpc"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"hpc"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"hpc-3"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"hpc-plus"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"lo-mem"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"standard"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"standard-plus"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"test"</span><span class="w">
+          </span><span class="p">],</span><span class="w">
+          </span><span class="s2">"stdCommand"</span><span class="p">:</span><span class="s2">"abaqus job=&lt;job&gt; interactive"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"version"</span><span class="p">:</span><span class="s2">"6.12-1"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"mpiCommand"</span><span class="p">:</span><span class="s2">"abaqus job=&lt;job&gt; cpus=&lt;mpi-ranks&gt; mp_mode=mpi interactive"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"versionCode"</span><span class="p">:</span><span class="s2">"6.12.0-ibm"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"smpCommand"</span><span class="p">:</span><span class="s2">"abaqus job=&lt;job&gt; cpus=&lt;smp-ranks&gt; interactive"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"eula"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"allowedCoreTypes"</span><span class="p">:[</span><span class="w">
+            </span><span class="s2">"gpu-kepler"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"gpu-tesla"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"hi-io"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"hi-mem"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"hi-mem-hpc"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"hpc"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"hpc-3"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"hpc-plus"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"lo-mem"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"standard"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"standard-plus"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"test"</span><span class="w">
+          </span><span class="p">],</span><span class="w">
+          </span><span class="s2">"stdCommand"</span><span class="p">:</span><span class="s2">"abaqus job=&lt;job&gt; interactive"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"version"</span><span class="p">:</span><span class="s2">"6.12-1-asca"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"mpiCommand"</span><span class="p">:</span><span class="s2">"abaqus job=&lt;job&gt; cpus=&lt;mpi-ranks&gt; mp_mode=mpi interactive"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"versionCode"</span><span class="p">:</span><span class="s2">"6.12.0-asca"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"smpCommand"</span><span class="p">:</span><span class="s2">"abaqus job=&lt;job&gt; cpus=&lt;smp-ranks&gt; interactive"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="s2">"supportDesks"</span><span class="p">:[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"code"</span><span class="p">:</span><span class="s2">"rescale"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"displayName"</span><span class="p">:</span><span class="s2">"Rescale Support"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"email"</span><span class="p">:</span><span class="s2">"support@example.com"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="s2">"hasRescaleLicense"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"vendorName"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"pricing"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"hasShortTermLicense"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"licenseSettings"</span><span class="p">:[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"isServer"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"licenseType"</span><span class="p">:</span><span class="s2">"Flex"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"helpText"</span><span class="p">:</span><span class="s2">"The address of the FlexNet license server to use. ([port]@hostname)"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"LM_LICENSE_FILE"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"label"</span><span class="p">:</span><span class="s2">"License"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"isServer"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"licenseType"</span><span class="p">:</span><span class="s2">"Flex"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"helpText"</span><span class="p">:</span><span class="s2">"The address of the Autodesk Simulation Composite Analysis License Server [port]@hostname"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"ADSKFLEX_LICENSE_FILE"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"label"</span><span class="p">:</span><span class="s2">"ASCA License Server"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="s2">"optimizerType"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"thumbnail"</span><span class="p">:</span><span class="s2">"/static/img/analyses_images/abaqus.png"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"resources"</span><span class="p">:[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"url"</span><span class="p">:</span><span class="s2">"https://www.rescale.com/resources/software/abaqus/example/"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"Basic Example"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"Abaqus"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"next"</span><span class="p">:</span><span class="s2">"https://platform.rescale.com/api/analyses/?page=2"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>This endpoint lists all the analyses available on Rescale.</p>
+
+<h3 id="response-properties">Response Properties</h3>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>industries</td>
+<td>Array&lt;Object&gt;</td>
+<td>The industries this analysis is used by</td>
+</tr>
+<tr>
+<td>code</td>
+<td>String</td>
+<td>A unique identifier for this analysis</td>
+</tr>
+<tr>
+<td>description</td>
+<td>String</td>
+<td>Describes this analysis</td>
+</tr>
+<tr>
+<td>versions</td>
+<td>Array&lt;Object&gt;</td>
+<td>Describes all of the verions available for this analysis</td>
+</tr>
+<tr>
+<td>supportDesks</td>
+<td>Array&lt;Object&gt;</td>
+<td>Describes all the support desks that can provide support for this analysis</td>
+</tr>
+<tr>
+<td>vendorName</td>
+<td>String</td>
+<td>The name of the analysis vendor</td>
+</tr>
+<tr>
+<td>pricing</td>
+<td>String</td>
+<td>The cost of this analysis</td>
+</tr>
+<tr>
+<td>hasShortTermLicense</td>
+<td>boolean</td>
+<td>Indicates if a short term license can be purchased to run this analysis</td>
+</tr>
+<tr>
+<td>licenseSettings</td>
+<td>Array&lt;Object&gt;</td>
+<td>The required license settings for running this analysis</td>
+</tr>
+<tr>
+<td>optimizerType</td>
+<td>Object</td>
+<td>TODO</td>
+</tr>
+<tr>
+<td>thumbnail</td>
+<td>String</td>
+<td>A path to the image used to represent this analsyis</td>
+</tr>
+<tr>
+<td>resources</td>
+<td>Array&lt;Object&gt;</td>
+<td>Tutorial resources for this analysis</td>
+</tr>
+<tr>
+<td>name</td>
+<td>String</td>
+<td>The name of this analysis</td>
+</tr>
+</tbody></table>
+
+<h4 id="analysis-version-properties">Analysis Version Properties</h4>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+</tbody></table>
+
+<h4 id="license-settings-properties">License Settings Properties</h4>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+</tbody></table>
+
+<h2 id="remote-visulization-options">Remote Visulization Options</h2>
+
+<p><code class="prettyprint">GET https://platform.rescale.com/api/remote-viz-config/</code></p>
+
+<p>This endpoint lists the options for creating a remote visualization
+cluster on rescale</p>
+<pre><code class="highlight shell">curl -H <span class="s2">"Authorization: Token &lt;api-token&gt;"</span> https://platform.rescale.com/api/remote-viz-config/
+</code></pre>
+<pre><code class="highlight python"><span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+  <span class="s">'https://platform.rescale.com/api/remote-viz-config/'</span><span class="p">,</span>
+  <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Token &lt;api-token&gt;'</span><span class="p">}</span>
+<span class="p">)</span>
+</code></pre>
+
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre><code class="highlight json"><span class="p">{</span><span class="w">
+  </span><span class="s2">"count"</span><span class="p">:</span><span class="mi">4</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"previous"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"results"</span><span class="p">:[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"code"</span><span class="p">:</span><span class="s2">"4-cores-hpc-plus"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"displayName"</span><span class="p">:</span><span class="s2">"4 Cores HPC+"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"price"</span><span class="p">:</span><span class="mf">0.15</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"coreTypeCode"</span><span class="p">:</span><span class="s2">"hpc-plus"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"cores"</span><span class="p">:</span><span class="mi">4</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"isWindows"</span><span class="p">:</span><span class="kc">false</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"code"</span><span class="p">:</span><span class="s2">"8-cores-gpu-kepler"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"displayName"</span><span class="p">:</span><span class="s2">"8 Cores GPU Kepler"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"price"</span><span class="p">:</span><span class="mf">0.12</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"coreTypeCode"</span><span class="p">:</span><span class="s2">"gpu-kepler"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"cores"</span><span class="p">:</span><span class="mi">8</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"isWindows"</span><span class="p">:</span><span class="kc">false</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"code"</span><span class="p">:</span><span class="s2">"2-cores-hpc-plus-windows"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"displayName"</span><span class="p">:</span><span class="s2">"2 Cores HPC+ Windows"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"price"</span><span class="p">:</span><span class="mf">0.15</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"coreTypeCode"</span><span class="p">:</span><span class="s2">"hpc-plus"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"cores"</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"isWindows"</span><span class="p">:</span><span class="kc">true</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"code"</span><span class="p">:</span><span class="s2">"8-cores-gpu-kepler-windows"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"displayName"</span><span class="p">:</span><span class="s2">"8 Cores GPU Kepler Windows"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"price"</span><span class="p">:</span><span class="mf">0.12</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"coreTypeCode"</span><span class="p">:</span><span class="s2">"gpu-kepler"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"cores"</span><span class="p">:</span><span class="mi">8</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"isWindows"</span><span class="p">:</span><span class="kc">true</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"next"</span><span class="p">:</span><span class="kc">null</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h3 id="response-properties">Response Properties</h3>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>code</td>
+<td>String</td>
+<td>A unique identifier for this remote visualization option, to be used in other requests</td>
+</tr>
+<tr>
+<td>displayName</td>
+<td>String</td>
+<td>The display name for this configuration</td>
+</tr>
+<tr>
+<td>price</td>
+<td>Decimal</td>
+<td>The price per hour of a remote visualization cluster with this option</td>
+</tr>
+<tr>
+<td>coreTypeCode</td>
+<td>String</td>
+<td>The code of the <a href="#core-types">core type</a> used by this remote visualization option</td>
+</tr>
+<tr>
+<td>cores</td>
+<td>Integer</td>
+<td>The number of cores on instances created by this remote viusalization option</td>
+</tr>
+<tr>
+<td>isWindows</td>
+<td>boolean</td>
+<td>Indicates if instances are windows machines</td>
+</tr>
+</tbody></table>
+
+          <h1 id="jobs">Jobs</h1>
+
+<h2 id="list-all-jobs">List All Jobs</h2>
+
+<p><code class="prettyprint">GET https://platform.rescale.com/api/jobs/</code></p>
+<pre><code class="highlight shell">curl -H <span class="s2">"Authorization: Token &lt;api-token&gt;"</span> https://platform.rescale.com/api/jobs/
+</code></pre>
+<pre><code class="highlight python"><span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+  <span class="s">'https://platform.rescale.com/api/jobs/'</span><span class="p">,</span>
+  <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Token &lt;api-token&gt;'</span><span class="p">}</span>
+<span class="p">)</span>
+</code></pre>
+
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre><code class="highlight json"><span class="p">{</span><span class="w">
+  </span><span class="s2">"count"</span><span class="p">:</span><span class="mi">347</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"previous"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"results"</span><span class="p">:[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"clusterStatusDisplay"</span><span class="p">:{</span><span class="w">
+        </span><span class="s2">"content"</span><span class="p">:</span><span class="s2">"Stopped"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"labelClass"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"useLabel"</span><span class="p">:</span><span class="kc">false</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"dateInserted"</span><span class="p">:</span><span class="s2">"2015-03-04T00:41:02.194615Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"Untitled Job"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"analysisNames"</span><span class="p">:[</span><span class="w">
+        </span><span class="s2">"Custom User-Defined Software"</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="s2">"storage"</span><span class="p">:</span><span class="mi">86</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"jobStatus"</span><span class="p">:{</span><span class="w">
+        </span><span class="s2">"content"</span><span class="p">:</span><span class="s2">"Completed"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"labelClass"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"useLabel"</span><span class="p">:</span><span class="kc">false</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"sharedWith"</span><span class="p">:[</span><span class="w">
+
+      </span><span class="p">],</span><span class="w">
+      </span><span class="s2">"isVisible"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"owner"</span><span class="p">:</span><span class="s2">"owner@example.com"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="s2">"FtFSc"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"clusterStatusDisplay"</span><span class="p">:{</span><span class="w">
+        </span><span class="s2">"content"</span><span class="p">:</span><span class="s2">"Started"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"labelClass"</span><span class="p">:</span><span class="s2">"label-success"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"useLabel"</span><span class="p">:</span><span class="kc">true</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"dateInserted"</span><span class="p">:</span><span class="s2">"2015-03-03T03:06:14.902048Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"LS-Dyna (Cloned)"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"analysisNames"</span><span class="p">:[</span><span class="w">
+        </span><span class="s2">"LS-DYNA"</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="s2">"storage"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"jobStatus"</span><span class="p">:{</span><span class="w">
+        </span><span class="s2">"content"</span><span class="p">:</span><span class="s2">"Executing"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"labelClass"</span><span class="p">:</span><span class="s2">"label-success"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"useLabel"</span><span class="p">:</span><span class="kc">true</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"sharedWith"</span><span class="p">:[</span><span class="w">
+        </span><span class="s2">"recipient@example.com"</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="s2">"isVisible"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"owner"</span><span class="p">:</span><span class="s2">"owner@example.com"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="s2">"KDFSc"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"next"</span><span class="p">:</span><span class="s2">"https://platform.rescale.com/api/jobs/?page=2"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>This endpoint retrieves all the jobs visible to the authenticated user
+(you), whether they are owned by that user or shared with that user.</p>
+
+<h3 id="response-properties">Response Properties</h3>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>clusterStatusDisplay</td>
+<td>Object</td>
+<td>Describes the current status of the job&rsquo;s clusters</td>
+</tr>
+<tr>
+<td>dateInserted</td>
+<td>String</td>
+<td>The date this job was created</td>
+</tr>
+<tr>
+<td>name</td>
+<td>String</td>
+<td>The name of this job</td>
+</tr>
+<tr>
+<td>analysisNames</td>
+<td>Array&lt;String&gt;</td>
+<td>The names all the analyses being run for the job</td>
+</tr>
+<tr>
+<td>jobStatus</td>
+<td>Object</td>
+<td>Describes the current status of the job</td>
+</tr>
+<tr>
+<td>sharedWith</td>
+<td>Array&lt;String&gt;</td>
+<td>Email addresses of the users this job has been shared with</td>
+</tr>
+<tr>
+<td>isVisible</td>
+<td>boolean</td>
+<td>TODO: Can this ever be false in the output?!</td>
+</tr>
+<tr>
+<td>owner</td>
+<td>String</td>
+<td>The email address of the owner of the job</td>
+</tr>
+<tr>
+<td>id</td>
+<td>String</td>
+<td>A unique identifier for the job</td>
+</tr>
+</tbody></table>
+
+<h2 id="get-a-specific-job">Get a Specific Job</h2>
+
+<p><code class="prettyprint">GET https://platform.rescale.com/api/jobs/{job_id}/</code></p>
+
+<h2 id="list-the-output-files-for-a-job">List the Output Files for a Job</h2>
+
+<p><code class="prettyprint">GET https://platform.rescale.com/api/jobs/{job_id}/files/</code></p>
+
+<h2 id="create-a-job">Create a Job</h2>
+
+<p><code class="prettyprint">POST https://platform.rescale.com/api/jobs/</code></p>
+
+<h2 id="submit-a-saved-job">Submit a Saved Job</h2>
+
+<p><code class="prettyprint">POST https://platform.rescale.com/api/jobs/{job_id}/submit/</code></p>
+
+<h2 id="update-a-job">Update a Job</h2>
+
+<p><code class="prettyprint">PUT https://platform.rescale.com/api/jobs/{job_id}</code></p>
+
+<p><code class="prettyprint">PATCH https://platform.rescale.com/api/jobs/{job_id}</code></p>
+
+<h2 id="delete-a-job">Delete a Job</h2>
+
+<p><code class="prettyprint">DELETE https://platform.rescale.com/api/jobs/{job_id}/</code></p>
+
+<h2 id="stop-a-job">Stop a Job</h2>
+
+<p><code class="prettyprint">POST https://platform.rescale.com/api/jobs/{job_id/stop/</code></p>
+
+<h2 id="share-a-job">Share a Job</h2>
+
+<p><code class="prettyprint">POST https://platform.rescale.com/api/jobs/{job_id/share/</code></p>
+
+<h2 id="get-the-status-history-of-a-job">Get the Status History of a Job</h2>
+
+<p><code class="prettyprint">GET https://platform.rescale.com/api/jobs/{job_id}/statuses</code></p>
+
+<p><code class="prettyprint">GET https://platform.rescale.com/api/jobs/{job_id}/cluster_statuses/</code></p>
+
+          <h1 id="runs">Runs</h1>
+
+<p>A single execution of your workflow is called a <em>run</em> in Rescale parlance.</p>
+
+<h2 id="list-runs-for-a-job">List Runs for a Job</h2>
+
+<p><code class="prettyprint">GET https://platform.rescale.com/api/jobs/{job_id}/runs/</code></p>
+
+<h2 id="get-a-run">Get a Run</h2>
+
+<p><code class="prettyprint">GET https://platform.rescale.com/api/jobs/{job_id}/runs/{run_id}/</code></p>
+
+<h2 id="stop-a-run">Stop a Run</h2>
+
+<p><code class="prettyprint">POST https://platform.rescale.com/api/jobs/{job_id}/runs/{run_id}/stop/</code></p>
+
+<h2 id="take-a-snapshot">Take a Snapshot</h2>
+
+<p><code class="prettyprint">POST https://platform.rescale.com/api/jobs/{job_id}/runs/{run_id}/snapshot/</code></p>
+
+<h2 id="list-output-files">List Output Files</h2>
+
+<p><code class="prettyprint">GET https://platform.rescale.com/api/jobs/{job_id}/runs/{run_id}/files/</code></p>
+
+<h2 id="list-directory-contents">List Directory Contents</h2>
+
+<p><code class="prettyprint">GET https://platform.rescale.com/api/jobs/{job_id}/runs/{run_id}/directory-contents/</code></p>
+
+<h2 id="tail-file-content">Tail File Content</h2>
+
+<p><code class="prettyprint">GET https://platform.rescale.com/api/jobs/{job_id}/runs/{run_id}/tail/{path}/</code></p>
+
+          <h1 id="files">Files</h1>
+
+<h2 id="list-all-files">List all Files</h2>
+
+<p><code class="prettyprint">GET https://platform.rescale.com/api/files/</code></p>
+
+<h2 id="upload-a-file">Upload a File</h2>
+
+<p><code class="prettyprint">POST https://platform.rescale.com/api/files/</code></p>
+
+<h2 id="delete-a-file">Delete a File</h2>
+
+<p><code class="prettyprint">DELETE https://platform.rescale.com/api/files/{file_id}/</code></p>
+
+<h2 id="download-a-file">Download a File</h2>
+
+<p><code class="prettyprint">GET https://platform.rescale.com/api/files/{file_id}/contents/</code></p>
+
+<h2 id="get-plaintext-content-of-a-file">Get Plaintext Content of a File</h2>
+
+<p><code class="prettyprint">GET https://platform.rescale.com/api/files/{file_id}/lines/</code></p>
+
+<h2 id="get-metadata-about-a-file">Get Metadata About a File</h2>
+
+<p><code class="prettyprint">GET https://platform.rescale.com/api/files/{file_id}/</code></p>
+
+<h2 id="change-metadata-about-a-file">Change Metadata About a File</h2>
+
+<p><code class="prettyprint">PUT https://platform.rescale.com/api/files/{file_id}/</code></p>
+
+<p><code class="prettyprint">PATCH https://platform.rescale.com/api/files/{file_id}/</code></p>
+
+          <h1 id="tasks">Tasks</h1>
+
+<h2 id="poll-a-running-task">Poll a Running Task</h2>
+
+<p><code class="prettyprint">GET https://platform.rescale.com/api/tasks/{token}/</code></p>
+
+          <h1 id="examples">Examples</h1>
+
+<h2 id="creating-a-job">Creating a Job</h2>
+
+<p>TODO</p>
+
+<p>Copy Mairi&rsquo;s example from the wiki</p>
+
+      </div>
+      <div class="dark-box">
+          <div class="lang-selector">
+                <a href="#" data-language-name="shell">cURL</a>
+                <a href="#" data-language-name="python">python</a>
+          </div>
+      </div>
+    </div>
+  </body>
+</html>
