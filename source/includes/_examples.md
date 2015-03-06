@@ -75,21 +75,15 @@ requests.get(
   "industries": [
     {
       "name": "Aerospace",
-      "icon":
-"https://d1n0dfo9fhokwf.cloudfront.net/thumbnails/tools-aero_1.png"
+      "icon": "https://d1n0dfo9fhokwf.cloudfront.net/thumbnails/tools-aero_1.png"
     },
     {
       "name": "Automotive",
-      "icon":
-"https://d1n0dfo9fhokwf.cloudfront.net/thumbnails/tools-auto_1.png"
+      "icon": "https://d1n0dfo9fhokwf.cloudfront.net/thumbnails/tools-auto_1.png"
     }
   ],
   "code": "openfoam",
-  "description": "<p><b>OpenFOAM</b> (<b>Open</b>-source <b>F</b>ield
-<b>O</b>peration <b>A</b>nd <b>M</b>anipulation is a C++ toolbox for the
-development of customized numerical solvers, and pre-/post-processing
-utilities for the solution of continuum mechanics problems, including
-computational fluid dynamics (CFD).</p>",
+  "description": "<p><b>OpenFOAM</b> (<b>Open</b>-source <b>F</b>ield <b>O</b>peration <b>A</b>nd <b>M</b>anipulation is a C++ toolbox for the development of customized numerical solvers, and pre-/post-processing utilities for the solution of continuum mechanics problems, including computational fluid dynamics (CFD).</p>",
   "versions": [
     {
       "eula": null,
@@ -106,11 +100,9 @@ computational fluid dynamics (CFD).</p>",
       ],
       "stdCommand": "foamExec <module> <input-file>",
       "version": "2.3.0",
-      "mpiCommand": "mpirun -np <mpi-ranks> foamExec <module>
-<input-file> -parallel",
+      "mpiCommand": "mpirun -np <mpi-ranks> foamExec <module> <input-file> -parallel",
       "versionCode": "2.3.0-openmpi",
-      "smpCommand": "mpirun -np <smp-ranks> foamExec <module>
-<input-file> -parallel"
+      "smpCommand": "mpirun -np <smp-ranks> foamExec <module> <input-file> -parallel"
     },
     {
       "eula": null,
@@ -127,11 +119,9 @@ computational fluid dynamics (CFD).</p>",
       ],
       "stdCommand": "foamExec <module> <input-file>",
       "version": "2.2.2",
-      "mpiCommand": "mpirun -np <mpi-ranks> foamExec <module>
-<input-file> -parallel",
+      "mpiCommand": "mpirun -np <mpi-ranks> foamExec <module> <input-file> -parallel",
       "versionCode": "2.2.2-openmpi",
-      "smpCommand": "mpirun -np <smp-ranks> foamExec <module>
-<input-file> -parallel"
+      "smpCommand": "mpirun -np <smp-ranks> foamExec <module> <input-file> -parallel"
     },
     {
       "eula": null,
@@ -148,11 +138,9 @@ computational fluid dynamics (CFD).</p>",
       ],
       "stdCommand": "foamExec <module> <input-file>",
       "version": "2.2.0",
-      "mpiCommand": "mpirun -np <mpi-ranks> foamExec <module>
-<input-file> -parallel",
+      "mpiCommand": "mpirun -np <mpi-ranks> foamExec <module> <input-file> -parallel",
       "versionCode": "2.2.0-openmpi",
-      "smpCommand": "mpirun -np <smp-ranks> foamExec <module>
-<input-file> -parallel"
+      "smpCommand": "mpirun -np <smp-ranks> foamExec <module> <input-file> -parallel"
     },
     {
       "eula": null,
@@ -169,11 +157,9 @@ computational fluid dynamics (CFD).</p>",
       ],
       "stdCommand": "foamExec <module> <input-file>",
       "version": "2.1.1",
-      "mpiCommand": "mpirun -np <mpi-ranks> foamExec <module>
-<input-file> -parallel",
+      "mpiCommand": "mpirun -np <mpi-ranks> foamExec <module> <input-file> -parallel",
       "versionCode": "2.1.1-openmpi",
-      "smpCommand": "mpirun -np <smp-ranks> foamExec <module>
-<input-file> -parallel"
+      "smpCommand": "mpirun -np <smp-ranks> foamExec <module> <input-file> -parallel"
     }
   ],
   "supportDesks": [
@@ -188,8 +174,7 @@ computational fluid dynamics (CFD).</p>",
   "pricing": "",
   "licenseSettings": [],
   "optimizerType": null,
-  "thumbnail":
-"https://d1n0dfo9fhokwf.cloudfront.net/thumbnails/openfoam_m.png",
+  "thumbnail": "https://d1n0dfo9fhokwf.cloudfront.net/thumbnails/openfoam_m.png",
   "resources": [],
   "name": "OpenFOAM"
 }

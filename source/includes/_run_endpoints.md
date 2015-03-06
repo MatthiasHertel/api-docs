@@ -41,13 +41,11 @@ A single execution of your workflow is called a *run* in Rescale parlance.
       "name": "nuTilda",
       "dateUploaded": "2014-11-12T22:56:50.550979Z",
       "relativePath": "airFoil2D/0/nuTilda",
-      "encodedEncryptionKey":
-"dQ3xMn6zAZkUx84ClH3ATmKumeaNJfWGna2k/89/V/s=",
+      "encodedEncryptionKey": "dQ3xMn6zAZkUx84ClH3ATmKumeaNJfWGna2k/89/V/s=",
       "sharedWith": [],
       "decryptedSize": 1268,
       "owner": "demouser@rescale.com",
-      "path":
-"user/user_OvdRk/output/job_QTVia/run1/airFoil2D/0/nuTilda",
+      "path": "user/user_OvdRk/output/job_QTVia/run1/airFoil2D/0/nuTilda",
       "isUploaded": true,
       "viewInBrowser": true,
       "id": "fDhFDe",
@@ -58,8 +56,7 @@ A single execution of your workflow is called a *run* in Rescale parlance.
       "name": "p",
       "dateUploaded": "2014-11-12T22:56:50.714078Z",
       "relativePath": "airFoil2D/0/p",
-      "encodedEncryptionKey":
-"ZHE2IT4ADwAJjfJYnYL4oBwp7YJ9cQr02nS3djnCHGA=",
+      "encodedEncryptionKey": "ZHE2IT4ADwAJjfJYnYL4oBwp7YJ9cQr02nS3djnCHGA=",
       "sharedWith": [],
       "decryptedSize": 1166,
       "owner": "demouser@rescale.com",
@@ -74,8 +71,7 @@ A single execution of your workflow is called a *run* in Rescale parlance.
       "name": "U",
       "dateUploaded": "2014-11-12T22:56:50.465184Z",
       "relativePath": "airFoil2D/0/U",
-      "encodedEncryptionKey":
-"NxEzQf+pChx9716FY4cdSb+UIw9ow64BimupkxaExYA=",
+      "encodedEncryptionKey": "NxEzQf+pChx9716FY4cdSb+UIw9ow64BimupkxaExYA=",
       "sharedWith": [],
       "decryptedSize": 1298,
       "owner": "demouser@rescale.com",
@@ -90,8 +86,7 @@ A single execution of your workflow is called a *run* in Rescale parlance.
       "name": "nut",
       "dateUploaded": "2014-11-12T22:56:50.931594Z",
       "relativePath": "airFoil2D/100/nut",
-      "encodedEncryptionKey":
-"M+X0Sxys9icqpXmdUreDnqg2TmLVL7B7vs68JiJDEU4=",
+      "encodedEncryptionKey": "M+X0Sxys9icqpXmdUreDnqg2TmLVL7B7vs68JiJDEU4=",
       "sharedWith": [],
       "decryptedSize": 100195,
       "owner": "demouser@rescale.com",
@@ -106,13 +101,11 @@ A single execution of your workflow is called a *run* in Rescale parlance.
       "name": "nuTilda",
       "dateUploaded": "2014-11-12T22:56:50.862457Z",
       "relativePath": "airFoil2D/100/nuTilda",
-      "encodedEncryptionKey":
-"yg6l0x1NkYkXOPT3TRoxTnXVC3x9C/SaB+tLSX+6M+U=",
+      "encodedEncryptionKey": "yg6l0x1NkYkXOPT3TRoxTnXVC3x9C/SaB+tLSX+6M+U=",
       "sharedWith": [],
       "decryptedSize": 99221,
       "owner": "demouser@rescale.com",
-      "path":
-"user/user_OvdRk/output/job_QTVia/run1/airFoil2D/100/nuTilda",
+      "path": "user/user_OvdRk/output/job_QTVia/run1/airFoil2D/100/nuTilda",
       "isUploaded": true,
       "viewInBrowser": true,
       "id": "hDhFDe",
@@ -123,8 +116,7 @@ A single execution of your workflow is called a *run* in Rescale parlance.
       "name": "p",
       "dateUploaded": "2014-11-12T22:56:51.005975Z",
       "relativePath": "airFoil2D/100/p",
-      "encodedEncryptionKey":
-"cwQWYQLRl7+IIU462hGELzwz9iVxpf/CfgYUEQVndB4=",
+      "encodedEncryptionKey": "cwQWYQLRl7+IIU462hGELzwz9iVxpf/CfgYUEQVndB4=",
       "sharedWith": [],
       "decryptedSize": 86615,
       "owner": "demouser@rescale.com",
@@ -139,8 +131,7 @@ A single execution of your workflow is called a *run* in Rescale parlance.
       "name": "phi",
       "dateUploaded": "2014-11-12T22:56:51.079312Z",
       "relativePath": "airFoil2D/100/phi",
-      "encodedEncryptionKey":
-"5fWxJl5KR7G3oVUYJjjYMzbSveYLAYF6AW8xFDahZtk=",
+      "encodedEncryptionKey": "5fWxJl5KR7G3oVUYJjjYMzbSveYLAYF6AW8xFDahZtk=",
       "sharedWith": [],
       "decryptedSize": 190707,
       "owner": "demouser@rescale.com",
@@ -155,8 +146,7 @@ A single execution of your workflow is called a *run* in Rescale parlance.
       "name": "U",
       "dateUploaded": "2014-11-12T22:56:50.787838Z",
       "relativePath": "airFoil2D/100/U",
-      "encodedEncryptionKey":
-"gHfNzchETji3v69TfeeyhBe0+owGJhNcX7PAzgmJha8=",
+      "encodedEncryptionKey": "gHfNzchETji3v69TfeeyhBe0+owGJhNcX7PAzgmJha8=",
       "sharedWith": [],
       "decryptedSize": 298228,
       "owner": "demouser@rescale.com",
@@ -171,21 +161,18 @@ A single execution of your workflow is called a *run* in Rescale parlance.
       "name": "time",
       "dateUploaded": "2014-11-12T22:56:51.222466Z",
       "relativePath": "airFoil2D/100/uniform/time",
-      "encodedEncryptionKey":
-"F3HkdyuOCnxO6NwIJbv6Zg+xzKTFZKxrc6NvuneB2QE=",
+      "encodedEncryptionKey": "F3HkdyuOCnxO6NwIJbv6Zg+xzKTFZKxrc6NvuneB2QE=",
       "sharedWith": [],
       "decryptedSize": 968,
       "owner": "demouser@rescale.com",
-      "path":
-"user/user_OvdRk/output/job_QTVia/run1/airFoil2D/100/uniform/time",
+      "path": "user/user_OvdRk/output/job_QTVia/run1/airFoil2D/100/uniform/time",
       "isUploaded": true,
       "viewInBrowser": true,
       "id": "LosKDe",
       "md5": "62ac76eb8aae234370613d7350ac8685"
     }
   ],
-  "next":
-"https://platform.rescale.com/api/jobs/QTVia/runs/1/files/?page=2"
+  "next": "https://platform.rescale.com/api/jobs/QTVia/runs/1/files/?page=2"
 }
 ```
 
