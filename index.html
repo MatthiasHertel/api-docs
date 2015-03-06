@@ -826,37 +826,19 @@ cluster on rescale</p>
 <td>jobvariables</td>
 <td style="text-align: center">None</td>
 <td style="text-align: left">No</td>
-<td>List of job variables for this job. See</td>
-</tr>
-<tr>
-<td>details below.</td>
-<td style="text-align: center"></td>
-<td style="text-align: left"></td>
-<td></td>
+<td>List of job variables for this job. See details below.</td>
 </tr>
 <tr>
 <td>jobanalyses</td>
 <td style="text-align: center">None</td>
 <td style="text-align: left">Yes</td>
-<td>List of analyses for this job. See</td>
-</tr>
-<tr>
-<td>details below.</td>
-<td style="text-align: center"></td>
-<td style="text-align: left"></td>
-<td></td>
+<td>List of analyses for this job. See details below.</td>
 </tr>
 <tr>
 <td>resourceFilters</td>
 <td style="text-align: center">Default filters</td>
 <td style="text-align: left">No</td>
-<td>List of filtering rules for</td>
-</tr>
-<tr>
-<td>output files.</td>
-<td style="text-align: center"></td>
-<td style="text-align: left"></td>
-<td></td>
+<td>List of filtering rules for output files.</td>
 </tr>
 <tr>
 <td>isTemplateDryRun</td>
@@ -868,25 +850,13 @@ cluster on rescale</p>
 <td>includeNominalRun</td>
 <td style="text-align: center">False</td>
 <td style="text-align: left">No</td>
-<td>Include the run with nominal</td>
-</tr>
-<tr>
-<td>variables.</td>
-<td style="text-align: center"></td>
-<td style="text-align: left"></td>
-<td></td>
+<td>Include the run with nominal variables.</td>
 </tr>
 <tr>
 <td>monteCarloIterations</td>
 <td style="text-align: center">None</td>
 <td style="text-align: left">No</td>
-<td>Number of iterations in case the</td>
-</tr>
-<tr>
-<td>variables use a monteCarlo generator type.</td>
-<td style="text-align: center"></td>
-<td style="text-align: left"></td>
-<td></td>
+<td>Number of iterations in case the variables use a monteCarlo generator type.</td>
 </tr>
 </tbody></table>
 
@@ -914,49 +884,25 @@ platform.</p>
 <td>variableType</td>
 <td style="text-align: center">None</td>
 <td style="text-align: left">Yes</td>
-<td>Options are: &lsquo;Param&rsquo;, &#39;Design&rsquo;, &#39;Output&rsquo;,</td>
-</tr>
-<tr>
-<td>&#39;Case&rsquo;, &#39;Constraint&rsquo; &amp; &#39;Objective&rsquo;</td>
-<td style="text-align: center"></td>
-<td style="text-align: left"></td>
-<td></td>
+<td>Options are: &lsquo;Param&rsquo;, &#39;Design&rsquo;, &#39;Output&rsquo;, &#39;Case&rsquo;, &#39;Constraint&rsquo; &amp; &#39;Objective&rsquo;</td>
 </tr>
 <tr>
 <td>displayOrder</td>
 <td style="text-align: center">None</td>
 <td style="text-align: left">Yes</td>
-<td>Order in which the variables appear in the</td>
-</tr>
-<tr>
-<td>Rescale UI</td>
-<td style="text-align: center"></td>
-<td style="text-align: left"></td>
-<td></td>
+<td>Order in which the variables appear in the Rescale UI</td>
 </tr>
 <tr>
 <td>variableGeneratorType</td>
 <td style="text-align: center">None</td>
 <td style="text-align: left">Yes</td>
-<td>Options are: &#39;Normal&rsquo;, &#39;Uniform&rsquo;,</td>
-</tr>
-<tr>
-<td>&#39;Linspace&rsquo;, &#39;FixedRange&rsquo;, &#39;Triangular&rsquo; &amp; &#39;LogNormal&rsquo;</td>
-<td style="text-align: center"></td>
-<td style="text-align: left"></td>
-<td></td>
+<td>Options are: &#39;Normal&rsquo;, &#39;Uniform&rsquo;, &#39;Linspace&rsquo;, &#39;FixedRange&rsquo;, &#39;Triangular&rsquo; &amp; &#39;LogNormal&rsquo;</td>
 </tr>
 <tr>
 <td>valueGeneratorSettings</td>
 <td style="text-align: center">None</td>
 <td style="text-align: left">Yes</td>
-<td>JSON blob describing the</td>
-</tr>
-<tr>
-<td>generator</td>
-<td style="text-align: center"></td>
-<td style="text-align: left"></td>
-<td></td>
+<td>JSON blob describing the generator</td>
 </tr>
 </tbody></table>
 
@@ -979,31 +925,75 @@ in constructing your JSON blob.</p>
 <td>analysis</td>
 <td style="text-align: center">None</td>
 <td style="text-align: left">Yes</td>
-<td>Analysis to use. This field is a JSON blob</td>
+<td>Analysis to use. This field is a JSON blob with schema {&ldquo;code&rdquo;, &ldquo;version&rdquo;}. A GET call to <em>/api/analyses/</em> end point should get you the code for software package you want. &ldquo;version&rdquo; is an optional parameter.</td>
+</tr>
+<tr>
+<td>command</td>
+<td style="text-align: center">None</td>
+<td style="text-align: left">Yes</td>
+<td>Command to run this analysis with.</td>
+</tr>
+<tr>
+<td>useMpi</td>
+<td style="text-align: center">False</td>
+<td style="text-align: left">No</td>
+<td>Whether you want to spin up an mpi cluster.</td>
+</tr>
+<tr>
+<td>envVars</td>
+<td style="text-align: center">Empty dict</td>
+<td style="text-align: left">No</td>
+<td>Dictionary of environment variables for this analysis.</td>
+</tr>
+<tr>
+<td>hardware</td>
+<td style="text-align: center">None</td>
+<td style="text-align: left">Yes</td>
+<td>Hardware settings for this analysis. Takes a JSON blob with schema {&ldquo;coreType&rdquo;, &ldquo;coresPerSlot&rdquo;}.</td>
+</tr>
+<tr>
+<td>inputFiles</td>
+<td style="text-align: center">None</td>
+<td style="text-align: left">No</td>
+<td>List of input files for this analysis.</td>
+</tr>
+<tr>
+<td>useRescaleLicense</td>
+<td style="text-align: center">False</td>
+<td style="text-align: left">No</td>
+<td>If the analysis has an option for using a Rescale provided license, set this field to True.</td>
+</tr>
+<tr>
+<td>templateTasks</td>
+<td style="text-align: center">None</td>
+<td style="text-align: left">No</td>
+<td>The template file for this analysis.</td>
+</tr>
+<tr>
+<td>preProcessScript</td>
+<td style="text-align: center">None</td>
+<td style="text-align: left">No</td>
+<td>Pre-processing script for this analysis.</td>
+</tr>
+<tr>
+<td>preProcessScriptCommand</td>
+<td style="text-align: center">None</td>
+<td style="text-align: left">No</td>
+<td>Command to kick off the pre-processing script.</td>
+</tr>
+<tr>
+<td>postProcessScript</td>
+<td style="text-align: center">None</td>
+<td style="text-align: left">No</td>
+<td>Post-processing script for this analysis.</td>
+</tr>
+<tr>
+<td>postProcessScriptCommand</td>
+<td style="text-align: center">None</td>
+<td style="text-align: left">No</td>
+<td>Command to kick off the post-processing script.</td>
 </tr>
 </tbody></table>
-
-<p>with schema {&ldquo;code&rdquo;, &ldquo;version&rdquo;}. A GET call to <em>/api/analyses/</em> end
-point should get you the code for software package you want. &ldquo;version&rdquo;
-is an optional parameter. |
-| command | None | Yes | Command to run this analysis with. |
-| useMpi | False | No | Whether you want to spin up an mpi cluster. |
-| envVars | Empty dict | No | Dictionary of environment variables for
-this analysis. |
-| hardware | None | Yes | Hardware settings for this analysis. Takes a
-JSON blob with schema {&ldquo;coreType&rdquo;, &ldquo;coresPerSlot&rdquo;}. |
-| inputFiles | None | No | List of input files for this analysis. |
-| useRescaleLicense | False | No | If the analysis has an option for
-using a Rescale provided license, set this field to True. |
-| templateTasks | None | No | The template file for this analysis. |
-| preProcessScript | None | No | Pre-processing script for this
-analysis. |
-| preProcessScriptCommand | None | No | Command to kick off the
-pre-processing script. |
-| postProcessScript | None | No | Post-processing script for this
-analysis. |
-| postProcessScriptCommand | None | No | Command to kick off the
-post-processing script. |</p>
 
 <h2 id="submit-a-saved-job">Submit a Saved Job</h2>
 
