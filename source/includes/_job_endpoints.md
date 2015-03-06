@@ -113,17 +113,12 @@ id | String | A unique identifier for the job
 | name    | None | Yes | Human friendly name for this job. |
 | paramFile     | None | No |   File with parameter variables. |
 | caseFile | None | No |    File with case variables. |
-| jobvariables | None | No |    List of job variables for this job. See
-details below. |
-| jobanalyses | None | Yes |    List of analyses for this job. See
-details below. |
-| resourceFilters | Default filters | No | List of filtering rules for
-output files. |
+| jobvariables | None | No |    List of job variables for this job. See details below. |
+| jobanalyses | None | Yes |    List of analyses for this job. See details below. |
+| resourceFilters | Default filters | No | List of filtering rules for output files. |
 | isTemplateDryRun | False | No | Run this job in "dry run" mode. |
-| includeNominalRun | False | No | Include the run with nominal
-variables. |
-| monteCarloIterations | None | No | Number of iterations in case the
-variables use a monteCarlo generator type.|
+| includeNominalRun | False | No | Include the run with nominal variables. |
+| monteCarloIterations | None | No | Number of iterations in case the variables use a monteCarlo generator type.|
 
 ### JobVariables
 
@@ -134,14 +129,10 @@ platform.
 | Field        | Default | Required | Description  |
 | ------------- |:-------------:|:--- | ----- |
 | name | None | Yes | Name for the the variable. |
-| variableType | None | Yes | Options are: 'Param', 'Design', 'Output',
-'Case', 'Constraint' & 'Objective'|
-| displayOrder | None | Yes | Order in which the variables appear in the
-Rescale UI |
-| variableGeneratorType | None | Yes | Options are: 'Normal', 'Uniform',
-'Linspace', 'FixedRange', 'Triangular' & 'LogNormal' |
-| valueGeneratorSettings | None | Yes | JSON blob describing the
-generator |
+| variableType | None | Yes | Options are: 'Param', 'Design', 'Output', 'Case', 'Constraint' & 'Objective'|
+| displayOrder | None | Yes | Order in which the variables appear in the Rescale UI |
+| variableGeneratorType | None | Yes | Options are: 'Normal', 'Uniform', 'Linspace', 'FixedRange', 'Triangular' & 'LogNormal' |
+| valueGeneratorSettings | None | Yes | JSON blob describing the generator |
 
 ### JobAnalyses
 
@@ -152,28 +143,18 @@ in constructing your JSON blob.
 
 | Field        | Default | Required | Description  |
 | ------------- |:-------------:|:--- | ----- |
-| analysis | None | Yes | Analysis to use. This field is a JSON blob
-with schema {"code", "version"}. A GET call to _/api/analyses/_ end
-point should get you the code for software package you want. "version"
-is an optional parameter. |
+| analysis | None | Yes | Analysis to use. This field is a JSON blob with schema {"code", "version"}. A GET call to _/api/analyses/_ end point should get you the code for software package you want. "version" is an optional parameter. |
 | command | None | Yes | Command to run this analysis with. |
 | useMpi | False | No | Whether you want to spin up an mpi cluster. |
-| envVars | Empty dict | No | Dictionary of environment variables for
-this analysis. |
-| hardware | None | Yes | Hardware settings for this analysis. Takes a
-JSON blob with schema {"coreType", "coresPerSlot"}. |
+| envVars | Empty dict | No | Dictionary of environment variables for this analysis. |
+| hardware | None | Yes | Hardware settings for this analysis. Takes a JSON blob with schema {"coreType", "coresPerSlot"}. |
 | inputFiles | None | No | List of input files for this analysis. |
-| useRescaleLicense | False | No | If the analysis has an option for
-using a Rescale provided license, set this field to True. |
+| useRescaleLicense | False | No | If the analysis has an option for using a Rescale provided license, set this field to True. |
 | templateTasks | None | No | The template file for this analysis. |
-| preProcessScript | None | No | Pre-processing script for this
-analysis. |
-| preProcessScriptCommand | None | No | Command to kick off the
-pre-processing script. |
-| postProcessScript | None | No | Post-processing script for this
-analysis. |
-| postProcessScriptCommand | None | No | Command to kick off the
-post-processing script. |
+| preProcessScript | None | No | Pre-processing script for this analysis. |
+| preProcessScriptCommand | None | No | Command to kick off the pre-processing script. |
+| postProcessScript | None | No | Post-processing script for this analysis. |
+| postProcessScriptCommand | None | No | Command to kick off the post-processing script. |
 
 
 ## Submit a Saved Job
