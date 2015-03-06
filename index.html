@@ -1760,11 +1760,9 @@ multiple runs, which could be queried individually by sending a request
 to the <a href="#get-a-run">run endpoint</a> with the run id in the path.</p>
 
 <h2 id="file-download">File download</h2>
-
-<p><code class="prettyprint">shell
-curl -H &#39;Authorization: Token &lt;api-token&gt;&#39; \
+<pre><code class="highlight shell">curl -H <span class="s1">'Authorization: Token &lt;api-token&gt;'</span> <span class="se">\</span>
 https://platform.rescale.com/api/files/iudjqe/contents/ &gt; process_output.log
-</code>`</p>
+</code></pre>
 <pre><code class="highlight python"><span class="kn">import</span> <span class="nn">requests</span>
 <span class="kn">from</span> <span class="nn">contextlib</span> <span class="kn">import</span> <span class="n">closing</span>
 
