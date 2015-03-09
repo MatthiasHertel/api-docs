@@ -309,7 +309,7 @@ Property | Type  | Description
 
 
 
-## Remote Visulization Options
+## Remote Visualization Options
 
 `GET https://platform.rescale.com/api/remote-viz-config/`
 

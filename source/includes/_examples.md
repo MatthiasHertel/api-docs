@@ -53,7 +53,7 @@ contains amongst other things, the id of the File you just uploaded.
 This field is going to come in handy when referring to this particular
 file in all the other calls to the API.
 
-## Choosing an analysis.
+## Choosing an analysis
 
 ```shell
 curl -H "Authorization: Token <api-token>" https://platform.rescale.com/api/analyses/

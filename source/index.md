@@ -24,7 +24,7 @@ search: true
 # Introduction
 
 Welcome to the Rescale REST API! Using the API you can upload input files, create jobs, and view the status of existing jobs.
-This documentation inludes examples using cURL and python. The python exampless use [requests](https://docs.python-requests.org/en/latest/) for https.
+This documentation inludes examples using cURL and python. The python examples use [requests](https://docs.python-requests.org/en/latest/) for https.
 
 All request paths must include the trailing slash (e.g. `/api/jobs/` instead of `/api/jobs`)
 
