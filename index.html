@@ -1030,16 +1030,387 @@ in constructing your JSON blob.</p>
 <h2 id="list-runs-for-a-job">List Runs for a Job</h2>
 
 <p><code class="prettyprint">GET https://platform.rescale.com/api/jobs/{job_id}/runs/</code></p>
+<pre><code class="highlight shell">curl -X GET -H <span class="s1">'Authorization: Token \&lt;token\&gt;'</span>
+https://platform.rescale.com/api/jobs/XXXXXX/runs/
+</code></pre>
+<pre><code class="highlight python"><span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+  <span class="s">'https://platform.rescale.com/api/jobs/XXXXXX/runs/'</span><span class="p">,</span>
+  <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Token &lt;api-token&gt;'</span><span class="p">}</span>
+<span class="p">)</span>
+</code></pre>
+
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre><code class="highlight json"><span class="p">{</span><span class="w">
+  </span><span class="s2">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">121</span><span class="p">,</span><span class="w"> 
+  </span><span class="s2">"next"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://platform.rescale.com/api/jobs/XXXXXX/runs/?page=2"</span><span class="p">,</span><span class="w"> 
+  </span><span class="s2">"previous"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w"> 
+  </span><span class="s2">"results"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"dateCompleted"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-02-18T03:09:14.667000Z"</span><span class="p">,</span><span class="w"> 
+      </span><span class="s2">"dateStarted"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-02-18T03:08:49.117000Z"</span><span class="p">,</span><span class="w"> 
+      </span><span class="s2">"displayOrder"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> 
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w"> 
+      </span><span class="s2">"isOptimal"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"> 
+      </span><span class="s2">"outputFileCount"</span><span class="p">:</span><span class="w"> </span><span class="mi">66</span><span class="p">,</span><span class="w"> 
+      </span><span class="s2">"outputFileSize"</span><span class="p">:</span><span class="w"> </span><span class="mi">8018226</span><span class="p">,</span><span class="w"> 
+      </span><span class="s2">"parent"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w"> 
+      </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> 
+      </span><span class="s2">"variables"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"displayValue"</span><span class="p">:</span><span class="w"> </span><span class="s2">"20"</span><span class="p">,</span><span class="w"> 
+          </span><span class="s2">"isRelative"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"> 
+          </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"x_velocity"</span><span class="p">,</span><span class="w"> 
+          </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="mf">20.0</span><span class="w">
+        </span><span class="p">},</span><span class="w"> 
+        </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"displayValue"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w"> 
+          </span><span class="s2">"isRelative"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"> 
+          </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"y_velocity"</span><span class="p">,</span><span class="w"> 
+          </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="mf">3.0</span><span class="w">
+        </span><span class="p">},</span><span class="w"> 
+        </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"displayValue"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-0.0187556"</span><span class="p">,</span><span class="w"> 
+          </span><span class="s2">"isRelative"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"> 
+          </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Cd"</span><span class="p">,</span><span class="w"> 
+          </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="mf">-0.0187556</span><span class="w">
+        </span><span class="p">},</span><span class="w"> 
+        </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"displayValue"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.140742"</span><span class="p">,</span><span class="w"> 
+          </span><span class="s2">"isRelative"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"> 
+          </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Cl"</span><span class="p">,</span><span class="w"> 
+          </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.140742</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+    </span><span class="p">},</span><span class="w"> 
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"dateCompleted"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-02-18T03:07:13.049000Z"</span><span class="p">,</span><span class="w"> 
+      </span><span class="s2">"dateStarted"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-02-18T03:06:46.477000Z"</span><span class="p">,</span><span class="w"> 
+      </span><span class="s2">"displayOrder"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> 
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w"> 
+      </span><span class="s2">"isOptimal"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"> 
+      </span><span class="s2">"outputFileCount"</span><span class="p">:</span><span class="w"> </span><span class="mi">72</span><span class="p">,</span><span class="w"> 
+      </span><span class="s2">"outputFileSize"</span><span class="p">:</span><span class="w"> </span><span class="mi">8805863</span><span class="p">,</span><span class="w"> 
+      </span><span class="s2">"parent"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w"> 
+      </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> 
+      </span><span class="s2">"variables"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"displayValue"</span><span class="p">:</span><span class="w"> </span><span class="s2">"20"</span><span class="p">,</span><span class="w"> 
+          </span><span class="s2">"isRelative"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"> 
+          </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"x_velocity"</span><span class="p">,</span><span class="w"> 
+          </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="mf">20.0</span><span class="w">
+        </span><span class="p">},</span><span class="w"> 
+        </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"displayValue"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3.5"</span><span class="p">,</span><span class="w"> 
+          </span><span class="s2">"isRelative"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"> 
+          </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"y_velocity"</span><span class="p">,</span><span class="w"> 
+          </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="mf">3.5</span><span class="w">
+        </span><span class="p">},</span><span class="w"> 
+        </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"displayValue"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-0.0248332"</span><span class="p">,</span><span class="w"> 
+          </span><span class="s2">"isRelative"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"> 
+          </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Cd"</span><span class="p">,</span><span class="w"> 
+          </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="mf">-0.0248332</span><span class="w">
+        </span><span class="p">},</span><span class="w"> 
+        </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"displayValue"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.157982"</span><span class="p">,</span><span class="w"> 
+          </span><span class="s2">"isRelative"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"> 
+          </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Cl"</span><span class="p">,</span><span class="w"> 
+          </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.157982</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>This call allows you to retrieve the first page of runs associated with
+<em>job-id</em>.</p>
+
+<h3 id="response-properties">Response Properties</h3>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>count</td>
+<td>Integer</td>
+<td>The total number of runs in the job</td>
+</tr>
+<tr>
+<td>next</td>
+<td>String</td>
+<td>The URL that will return the next page of results.</td>
+</tr>
+<tr>
+<td>previous</td>
+<td>String</td>
+<td>The URL that will return the previous page of results</td>
+</tr>
+<tr>
+<td>results</td>
+<td>Array&lt;Object&gt;</td>
+<td>An array of <a href="#get-a-run">Run objects</a></td>
+</tr>
+</tbody></table>
 
 <h2 id="get-a-run">Get a Run</h2>
 
 <p><code class="prettyprint">GET https://platform.rescale.com/api/jobs/{job_id}/runs/{run_id}/</code></p>
+<pre><code class="highlight shell">curl -X GET -H <span class="s1">'Authorization: Token \&lt;token\&gt;'</span>
+https://platform.rescale.com/api/jobs/XXXXXX/runs/1/
+</code></pre>
+<pre><code class="highlight python"><span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+  <span class="s">'https://platform.rescale.com/api/jobs/XXXXXX/runs/1/'</span><span class="p">,</span>
+  <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Token &lt;api-token&gt;'</span><span class="p">}</span>
+<span class="p">)</span>
+</code></pre>
 
 <blockquote>
-<p>curl -X GET -H &lsquo;Authorization: Token &lt;token&gt;&rsquo;
-https://platform.rescale.com/api/jobs/QTVia/runs/1/files/</p>
+<p>Sample Response</p>
+</blockquote>
+<pre><code class="highlight json"><span class="p">{</span><span class="w">
+  </span><span class="s2">"dateCompleted"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-02-18T03:09:14.667000Z"</span><span class="p">,</span><span class="w"> 
+  </span><span class="s2">"dateStarted"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-02-18T03:08:49.117000Z"</span><span class="p">,</span><span class="w"> 
+  </span><span class="s2">"displayOrder"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> 
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w"> 
+  </span><span class="s2">"isOptimal"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"> 
+  </span><span class="s2">"outputFileCount"</span><span class="p">:</span><span class="w"> </span><span class="mi">66</span><span class="p">,</span><span class="w"> 
+  </span><span class="s2">"outputFileSize"</span><span class="p">:</span><span class="w"> </span><span class="mi">8018226</span><span class="p">,</span><span class="w"> 
+  </span><span class="s2">"parent"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w"> 
+  </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> 
+  </span><span class="s2">"variables"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"displayValue"</span><span class="p">:</span><span class="w"> </span><span class="s2">"20"</span><span class="p">,</span><span class="w"> 
+      </span><span class="s2">"isRelative"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"> 
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"x_velocity"</span><span class="p">,</span><span class="w"> 
+      </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="mf">20.0</span><span class="w">
+    </span><span class="p">},</span><span class="w"> 
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"displayValue"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w"> 
+      </span><span class="s2">"isRelative"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"> 
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"y_velocity"</span><span class="p">,</span><span class="w"> 
+      </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="mf">3.0</span><span class="w">
+    </span><span class="p">},</span><span class="w"> 
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"displayValue"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-0.0187556"</span><span class="p">,</span><span class="w"> 
+      </span><span class="s2">"isRelative"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"> 
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Cd"</span><span class="p">,</span><span class="w"> 
+      </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="mf">-0.0187556</span><span class="w">
+    </span><span class="p">},</span><span class="w"> 
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"displayValue"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.140742"</span><span class="p">,</span><span class="w"> 
+      </span><span class="s2">"isRelative"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"> 
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Cl"</span><span class="p">,</span><span class="w"> 
+      </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.140742</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 
-<p>HTTP 200 OK</p>
+<h3 id="response-properties">Response Properties</h3>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>dateCompleted</td>
+<td>String</td>
+<td>The ISO8601 encoded date of when the run finished.</td>
+</tr>
+<tr>
+<td>dateInserted</td>
+<td>String</td>
+<td>The ISO8601 encoded date of when the run started.</td>
+</tr>
+<tr>
+<td>displayOrder</td>
+<td>Integer</td>
+<td>Used for sorting a collection of runs into their canonical order.</td>
+</tr>
+<tr>
+<td>id</td>
+<td>String</td>
+<td>The unique identifier of the run within a job.</td>
+</tr>
+<tr>
+<td>isOptimal</td>
+<td>Boolean</td>
+<td>True if the optimizer or analysis code has designated this as a run of interest.</td>
+</tr>
+<tr>
+<td>outputFileCount</td>
+<td>Integer</td>
+<td>The number of output files associated with this run</td>
+</tr>
+<tr>
+<td>outputFileSize</td>
+<td>Integer</td>
+<td>The total size in bytes of all output files associated with this run</td>
+</tr>
+<tr>
+<td>parent</td>
+<td>String</td>
+<td>The identifier of the parent run.</td>
+</tr>
+<tr>
+<td>type</td>
+<td>Integer</td>
+<td>1 = Optimization, 2 = Iteration, 3 = Case</td>
+</tr>
+<tr>
+<td>variables</td>
+<td>List&lt;Variable&gt;</td>
+<td>See below</td>
+</tr>
+</tbody></table>
+
+<h4 id="variable-properties">Variable Properties</h4>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>displayValue</td>
+<td>String</td>
+<td>The value that will be inserted into the template</td>
+</tr>
+<tr>
+<td>isRelative</td>
+<td>Boolean</td>
+<td>True if the variable values are relative to a default value entered into the template placeholder.</td>
+</tr>
+<tr>
+<td>name</td>
+<td>String</td>
+<td>The variable name</td>
+</tr>
+<tr>
+<td>value</td>
+<td>Float</td>
+<td>The floating point representation of the variable value</td>
+</tr>
+</tbody></table>
+
+<p>This call allows you to retrieve details for a single run within a job.</p>
+
+<h2 id="stop-a-run">Stop a Run</h2>
+
+<p><code class="prettyprint">POST https://platform.rescale.com/api/jobs/{job_id}/runs/{run_id}/stop/</code></p>
+<pre><code class="highlight shell">curl -X POST -H <span class="s1">'Authorization: Token \&lt;token\&gt;'</span>
+https://platform.rescale.com/api/jobs/XXXXX/runs/1/stop/
+</code></pre>
+<pre><code class="highlight python"><span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span>
+  <span class="s">'https://platform.rescale.com/api/jobs/XXXXX/runs/1/stop/'</span><span class="p">,</span>
+  <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Token &lt;api-token&gt;'</span><span class="p">}</span>
+<span class="p">)</span>
+</code></pre>
+
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre><code class="highlight json"><span class="p">{}</span><span class="w">
+</span></code></pre>
+
+<p>Stops an in-progress run. The workflow processes will be killed and any
+available output files will be uploaded to Rescale Cloud Storage. </p>
+
+<h2 id="take-a-snapshot">Take a Snapshot</h2>
+
+<p><code class="prettyprint">POST https://platform.rescale.com/api/jobs/{job_id}/runs/{run_id}/snapshot/</code></p>
+<pre><code class="highlight shell">curl -X POST -H <span class="s1">'Authorization: Token \&lt;token\&gt;'</span>
+https://platform.rescale.com/api/jobs/XXXXX/runs/1/snapshot/
+</code></pre>
+<pre><code class="highlight python"><span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span>
+  <span class="s">'https://platform.rescale.com/api/jobs/XXXXX/runs/1/snapshot/'</span><span class="p">,</span>
+  <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Token &lt;api-token&gt;'</span><span class="p">}</span>
+<span class="p">)</span>
+</code></pre>
+
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre><code class="highlight json"><span class="p">{</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w"> 
+  </span><span class="s2">"exitcode"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> 
+  </span><span class="s2">"lastSnapshotID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"gQLna"</span><span class="p">,</span><span class="w"> 
+  </span><span class="s2">"reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Generating snapshot."</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h3 id="response-properties">Response Properties</h3>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>data</td>
+<td>String</td>
+<td>TODO</td>
+</tr>
+<tr>
+<td>exitcode</td>
+<td>Integer</td>
+<td>The exit code from the snapshot utility. 0 indicates success.</td>
+</tr>
+<tr>
+<td>lastSnapshotID</td>
+<td>String</td>
+<td>The file ID of the previously taken snapshot.</td>
+</tr>
+<tr>
+<td>reason</td>
+<td>String</td>
+<td>TODO</td>
+</tr>
+</tbody></table>
+
+<p>Snapshots only apply to runs that are currently in-progress. A snapshot is an
+archive of all files that currently exist in the working directory. After the
+archive is created, it is uploaded to Rescale Cloud Storage and is made
+available as a run output file.</p>
+
+<h2 id="list-output-files">List Output Files</h2>
+
+<p><code class="prettyprint">GET https://platform.rescale.com/api/jobs/{job_id}/runs/{run_id}/files/</code></p>
+<pre><code class="highlight shell">curl -X GET -H <span class="s1">'Authorization: Token \&lt;token\&gt;'</span>
+https://platform.rescale.com/api/jobs/XXXXX/runs/1/files/
+</code></pre>
+<pre><code class="highlight python"><span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+  <span class="s">'https://platform.rescale.com/api/jobs/XXXXX/runs/1/files/'</span><span class="p">,</span>
+  <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Token &lt;api-token&gt;'</span><span class="p">}</span>
+<span class="p">)</span>
+</code></pre>
+
+<blockquote>
+<p>Sample Response</p>
 </blockquote>
 <pre><code class="highlight json"><span class="w">
 </span><span class="p">{</span><span class="w">
@@ -1055,7 +1426,7 @@ https://platform.rescale.com/api/jobs/QTVia/runs/1/files/</p>
       </span><span class="s2">"sharedWith"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
       </span><span class="s2">"decryptedSize"</span><span class="p">:</span><span class="w"> </span><span class="mi">1278</span><span class="p">,</span><span class="w">
       </span><span class="s2">"owner"</span><span class="p">:</span><span class="w"> </span><span class="s2">"demouser@rescale.com"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"user/user_OvdRk/output/job_QTVia/run1/airFoil2D/0/nut"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"user/user_OvdRk/output/job_XXXXX/run1/airFoil2D/0/nut"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"isUploaded"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
       </span><span class="s2">"viewInBrowser"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
       </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dmpTse"</span><span class="p">,</span><span class="w">
@@ -1070,7 +1441,7 @@ https://platform.rescale.com/api/jobs/QTVia/runs/1/files/</p>
       </span><span class="s2">"sharedWith"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
       </span><span class="s2">"decryptedSize"</span><span class="p">:</span><span class="w"> </span><span class="mi">1268</span><span class="p">,</span><span class="w">
       </span><span class="s2">"owner"</span><span class="p">:</span><span class="w"> </span><span class="s2">"demouser@rescale.com"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"user/user_OvdRk/output/job_QTVia/run1/airFoil2D/0/nuTilda"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"user/user_OvdRk/output/job_XXXXX/run1/airFoil2D/0/nuTilda"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"isUploaded"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
       </span><span class="s2">"viewInBrowser"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
       </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fDhFDe"</span><span class="p">,</span><span class="w">
@@ -1085,7 +1456,7 @@ https://platform.rescale.com/api/jobs/QTVia/runs/1/files/</p>
       </span><span class="s2">"sharedWith"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
       </span><span class="s2">"decryptedSize"</span><span class="p">:</span><span class="w"> </span><span class="mi">1166</span><span class="p">,</span><span class="w">
       </span><span class="s2">"owner"</span><span class="p">:</span><span class="w"> </span><span class="s2">"demouser@rescale.com"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"user/user_OvdRk/output/job_QTVia/run1/airFoil2D/0/p"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"user/user_OvdRk/output/job_XXXXX/run1/airFoil2D/0/p"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"isUploaded"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
       </span><span class="s2">"viewInBrowser"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
       </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sOhFDe"</span><span class="p">,</span><span class="w">
@@ -1100,7 +1471,7 @@ https://platform.rescale.com/api/jobs/QTVia/runs/1/files/</p>
       </span><span class="s2">"sharedWith"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
       </span><span class="s2">"decryptedSize"</span><span class="p">:</span><span class="w"> </span><span class="mi">1298</span><span class="p">,</span><span class="w">
       </span><span class="s2">"owner"</span><span class="p">:</span><span class="w"> </span><span class="s2">"demouser@rescale.com"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"user/user_OvdRk/output/job_QTVia/run1/airFoil2D/0/U"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"user/user_OvdRk/output/job_XXXXX/run1/airFoil2D/0/U"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"isUploaded"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
       </span><span class="s2">"viewInBrowser"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
       </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"RapTse"</span><span class="p">,</span><span class="w">
@@ -1115,7 +1486,7 @@ https://platform.rescale.com/api/jobs/QTVia/runs/1/files/</p>
       </span><span class="s2">"sharedWith"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
       </span><span class="s2">"decryptedSize"</span><span class="p">:</span><span class="w"> </span><span class="mi">100195</span><span class="p">,</span><span class="w">
       </span><span class="s2">"owner"</span><span class="p">:</span><span class="w"> </span><span class="s2">"demouser@rescale.com"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"user/user_OvdRk/output/job_QTVia/run1/airFoil2D/100/nut"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"user/user_OvdRk/output/job_XXXXX/run1/airFoil2D/100/nut"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"isUploaded"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
       </span><span class="s2">"viewInBrowser"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
       </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fmpTse"</span><span class="p">,</span><span class="w">
@@ -1130,7 +1501,7 @@ https://platform.rescale.com/api/jobs/QTVia/runs/1/files/</p>
       </span><span class="s2">"sharedWith"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
       </span><span class="s2">"decryptedSize"</span><span class="p">:</span><span class="w"> </span><span class="mi">99221</span><span class="p">,</span><span class="w">
       </span><span class="s2">"owner"</span><span class="p">:</span><span class="w"> </span><span class="s2">"demouser@rescale.com"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"user/user_OvdRk/output/job_QTVia/run1/airFoil2D/100/nuTilda"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"user/user_OvdRk/output/job_XXXXX/run1/airFoil2D/100/nuTilda"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"isUploaded"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
       </span><span class="s2">"viewInBrowser"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
       </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"hDhFDe"</span><span class="p">,</span><span class="w">
@@ -1145,7 +1516,7 @@ https://platform.rescale.com/api/jobs/QTVia/runs/1/files/</p>
       </span><span class="s2">"sharedWith"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
       </span><span class="s2">"decryptedSize"</span><span class="p">:</span><span class="w"> </span><span class="mi">86615</span><span class="p">,</span><span class="w">
       </span><span class="s2">"owner"</span><span class="p">:</span><span class="w"> </span><span class="s2">"demouser@rescale.com"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"user/user_OvdRk/output/job_QTVia/run1/airFoil2D/100/p"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"user/user_OvdRk/output/job_XXXXX/run1/airFoil2D/100/p"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"isUploaded"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
       </span><span class="s2">"viewInBrowser"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
       </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"uOhFDe"</span><span class="p">,</span><span class="w">
@@ -1160,7 +1531,7 @@ https://platform.rescale.com/api/jobs/QTVia/runs/1/files/</p>
       </span><span class="s2">"sharedWith"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
       </span><span class="s2">"decryptedSize"</span><span class="p">:</span><span class="w"> </span><span class="mi">190707</span><span class="p">,</span><span class="w">
       </span><span class="s2">"owner"</span><span class="p">:</span><span class="w"> </span><span class="s2">"demouser@rescale.com"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"user/user_OvdRk/output/job_QTVia/run1/airFoil2D/100/phi"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"user/user_OvdRk/output/job_XXXXX/run1/airFoil2D/100/phi"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"isUploaded"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
       </span><span class="s2">"viewInBrowser"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
       </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"wMyXse"</span><span class="p">,</span><span class="w">
@@ -1175,7 +1546,7 @@ https://platform.rescale.com/api/jobs/QTVia/runs/1/files/</p>
       </span><span class="s2">"sharedWith"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
       </span><span class="s2">"decryptedSize"</span><span class="p">:</span><span class="w"> </span><span class="mi">298228</span><span class="p">,</span><span class="w">
       </span><span class="s2">"owner"</span><span class="p">:</span><span class="w"> </span><span class="s2">"demouser@rescale.com"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"user/user_OvdRk/output/job_QTVia/run1/airFoil2D/100/U"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"user/user_OvdRk/output/job_XXXXX/run1/airFoil2D/100/U"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"isUploaded"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
       </span><span class="s2">"viewInBrowser"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
       </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TapTse"</span><span class="p">,</span><span class="w">
@@ -1190,44 +1561,209 @@ https://platform.rescale.com/api/jobs/QTVia/runs/1/files/</p>
       </span><span class="s2">"sharedWith"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
       </span><span class="s2">"decryptedSize"</span><span class="p">:</span><span class="w"> </span><span class="mi">968</span><span class="p">,</span><span class="w">
       </span><span class="s2">"owner"</span><span class="p">:</span><span class="w"> </span><span class="s2">"demouser@rescale.com"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"user/user_OvdRk/output/job_QTVia/run1/airFoil2D/100/uniform/time"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"user/user_OvdRk/output/job_XXXXX/run1/airFoil2D/100/uniform/time"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"isUploaded"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
       </span><span class="s2">"viewInBrowser"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
       </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LosKDe"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"md5"</span><span class="p">:</span><span class="w"> </span><span class="s2">"62ac76eb8aae234370613d7350ac8685"</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">],</span><span class="w">
-  </span><span class="s2">"next"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://platform.rescale.com/api/jobs/QTVia/runs/1/files/?page=2"</span><span class="w">
+  </span><span class="s2">"next"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://platform.rescale.com/api/jobs/XXXXX/runs/1/files/?page=2"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
 <p>This call allows you to fetch the metadata regarding all the files
-associated with <em>run-id 1</em>. You can then use the <em>file-id</em> to download
+associated with <em>run-id</em>. You can then use the <em>file-id</em> to download
 each individual file.</p>
 
 <p>Another, endpoint that is helpful in fetching files is, <em>/api/jobs/&lt;
 job-id &gt;/files/</em> which will return all the files related to a particular
 job, including the output of all the runs.</p>
 
-<h2 id="stop-a-run">Stop a Run</h2>
-
-<p><code class="prettyprint">POST https://platform.rescale.com/api/jobs/{job_id}/runs/{run_id}/stop/</code></p>
-
-<h2 id="take-a-snapshot">Take a Snapshot</h2>
-
-<p><code class="prettyprint">POST https://platform.rescale.com/api/jobs/{job_id}/runs/{run_id}/snapshot/</code></p>
-
-<h2 id="list-output-files">List Output Files</h2>
-
-<p><code class="prettyprint">GET https://platform.rescale.com/api/jobs/{job_id}/runs/{run_id}/files/</code></p>
+<p><strong>Note</strong>: Output files are available only after a run has completed. If you
+want to retrieve a list of files for a run that is currently in progress, you
+should use the <em>/api/jobs/&lt; job-id &gt;/runs/&lt; run-id &gt;/directory-contents/</em>
+<a href="#list-directory-contents">endpoint</a>.</p>
 
 <h2 id="list-directory-contents">List Directory Contents</h2>
 
 <p><code class="prettyprint">GET https://platform.rescale.com/api/jobs/{job_id}/runs/{run_id}/directory-contents/</code></p>
+<pre><code class="highlight shell">curl -X GET -H <span class="s1">'Authorization: Token \&lt;token\&gt;'</span>
+https://platform.rescale.com/api/jobs/XXXXX/runs/1/directory-contents/
+</code></pre>
+<pre><code class="highlight python"><span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+  <span class="s">'https://platform.rescale.com/api/jobs/XXXXX/runs/1/directory-contents/'</span><span class="p">,</span>
+  <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Token &lt;api-token&gt;'</span><span class="p">}</span>
+<span class="p">)</span>
+</code></pre>
+
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre><code class="highlight json"><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"airFoil2D/0/U"</span><span class="p">,</span><span class="w"> 
+    </span><span class="s2">"resource"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/api/jobs/XXXXX/runs/1/tail/airFoil2D/0/U"</span><span class="w">
+  </span><span class="p">},</span><span class="w"> 
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"airFoil2D/0/nuTilda"</span><span class="p">,</span><span class="w"> 
+    </span><span class="s2">"resource"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/api/jobs/XXXXX/runs/1/tail/airFoil2D/0/nuTilda"</span><span class="w">
+  </span><span class="p">},</span><span class="w"> 
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"airFoil2D/0/nut"</span><span class="p">,</span><span class="w"> 
+    </span><span class="s2">"resource"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/api/jobs/XXXXX/runs/1/tail/airFoil2D/0/nut"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+
+<h3 id="response-properties">Response Properties</h3>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>path</td>
+<td>String</td>
+<td>The relative path to a file in the run&rsquo;s working directory</td>
+</tr>
+<tr>
+<td>resource</td>
+<td>String</td>
+<td>The API url that can be used to retrieve the file&rsquo;s contents</td>
+</tr>
+</tbody></table>
+
+<p>This call returns a list of files from the specified run&rsquo;s working directory.</p>
+
+<p><strong>Note</strong>: This endpoint only applies to runs that are currently in-progress.
+After a run completes, all files in the working directory are uploaded to
+Rescale Cloud Storage and are made available as output files. Use the
+<em>/api/jobs/&lt; job-id &gt;/runs/&lt; run-id &gt;/files/</em> <a href="#list-output-files">endpoint</a> to retrieve them. </p>
 
 <h2 id="tail-file-content">Tail File Content</h2>
 
 <p><code class="prettyprint">GET https://platform.rescale.com/api/jobs/{job_id}/runs/{run_id}/tail/{path}/</code></p>
+
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Default</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>lines</td>
+<td>None</td>
+<td>No</td>
+<td>The number of lines to retrieve from the specified file. If omitted, the raw binary contents of the file will be returned in the response.</td>
+</tr>
+</tbody></table>
+<pre><code class="highlight shell">curl -v -X GET -H <span class="s1">'Authorization: Token \&lt;token\&gt;'</span>
+http://platform.rescale.com/api/jobs/XXXXX/runs/1/tail/airFoil2D/0/U?lines<span class="o">=</span>100
+</code></pre>
+<pre><code class="highlight python"><span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+  <span class="s">'http://platform.rescale.com/api/jobs/XXXXX/runs/1/tail/airFoil2D/0/U'</span><span class="p">,</span>
+  <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Token &lt;api-token&gt;'</span><span class="p">},</span>
+  <span class="n">params</span><span class="o">=</span><span class="p">{</span><span class="s">'lines'</span><span class="p">:</span> <span class="mi">100</span><span class="p">}</span>
+<span class="p">)</span>
+</code></pre>
+
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre><code class="highlight json"><span class="p">{</span><span class="w">
+  </span><span class="s2">"fileType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/home/job_fNjea/work/airFoil2D/0/U: ASCII English text"</span><span class="p">,</span><span class="w"> 
+  </span><span class="s2">"lines"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="s2">"/*--------------------------------*- C++ -*----------------------------------*\\"</span><span class="p">,</span><span class="w"> 
+    </span><span class="s2">"| =========                 |                                                 |"</span><span class="p">,</span><span class="w"> 
+    </span><span class="s2">"| \\\\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |"</span><span class="p">,</span><span class="w"> 
+    </span><span class="s2">"|  \\\\    /   O peration     | Version:  2.0.1                                 |"</span><span class="p">,</span><span class="w"> 
+    </span><span class="s2">"|   \\\\  /    A nd           | Web:      www.OpenFOAM.com                      |"</span><span class="p">,</span><span class="w"> 
+    </span><span class="s2">"|    \\\\/     M anipulation  |                                                 |"</span><span class="p">,</span><span class="w"> 
+    </span><span class="s2">"\\*---------------------------------------------------------------------------*/"</span><span class="p">,</span><span class="w"> 
+    </span><span class="s2">"FoamFile"</span><span class="p">,</span><span class="w"> 
+    </span><span class="s2">"{"</span><span class="p">,</span><span class="w"> 
+    </span><span class="s2">"    version     2.0;"</span><span class="p">,</span><span class="w"> 
+    </span><span class="s2">"    format      ascii;"</span><span class="p">,</span><span class="w"> 
+    </span><span class="s2">"    class       volVectorField;"</span><span class="p">,</span><span class="w"> 
+    </span><span class="s2">"    object      U;"</span><span class="p">,</span><span class="w"> 
+    </span><span class="s2">"}"</span><span class="p">,</span><span class="w"> 
+    </span><span class="s2">"// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //"</span><span class="p">,</span><span class="w"> 
+    </span><span class="s2">""</span><span class="p">,</span><span class="w"> 
+    </span><span class="s2">"dimensions      [0 1 -1 0 0 0 0];"</span><span class="p">,</span><span class="w"> 
+    </span><span class="s2">""</span><span class="p">,</span><span class="w"> 
+    </span><span class="s2">"internalField   uniform (25.75 3.62 0);"</span><span class="p">,</span><span class="w"> 
+    </span><span class="s2">""</span><span class="p">,</span><span class="w"> 
+    </span><span class="s2">"boundaryField"</span><span class="p">,</span><span class="w"> 
+    </span><span class="s2">"{"</span><span class="p">,</span><span class="w"> 
+    </span><span class="s2">"    inlet"</span><span class="p">,</span><span class="w"> 
+    </span><span class="s2">"    {"</span><span class="p">,</span><span class="w"> 
+    </span><span class="s2">"        type            freestream;"</span><span class="p">,</span><span class="w"> 
+    </span><span class="s2">"        freestreamValue uniform (25.75 3.62 0);"</span><span class="p">,</span><span class="w"> 
+    </span><span class="s2">"    }"</span><span class="p">,</span><span class="w"> 
+    </span><span class="s2">""</span><span class="p">,</span><span class="w"> 
+    </span><span class="s2">"    outlet"</span><span class="p">,</span><span class="w"> 
+    </span><span class="s2">"    {"</span><span class="p">,</span><span class="w"> 
+    </span><span class="s2">"        type            freestream;"</span><span class="p">,</span><span class="w"> 
+    </span><span class="s2">"        freestreamValue uniform (25.75 3.62 0);"</span><span class="p">,</span><span class="w"> 
+    </span><span class="s2">"    }"</span><span class="p">,</span><span class="w"> 
+    </span><span class="s2">""</span><span class="p">,</span><span class="w"> 
+    </span><span class="s2">"    wall"</span><span class="p">,</span><span class="w"> 
+    </span><span class="s2">"    {"</span><span class="p">,</span><span class="w"> 
+    </span><span class="s2">"        type            fixedValue;"</span><span class="p">,</span><span class="w"> 
+    </span><span class="s2">"        value           uniform (0 0 0);"</span><span class="p">,</span><span class="w"> 
+    </span><span class="s2">"    }"</span><span class="p">,</span><span class="w"> 
+    </span><span class="s2">""</span><span class="p">,</span><span class="w"> 
+    </span><span class="s2">"    frontAndBack"</span><span class="p">,</span><span class="w"> 
+    </span><span class="s2">"    {"</span><span class="p">,</span><span class="w"> 
+    </span><span class="s2">"        type            empty;"</span><span class="p">,</span><span class="w"> 
+    </span><span class="s2">"    }"</span><span class="p">,</span><span class="w"> 
+    </span><span class="s2">"}"</span><span class="p">,</span><span class="w"> 
+    </span><span class="s2">""</span><span class="p">,</span><span class="w"> 
+    </span><span class="s2">"// ************************************************************************* //"</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h3 id="response-properties">Response Properties</h3>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>fileType</td>
+<td>String</td>
+<td>The file type as determined by the *NIX file command.</td>
+</tr>
+<tr>
+<td>lines</td>
+<td>Array&lt;String&gt;</td>
+<td>An array containing the last N lines of the requested file where N is the value of the lines querystring argument.</td>
+</tr>
+</tbody></table>
+
+<p>This method can be used to retrieve the last N lines within a file or to stream
+back the entire file to the caller.</p>
+
+<p>The <em>path</em> argument of the url corresponds to the <em>path</em> property returned in
+the <a href="#list-output-files">List Output Files endpoint</a>.</p>
+
+<p><strong>Note</strong>: This endpoint only applies to runs that are currently in-progress.
+After a run has completed, the <em>/api/files/&lt; file-id &gt;/contents/</em>
+<a href="#download-a-file">endpoint</a> can be used to download the output file.</p>
 
           <h1 id="files">Files</h1>
 
