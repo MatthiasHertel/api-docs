@@ -48,7 +48,7 @@
         <h1 id="introduction">Introduction</h1>
 
 <p>Welcome to the Rescale REST API! Using the API you can upload input files, create jobs, and view the status of existing jobs.
-This documentation inludes examples using cURL and python. The python exampless use <a href="https://docs.python-requests.org/en/latest/">requests</a> for https.</p>
+This documentation inludes examples using cURL and python. The python examples use <a href="https://docs.python-requests.org/en/latest/">requests</a> for https.</p>
 
 <p>All request paths must include the trailing slash (e.g. <code class="prettyprint">/api/jobs/</code> instead of <code class="prettyprint">/api/jobs</code>)</p>
 
@@ -547,7 +547,7 @@ submit jobs.</p>
 </thead><tbody>
 </tbody></table>
 
-<h2 id="remote-visulization-options">Remote Visulization Options</h2>
+<h2 id="remote-visualization-options">Remote Visualization Options</h2>
 
 <p><code class="prettyprint">GET https://platform.rescale.com/api/remote-viz-config/</code></p>
 
@@ -1317,7 +1317,7 @@ contains amongst other things, the id of the File you just uploaded.
 This field is going to come in handy when referring to this particular
 file in all the other calls to the API.</p>
 
-<h2 id="choosing-an-analysis.">Choosing an analysis.</h2>
+<h2 id="choosing-an-analysis">Choosing an analysis</h2>
 <pre><code class="highlight shell">curl -H <span class="s2">"Authorization: Token &lt;api-token&gt;"</span> https://platform.rescale.com/api/analyses/
 </code></pre>
 <pre><code class="highlight python"><span class="kn">import</span> <span class="nn">requests</span>
