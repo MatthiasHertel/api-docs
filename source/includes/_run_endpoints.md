@@ -265,10 +265,10 @@ requests.post(
 
 Property | Type  | Description
 -------- | ------|---------------
-data | String | TODO
+data | String | The raw output from the snapshot utility.
 exitcode | Integer | The exit code from the snapshot utility. 0 indicates success.
 lastSnapshotID | String | The file ID of the previously taken snapshot.
-reason | String | TODO
+reason | String | Human-readable string containing the snapshot result.
 
 Snapshots only apply to runs that are currently in-progress. A snapshot is an
 archive of all files that currently exist in the working directory. After the
