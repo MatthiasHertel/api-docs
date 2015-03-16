@@ -291,7 +291,7 @@ requests.post(
 ```
 
 This call allows you to upload a file from local file system to
-Rescale's platform as an input file.
+Rescale platform.
 
 
 ### Response Properties
@@ -302,6 +302,30 @@ Same as (#get-metadata-about-a-file)
 ## Delete a File
 
 `DELETE https://platform.rescale.com/api/files/{file_id}/`
+
+```shell
+curl -X DELETE -H 'Authorization: Token \<token\>' 
+https://platform.rescale.com/api/files/{file_id}/
+```
+
+```python
+import requests
+
+requests.delete(
+  'https://platform.rescale.com/api/files/{file_id}/',
+  headers={'Authorization': 'Token \<token\>'}
+)
+```
+
+> Sample Response
+
+Response has no content if delete is successful.
+
+This call allows you to delete a file from Rescale platform.
+
+### Response Properties
+
+Same as (#get-metadata-about-a-file)
 
 ## Download a File
 
