@@ -1371,7 +1371,7 @@ https://platform.rescale.com/api/jobs/XXXXX/runs/1/snapshot/
 <tr>
 <td>data</td>
 <td>String</td>
-<td>TODO</td>
+<td>The raw output from the snapshot utility.</td>
 </tr>
 <tr>
 <td>exitcode</td>
@@ -1386,7 +1386,7 @@ https://platform.rescale.com/api/jobs/XXXXX/runs/1/snapshot/
 <tr>
 <td>reason</td>
 <td>String</td>
-<td>TODO</td>
+<td>Human-readable string containing the snapshot result.</td>
 </tr>
 </tbody></table>
 
@@ -1767,9 +1767,255 @@ After a run has completed, the <em>/api/files/&lt; file-id &gt;/contents/</em>
 
           <h1 id="files">Files</h1>
 
+<p>All file related operations are listed here.</p>
+
 <h2 id="list-all-files">List all Files</h2>
 
 <p><code class="prettyprint">GET https://platform.rescale.com/api/files/</code></p>
+<pre><code class="highlight shell">curl -X GET -H <span class="s1">'Authorization: Token \&lt;token\&gt;'</span>
+https://platform.rescale.com/api/files/
+</code></pre>
+<pre><code class="highlight python"><span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+  <span class="s">'https://platform.rescale.com/api/files/'</span><span class="p">,</span>
+  <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Token &lt;api-token&gt;'</span><span class="p">}</span>
+<span class="p">)</span>
+</code></pre>
+
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre><code class="highlight json"><span class="p">{</span><span class="w">
+    </span><span class="s2">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">365</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"previous"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"results"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"typeId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Crash_input.pc.gz"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"dateUploaded"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-03-12T17:56:20.925043-07:00"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"relativePath"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Crash_input.pc.gz"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"encodedEncryptionKey"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LkkPk2L2mwuc4OibUs3kJe2RIQrzXbfdWXp9xJhoX0s="</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"downloadUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://platform.rescale.com/api/files/WvNKdb/contents/"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"sharedWith"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="s2">"decryptedSize"</span><span class="p">:</span><span class="w"> </span><span class="mi">56425931</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"owner"</span><span class="p">:</span><span class="w"> </span><span class="s2">"demouser@rescale.com"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"user/user_OvdRk/Crash_input.pc.gz-0a87694a180172023d8a37f0c8aac965"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"isUploaded"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"viewInBrowser"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"WvNKdb"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"isDeleted"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"md5"</span><span class="p">:</span><span class="w"> </span><span class="s2">"a3bc423552cf5457b2fcf4fad87e451d"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"typeId"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fsi.in"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"dateUploaded"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-01-27T11:06:57.418023-08:00"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"relativePath"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fsi.in"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"encodedEncryptionKey"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MQfYDI0UttkgN+N2K71N0/nodyTZi/GjNY1z/Jnmh88="</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"downloadUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://platform.rescale.com/api/files/oHyEm/contents/"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"sharedWith"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="s2">"shareduser@rescale.com"</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="s2">"decryptedSize"</span><span class="p">:</span><span class="w"> </span><span class="mi">2744</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"owner"</span><span class="p">:</span><span class="w"> </span><span class="s2">"demouser@rescale.com"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"user/user_OvdRk/output/job_RJFSc/run1/fsi.in"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"isUploaded"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"viewInBrowser"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"oHyEm"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"isDeleted"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"md5"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2deba2076c80c89e96749e58a26c0d99"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"typeId"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"post.echo"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"dateUploaded"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-01-27T11:06:57.310163-08:00"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"relativePath"</span><span class="p">:</span><span class="w"> </span><span class="s2">"post.echo"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"encodedEncryptionKey"</span><span class="p">:</span><span class="w"> </span><span class="s2">"wmB+YNh2IDdZURd79NJjOiAnAGxl8mzPVlwS8kLPGnc="</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"downloadUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://platform.rescale.com/api/files/ZeFSa/contents/"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"sharedWith"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="s2">"shareduser@rescale.com"</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="s2">"decryptedSize"</span><span class="p">:</span><span class="w"> </span><span class="mi">248</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"owner"</span><span class="p">:</span><span class="w"> </span><span class="s2">"demouser@rescale.com"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"user/user_OvdRk/output/job_RJFSc/run1/post.echo"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"isUploaded"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"viewInBrowser"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ZeFSa"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"isDeleted"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"md5"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6796616b942ff5eaa5b68041871b4a0b"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"typeId"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"therm.dat"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"dateUploaded"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-01-27T11:06:57.205175-08:00"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"relativePath"</span><span class="p">:</span><span class="w"> </span><span class="s2">"therm.dat"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"encodedEncryptionKey"</span><span class="p">:</span><span class="w"> </span><span class="s2">"eQ2twVf8T8J+/lwK7FQNa2Q2PROzlTj2DIyeUPTnuW8="</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"downloadUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://platform.rescale.com/api/files/XgpAm/contents/"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"sharedWith"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="s2">"shareduser@rescale.com"</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="s2">"decryptedSize"</span><span class="p">:</span><span class="w"> </span><span class="mi">201624</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"owner"</span><span class="p">:</span><span class="w"> </span><span class="s2">"demouser@rescale.com"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"user/user_OvdRk/output/job_RJFSc/run1/therm.dat"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"isUploaded"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"viewInBrowser"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"XgpAm"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"isDeleted"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"md5"</span><span class="p">:</span><span class="w"> </span><span class="s2">"d133bafb80e2ebd460efd6cf13f0c42b"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"typeId"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"inputs.in"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"dateUploaded"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-01-27T11:06:57.103260-08:00"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"relativePath"</span><span class="p">:</span><span class="w"> </span><span class="s2">"inputs.in"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"encodedEncryptionKey"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4FY1kB/Ejq9r3n+Jz1um7yS+F/rXskAzlnDWFABr1HM="</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"downloadUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://platform.rescale.com/api/files/JEvOa/contents/"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"sharedWith"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="s2">"shareduser@rescale.com"</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="s2">"decryptedSize"</span><span class="p">:</span><span class="w"> </span><span class="mi">13959</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"owner"</span><span class="p">:</span><span class="w"> </span><span class="s2">"demouser@rescale.com"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"user/user_OvdRk/output/job_RJFSc/run1/inputs.in"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"isUploaded"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"viewInBrowser"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"JEvOa"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"isDeleted"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"md5"</span><span class="p">:</span><span class="w"> </span><span class="s2">"a5d397df07e6b435d5d1f26eb9ebd4b2"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"typeId"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"process_output.log"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"dateUploaded"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-01-27T11:06:57.006959-08:00"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"relativePath"</span><span class="p">:</span><span class="w"> </span><span class="s2">"process_output.log"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"encodedEncryptionKey"</span><span class="p">:</span><span class="w"> </span><span class="s2">"haLrcqy/ePGyy7mJjr1J2ApBRQlEaH1UKvB49tNaflE="</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"downloadUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://platform.rescale.com/api/files/LWoAm/contents/"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"sharedWith"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="s2">"shareduser@rescale.com"</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="s2">"decryptedSize"</span><span class="p">:</span><span class="w"> </span><span class="mi">1262</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"owner"</span><span class="p">:</span><span class="w"> </span><span class="s2">"demouser@rescale.com"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"user/user_OvdRk/output/job_RJFSc/run1/process_output.log"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"isUploaded"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"viewInBrowser"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LWoAm"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"isDeleted"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"md5"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7f2b5ba96aa67cb067193b2e44cbd91d"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"typeId"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"post.in"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"dateUploaded"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-01-27T11:06:56.901907-08:00"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"relativePath"</span><span class="p">:</span><span class="w"> </span><span class="s2">"post.in"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"encodedEncryptionKey"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TRHGVF0LrDgJ+x6x/hzwYKG34ITfGWTvlhs2a/n1FP0="</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"downloadUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://platform.rescale.com/api/files/wuvOa/contents/"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"sharedWith"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="s2">"shareduser@rescale.com"</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="s2">"decryptedSize"</span><span class="p">:</span><span class="w"> </span><span class="mi">593</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"owner"</span><span class="p">:</span><span class="w"> </span><span class="s2">"demouser@rescale.com"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"user/user_OvdRk/output/job_RJFSc/run1/post.in"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"isUploaded"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"viewInBrowser"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"wuvOa"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"isDeleted"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"md5"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4fdf0c787bd84d4b4b6bf7bf35df1690"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"typeId"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"restart0001.rst"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"dateUploaded"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-01-27T11:06:56.801151-08:00"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"relativePath"</span><span class="p">:</span><span class="w"> </span><span class="s2">"restart0001.rst"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"encodedEncryptionKey"</span><span class="p">:</span><span class="w"> </span><span class="s2">"iHom7vaSMIVItK0RX1s+gLb6z+vxMn3MwKMLSjvkeCY="</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"downloadUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://platform.rescale.com/api/files/VgpAm/contents/"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"sharedWith"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="s2">"shareduser@rescale.com"</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="s2">"decryptedSize"</span><span class="p">:</span><span class="w"> </span><span class="mi">625449464</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"owner"</span><span class="p">:</span><span class="w"> </span><span class="s2">"demouser@rescale.com"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"user/user_OvdRk/output/job_RJFSc/run1/restart0001.rst"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"isUploaded"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"viewInBrowser"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"VgpAm"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"isDeleted"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"md5"</span><span class="p">:</span><span class="w"> </span><span class="s2">"61a8a7e517ee579d329f7ce56b865e97"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"typeId"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dynamic.out"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"dateUploaded"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-01-27T11:06:56.703897-08:00"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"relativePath"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dynamic.out"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"encodedEncryptionKey"</span><span class="p">:</span><span class="w"> </span><span class="s2">"213UMp+Rp2+d6wPzDCxge4X9pV9sIAYft+6WgdAq29M="</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"downloadUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://platform.rescale.com/api/files/GEvOa/contents/"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"sharedWith"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="s2">"shareduser@rescale.com"</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="s2">"decryptedSize"</span><span class="p">:</span><span class="w"> </span><span class="mi">14226</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"owner"</span><span class="p">:</span><span class="w"> </span><span class="s2">"demouser@rescale.com"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"user/user_OvdRk/output/job_RJFSc/run1/dynamic.out"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"isUploaded"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"viewInBrowser"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GEvOa"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"isDeleted"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"md5"</span><span class="p">:</span><span class="w"> </span><span class="s2">"82116340362aba67bb0c3b58d4ced65f"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"typeId"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"equiv_ratio_bin.out"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"dateUploaded"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-01-27T11:06:56.602278-08:00"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"relativePath"</span><span class="p">:</span><span class="w"> </span><span class="s2">"equiv_ratio_bin.out"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"encodedEncryptionKey"</span><span class="p">:</span><span class="w"> </span><span class="s2">"hJ2qEY9k5PiVXyAlxHZt4/Qwv3xXWygKefer9Kn23wE="</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"downloadUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://platform.rescale.com/api/files/JWoAm/contents/"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"sharedWith"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="s2">"shareduser@rescale.com"</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="s2">"decryptedSize"</span><span class="p">:</span><span class="w"> </span><span class="mi">37210</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"owner"</span><span class="p">:</span><span class="w"> </span><span class="s2">"demouser@rescale.com"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"user/user_OvdRk/output/job_RJFSc/run1/equiv_ratio_bin.out"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"isUploaded"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"viewInBrowser"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"JWoAm"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"isDeleted"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"md5"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1a2a0b8b3879726b9035cdd1b9308fd9"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"next"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://platform.rescale.com/api/files/?page=2"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>This call allows you to retrieve the first page of files owned by the
+current user.</p>
+
+<h3 id="response-properties">Response Properties</h3>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>count</td>
+<td>Integer</td>
+<td>The total number of files owned by the current user.</td>
+</tr>
+<tr>
+<td>next</td>
+<td>String</td>
+<td>The URL that will return the next page of results.</td>
+</tr>
+<tr>
+<td>previous</td>
+<td>String</td>
+<td>The URL that will return the previous page of results</td>
+</tr>
+<tr>
+<td>results</td>
+<td>Array&lt;Object&gt;</td>
+<td>An array of <a href="#get-metadata-about-a-file">File objects</a></td>
+</tr>
+</tbody></table>
 
 <h2 id="upload-a-file">Upload a File</h2>
 
@@ -1790,6 +2036,126 @@ After a run has completed, the <em>/api/files/&lt; file-id &gt;/contents/</em>
 <h2 id="get-metadata-about-a-file">Get Metadata About a File</h2>
 
 <p><code class="prettyprint">GET https://platform.rescale.com/api/files/{file_id}/</code></p>
+<pre><code class="highlight shell">curl -X GET -H <span class="s1">'Authorization: Token \&lt;token\&gt;'</span>
+https://platform.rescale.com/api/files/<span class="o">{</span>file_id<span class="o">}</span>/
+</code></pre>
+<pre><code class="highlight python"><span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+  <span class="s">'https://platform.rescale.com/api/files/{file_id}/'</span><span class="p">,</span>
+  <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Token &lt;api-token&gt;'</span><span class="p">}</span>
+<span class="p">)</span>
+</code></pre>
+
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre><code class="highlight json"><span class="p">{</span><span class="w">
+    </span><span class="s2">"typeId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> 
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Crash_input.pc.gz"</span><span class="p">,</span><span class="w"> 
+    </span><span class="s2">"dateUploaded"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-03-12T17:56:20.925043-07:00"</span><span class="p">,</span><span class="w"> 
+    </span><span class="s2">"relativePath"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Crash_input.pc.gz"</span><span class="p">,</span><span class="w"> 
+    </span><span class="s2">"encodedEncryptionKey"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LkkPk2L2mwuc4OibUs3kJe2RIQrzXbfdWXp9xJhoX0s="</span><span class="p">,</span><span class="w"> 
+    </span><span class="s2">"downloadUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://platform.rescale.com/api/files/WvNKdb/contents/"</span><span class="p">,</span><span class="w"> 
+    </span><span class="s2">"sharedWith"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w"> 
+    </span><span class="s2">"decryptedSize"</span><span class="p">:</span><span class="w"> </span><span class="mi">56425931</span><span class="p">,</span><span class="w"> 
+    </span><span class="s2">"owner"</span><span class="p">:</span><span class="w"> </span><span class="s2">"demouser@rescale.com"</span><span class="p">,</span><span class="w"> 
+    </span><span class="s2">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"user/user_OvdRk/Crash_input.pc.gz-0a87694a180172023d8a37f0c8aac965"</span><span class="p">,</span><span class="w"> 
+    </span><span class="s2">"isUploaded"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"> 
+    </span><span class="s2">"viewInBrowser"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"> 
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"WvNKdb"</span><span class="p">,</span><span class="w"> 
+    </span><span class="s2">"isDeleted"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"> 
+    </span><span class="s2">"md5"</span><span class="p">:</span><span class="w"> </span><span class="s2">"a3bc423552cf5457b2fcf4fad87e451d"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h3 id="response-properties">Response Properties</h3>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>typeId</td>
+<td>Integer</td>
+<td>1 = inpute file, 2 = template file, 3 = parameter file, 4 = script file, 5 = output file, 7 = design variable file, 8 = case file, 9 = optimizer file, 10 = temporary file</td>
+</tr>
+<tr>
+<td>name</td>
+<td>String</td>
+<td>The name of the file.</td>
+</tr>
+<tr>
+<td>dateUploaded</td>
+<td>String</td>
+<td>The ISO8601 encoded date of when the file is uploaded.</td>
+</tr>
+<tr>
+<td>relativePath</td>
+<td>String</td>
+<td>For output files (typeId = 5), the relative path is the path relative to the root output folder(user/{user_id}/output/{job_id}/{run_id}/{relative_path}).</td>
+</tr>
+<tr>
+<td>encodedEncryptionKey</td>
+<td>String</td>
+<td>The key used to encrypt the files.</td>
+</tr>
+<tr>
+<td>downloadUrl</td>
+<td>String</td>
+<td>The download URL of the file.</td>
+</tr>
+<tr>
+<td>sharedWith</td>
+<td>List&lt;Variable&gt;</td>
+<td>A list of users of the file shared with.</td>
+</tr>
+<tr>
+<td>decryptedSize</td>
+<td>Integer</td>
+<td>The decrypted file size in byte.</td>
+</tr>
+<tr>
+<td>owner</td>
+<td>String</td>
+<td>The owner of the file.</td>
+</tr>
+<tr>
+<td>path</td>
+<td>String</td>
+<td>The absolute path of the file being stored.</td>
+</tr>
+<tr>
+<td>isUploaded</td>
+<td>Boolean</td>
+<td>If the file is already uploaded.</td>
+</tr>
+<tr>
+<td>viewInBrowser</td>
+<td>Boolean</td>
+<td>If the file can be viewed in browser.</td>
+</tr>
+<tr>
+<td>id</td>
+<td>String</td>
+<td>The unique identifier of the file.</td>
+</tr>
+<tr>
+<td>isDelelted</td>
+<td>Boolean</td>
+<td>If the file is already deleted.</td>
+</tr>
+<tr>
+<td>md5</td>
+<td>String</td>
+<td>The md5 hash of the file.</td>
+</tr>
+</tbody></table>
+
+<p>This call allows you to retrieve details for a single file.</p>
 
 <h2 id="change-metadata-about-a-file">Change Metadata About a File</h2>
 
