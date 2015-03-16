@@ -235,7 +235,69 @@ results | Array&lt;Object&gt; | An array of [File objects](#get-metadata-about-a
 
 ## Upload a File
 
-`POST https://platform.rescale.com/api/files/`
+`PUT/POST https://platform.rescale.com/api/files/contents/`
+
+```shell
+curl -X POST -H 'Content-Type:multipart/form-data' 
+-H 'Authorization: Token \<token\>' 
+-F 'file=@file_to_upload.txt' 
+https://platform.rescale.com/api/files/contents/
+```
+
+```python
+import requests
+
+# Simple input file upload
+
+requests.post(
+  'https://platform.rescale.com/api/files/contents/',
+  headers={'Authorization': 'Token \<token\>'},
+  files={'file': open('file_to_upload.txt', 'rb')}
+)
+
+
+# Upload with new file name and different file type
+
+type_id = 1  # file type
+new_name = 'new_file.txt'  #  new file name
+
+requests.post(
+  'https://platform.rescale.com/api/files/contents/',
+  headers={'Authorization': 'Token \<token\>'},
+  files={'file': (new_name, open('file_to_upload.txt', 'rb'), {'type_id': type_id})}
+)
+```
+
+> Sample Response
+
+```json
+{
+    "typeId": 1,
+    "name": "testInput.txt",
+    "dateUploaded": "2015-03-16T19:43:21.679246Z",
+    "relativePath": "testInput.txt",
+    "encodedEncryptionKey": "j/nYgAlnGIywZHyDwwzv+FxYVIlmKveMkY7qxAOuRhY=",
+    "downloadUrl": "https://platform.rescale.com/api/files/iCdseg/contents/",
+    "sharedWith":[],
+    "decryptedSize":22,
+    "owner": "demouser@rescale.com",
+    "path": "user/user_OvdRk/testInput-e034314d-2c8e-432a-9c28-079bfbd8bcdd.txt",
+    "isUploaded":true,
+    "viewInBrowser":true,
+    "id": "iCdseg",
+    "isDeleted":false,
+    "md5": "cf78c029dc496e9c789db1463a4a84de"
+}
+```
+
+This call allows you to upload a file from local file system to
+Rescale's platform as an input file.
+
+
+### Response Properties
+
+Same as (#get-metadata-about-a-file)
+
 
 ## Delete a File
 
