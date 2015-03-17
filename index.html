@@ -2019,19 +2019,165 @@ current user.</p>
 
 <h2 id="upload-a-file">Upload a File</h2>
 
-<p><code class="prettyprint">POST https://platform.rescale.com/api/files/</code></p>
+<p><code class="prettyprint">PUT/POST https://platform.rescale.com/api/files/contents/</code></p>
+<pre><code class="highlight shell">curl -X POST -H <span class="s1">'Content-Type:multipart/form-data'</span> 
+-H <span class="s1">'Authorization: Token \&lt;token\&gt;'</span> 
+-F <span class="s1">'file=@file_to_upload.txt'</span> 
+https://platform.rescale.com/api/files/contents/
+</code></pre>
+<pre><code class="highlight python"><span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="c"># Simple input file upload</span>
+
+<span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span>
+  <span class="s">'https://platform.rescale.com/api/files/contents/'</span><span class="p">,</span>
+  <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Token </span><span class="err">\</span><span class="s">&lt;token</span><span class="err">\</span><span class="s">&gt;'</span><span class="p">},</span>
+  <span class="n">files</span><span class="o">=</span><span class="p">{</span><span class="s">'file'</span><span class="p">:</span> <span class="nb">open</span><span class="p">(</span><span class="s">'file_to_upload.txt'</span><span class="p">,</span> <span class="s">'rb'</span><span class="p">)}</span>
+<span class="p">)</span>
+
+
+<span class="c"># Upload with new file name and different file type</span>
+
+<span class="n">type_id</span> <span class="o">=</span> <span class="mi">1</span>  <span class="c"># file type</span>
+<span class="n">new_name</span> <span class="o">=</span> <span class="s">'new_file.txt'</span>  <span class="c">#  new file name</span>
+
+<span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span>
+  <span class="s">'https://platform.rescale.com/api/files/contents/'</span><span class="p">,</span>
+  <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Token </span><span class="err">\</span><span class="s">&lt;token</span><span class="err">\</span><span class="s">&gt;'</span><span class="p">},</span>
+  <span class="n">files</span><span class="o">=</span><span class="p">{</span><span class="s">'file'</span><span class="p">:</span> <span class="p">(</span><span class="n">new_name</span><span class="p">,</span> <span class="nb">open</span><span class="p">(</span><span class="s">'file_to_upload.txt'</span><span class="p">,</span> <span class="s">'rb'</span><span class="p">),</span> <span class="p">{</span><span class="s">'type_id'</span><span class="p">:</span> <span class="n">type_id</span><span class="p">})}</span>
+<span class="p">)</span>
+</code></pre>
+
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre><code class="highlight json"><span class="p">{</span><span class="w">
+    </span><span class="s2">"typeId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"testInput.txt"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"dateUploaded"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-03-16T19:43:21.679246Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"relativePath"</span><span class="p">:</span><span class="w"> </span><span class="s2">"testInput.txt"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"encodedEncryptionKey"</span><span class="p">:</span><span class="w"> </span><span class="s2">"j/nYgAlnGIywZHyDwwzv+FxYVIlmKveMkY7qxAOuRhY="</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"downloadUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://platform.rescale.com/api/files/iCdseg/contents/"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"sharedWith"</span><span class="p">:[],</span><span class="w">
+    </span><span class="s2">"decryptedSize"</span><span class="p">:</span><span class="mi">22</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"owner"</span><span class="p">:</span><span class="w"> </span><span class="s2">"demouser@rescale.com"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"user/user_OvdRk/testInput-e034314d-2c8e-432a-9c28-079bfbd8bcdd.txt"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"isUploaded"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"viewInBrowser"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"iCdseg"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"isDeleted"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"md5"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cf78c029dc496e9c789db1463a4a84de"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>This call allows you to upload a file from local file system to
+Rescale platform.</p>
+
+<h3 id="response-properties">Response Properties</h3>
+
+<p>Same as (#get-metadata-about-a-file)</p>
 
 <h2 id="delete-a-file">Delete a File</h2>
 
 <p><code class="prettyprint">DELETE https://platform.rescale.com/api/files/{file_id}/</code></p>
+<pre><code class="highlight shell">curl -X DELETE -H <span class="s1">'Authorization: Token \&lt;token\&gt;'</span> 
+https://platform.rescale.com/api/files/<span class="o">{</span>file_id<span class="o">}</span>/
+</code></pre>
+<pre><code class="highlight python"><span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="n">requests</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span>
+  <span class="s">'https://platform.rescale.com/api/files/{file_id}/'</span><span class="p">,</span>
+  <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Token </span><span class="err">\</span><span class="s">&lt;token</span><span class="err">\</span><span class="s">&gt;'</span><span class="p">}</span>
+<span class="p">)</span>
+</code></pre>
+
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+
+<p>Response has no content if delete is successful.</p>
+
+<p>This call allows you to delete a file from Rescale platform.</p>
+
+<h3 id="response-properties">Response Properties</h3>
+
+<p>N/A</p>
 
 <h2 id="download-a-file">Download a File</h2>
 
 <p><code class="prettyprint">GET https://platform.rescale.com/api/files/{file_id}/contents/</code></p>
+<pre><code class="highlight shell">curl -X GET -H <span class="s1">'Authorization: Token \&lt;token\&gt;'</span> 
+-o <span class="s1">'download_file.txt'</span> https://platform.rescale.com/api/files/<span class="o">{</span>file_id<span class="o">}</span>/contents/
+</code></pre>
+<pre><code class="highlight python"><span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+  <span class="s">'https://platform.rescale.com/api/files/{file_id}/'</span><span class="p">,</span>
+  <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Token </span><span class="err">\</span><span class="s">&lt;token</span><span class="err">\</span><span class="s">&gt;'</span><span class="p">}</span>
+<span class="p">)</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s">'file_to_download'</span><span class="p">,</span> <span class="s">'wb'</span><span class="p">)</span> <span class="k">as</span> <span class="n">fd</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">chunk</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">iter_content</span><span class="p">(</span><span class="n">chunk_size</span><span class="p">):</span>
+        <span class="n">fd</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">chunk</span><span class="p">)</span>
+</code></pre>
+
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+
+<p>The response of the content is the content of the file.</p>
+
+<h3 id="response-properties">Response Properties</h3>
+
+<p>N/A</p>
+
+<p>This call allows you to download a file from Rescale platform.</p>
 
 <h2 id="get-plaintext-content-of-a-file">Get Plaintext Content of a File</h2>
 
 <p><code class="prettyprint">GET https://platform.rescale.com/api/files/{file_id}/lines/</code></p>
+<pre><code class="highlight shell">curl -X GET -H <span class="s1">'Authorization: Token \&lt;token\&gt;'</span>
+https://platform.rescale.com/api/files/<span class="o">{</span>file_id<span class="o">}</span>/lines/
+</code></pre>
+<pre><code class="highlight python"><span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+  <span class="s">'https://platform.rescale.com/api/files/{file_id}/lines'</span><span class="p">,</span>
+  <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Token &lt;api-token&gt;'</span><span class="p">}</span>
+<span class="p">)</span>
+</code></pre>
+
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre><code class="highlight json"><span class="p">{</span><span class="w">
+    </span><span class="s2">"lines"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="s2">"This is line 1.\n"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"This is line 2.\n"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"This is line 3.\n"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"This is line 4.\n"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"This is line 5.\n"</span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h3 id="response-properties">Response Properties</h3>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>lines</td>
+<td>List&lt;Variable&gt;</td>
+<td>A list of strings of the file.</td>
+</tr>
+</tbody></table>
+
+<p>This call allows you to retrieve the file contents in lines for a
+plain text file.</p>
 
 <h2 id="get-metadata-about-a-file">Get Metadata About a File</h2>
 
