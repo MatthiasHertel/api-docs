@@ -231,7 +231,7 @@ Property | Type  | Description
 count | Integer | The total number of files owned by the current user.
 next | String | The URL that will return the next page of results.  
 previous | String | The URL that will return the previous page of results
-results | Array&lt;Object&gt; | An array of [File objects](#get-metadata-about-a-file)
+results | Array&lt;Object&gt; | An array of [File objects](#get-metadata-of-a-file)
 
 ## Upload a File
 
@@ -296,7 +296,7 @@ Rescale platform.
 
 ### Response Properties
 
-Same as (#get-metadata-about-a-file)
+Same as [Get Metadata of a File](#get-metadata-of-a-file)
 
 
 ## Delete a File
@@ -541,7 +541,7 @@ requests.patch(
 
 ### Response Properties
 
-Same as (#get-metadata-about-a-file)
+Same as [Get Metadata of a File](#get-metadata-of-a-file)
 
 
 This call allows you to update meta data of an exiting file.
