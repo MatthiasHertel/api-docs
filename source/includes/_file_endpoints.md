@@ -325,15 +325,81 @@ This call allows you to delete a file from Rescale platform.
 
 ### Response Properties
 
-Same as (#get-metadata-about-a-file)
+N/A
 
 ## Download a File
 
 `GET https://platform.rescale.com/api/files/{file_id}/contents/`
 
+```shell
+curl -X GET -H 'Authorization: Token \<token\>' 
+-o 'download_file.txt' https://platform.rescale.com/api/files/{file_id}/contents/
+```
+
+```python
+import requests
+
+response = requests.get(
+  'https://platform.rescale.com/api/files/{file_id}/',
+  headers={'Authorization': 'Token \<token\>'}
+)
+
+with open('file_to_download', 'wb') as fd:
+    for chunk in response.iter_content(chunk_size):
+        fd.write(chunk)
+```
+
+> Sample Response
+
+The response of the content is the content of the file.
+
+### Response Properties
+
+N/A
+
+
+This call allows you to download a file from Rescale platform.
+
 ## Get Plaintext Content of a File
 
 `GET https://platform.rescale.com/api/files/{file_id}/lines/`
+
+```shell
+curl -X GET -H 'Authorization: Token \<token\>'
+https://platform.rescale.com/api/files/{file_id}/lines/
+```
+
+```python
+import requests
+
+requests.get(
+  'https://platform.rescale.com/api/files/{file_id}/lines',
+  headers={'Authorization': 'Token <api-token>'}
+)
+```
+
+> Sample Response
+
+```json
+{
+    "lines": [
+        "This is line 1.\n",
+        "This is line 2.\n",
+        "This is line 3.\n",
+        "This is line 4.\n",
+        "This is line 5.\n"]
+}
+```
+
+### Response Properties
+
+Property | Type  | Description
+-------- | ------|---------------
+lines | List&lt;Variable&gt; | A list of strings of the file.
+
+
+This call allows you to retrieve the file contents in lines for a
+plain text file.
 
 ## Get Metadata About a File
 
