@@ -2013,7 +2013,7 @@ current user.</p>
 <tr>
 <td>results</td>
 <td>Array&lt;Object&gt;</td>
-<td>An array of <a href="#get-metadata-about-a-file">File objects</a></td>
+<td>An array of <a href="#get-metadata-of-a-file">File objects</a></td>
 </tr>
 </tbody></table>
 
@@ -2075,7 +2075,7 @@ Rescale platform.</p>
 
 <h3 id="response-properties">Response Properties</h3>
 
-<p>Same as (#get-metadata-about-a-file)</p>
+<p>Same as <a href="#get-metadata-of-a-file">Get Metadata of a File</a></p>
 
 <h2 id="delete-a-file">Delete a File</h2>
 
@@ -2171,7 +2171,7 @@ https://platform.rescale.com/api/files/<span class="o">{</span>file_id<span clas
 </thead><tbody>
 <tr>
 <td>lines</td>
-<td>List&lt;Variable&gt;</td>
+<td>List&lt;String&gt;</td>
 <td>A list of strings of the file.</td>
 </tr>
 </tbody></table>
@@ -2179,7 +2179,7 @@ https://platform.rescale.com/api/files/<span class="o">{</span>file_id<span clas
 <p>This call allows you to retrieve the file contents in lines for a
 plain text file.</p>
 
-<h2 id="get-metadata-about-a-file">Get Metadata About a File</h2>
+<h2 id="get-metadata-of-a-file">Get Metadata of a File</h2>
 
 <p><code class="prettyprint">GET https://platform.rescale.com/api/files/{file_id}/</code></p>
 <pre><code class="highlight shell">curl -X GET -H <span class="s1">'Authorization: Token \&lt;token\&gt;'</span>
@@ -2256,7 +2256,7 @@ https://platform.rescale.com/api/files/<span class="o">{</span>file_id<span clas
 </tr>
 <tr>
 <td>sharedWith</td>
-<td>List&lt;Variable&gt;</td>
+<td>List&lt;String&gt;</td>
 <td>A list of users of the file shared with.</td>
 </tr>
 <tr>
@@ -2303,11 +2303,82 @@ https://platform.rescale.com/api/files/<span class="o">{</span>file_id<span clas
 
 <p>This call allows you to retrieve details for a single file.</p>
 
-<h2 id="change-metadata-about-a-file">Change Metadata About a File</h2>
-
-<p><code class="prettyprint">PUT https://platform.rescale.com/api/files/{file_id}/</code></p>
+<h2 id="update-metadata-of-a-file">Update Metadata of a File</h2>
 
 <p><code class="prettyprint">PATCH https://platform.rescale.com/api/files/{file_id}/</code></p>
+<pre><code class="highlight shell">curl -X PATCH -H <span class="s1">'Content-Type: application/json'</span>
+-H <span class="s1">'Authorization: Token \&lt;token\&gt;'</span> --data 
+<span class="s1">'{
+    "typeId": 4,
+    "name": "new_script.txt",
+    "dateUploaded": "2015-03-17T00:24:39.531384Z",
+    "relativePath": "new_script.txt",
+    "encodedEncryptionKey": "83TFwNf5QxFaCOmluBQBnJ/L0yAC/2Z9MPs2pKZuUi4=",
+    "downloadUrl": "https://platform.rescale.com/api/files/dNEXtf/contents/",
+    "sharedWith": [],
+    "decryptedSize": 112,
+    "owner": "demouser@rescale.com",
+    "path": "user/user_OvdRk/testLines-9425c8a5-08a6-4249-939a-2f060a4d0f25.txt",
+    "isUploaded": true,
+    "viewInBrowser": true,
+    "id": "dNEXtf",
+    "isDeleted": false,
+    "md5": "4d479b49d26318068d3e23aa9d81e9ee"
+}'</span>
+https://platform.rescale.com/api/files/<span class="o">{</span>file_id<span class="o">}</span>/
+</code></pre>
+<pre><code class="highlight python"><span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="n">requests</span><span class="o">.</span><span class="n">patch</span><span class="p">(</span>
+  <span class="s">'https://platform.rescale.com/api/files/{file_id}/'</span><span class="p">,</span>
+  <span class="p">{</span>
+    <span class="s">"typeId"</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
+    <span class="s">"name"</span><span class="p">:</span> <span class="s">"new_script.txt"</span><span class="p">,</span>
+    <span class="s">"dateUploaded"</span><span class="p">:</span> <span class="s">"2015-03-17T00:24:39.531384Z"</span><span class="p">,</span>
+    <span class="s">"relativePath"</span><span class="p">:</span> <span class="s">"new_script.txt"</span><span class="p">,</span>
+    <span class="s">"encodedEncryptionKey"</span><span class="p">:</span> <span class="s">"83TFwNf5QxFaCOmluBQBnJ/L0yAC/2Z9MPs2pKZuUi4="</span><span class="p">,</span>
+    <span class="s">"downloadUrl"</span><span class="p">:</span> <span class="s">"https://platform.rescale.com/api/files/dNEXtf/contents/"</span><span class="p">,</span>
+    <span class="s">"sharedWith"</span><span class="p">:</span> <span class="p">[],</span>
+    <span class="s">"decryptedSize"</span><span class="p">:</span> <span class="mi">112</span><span class="p">,</span>
+    <span class="s">"owner"</span><span class="p">:</span> <span class="s">"demouser@rescale.com"</span><span class="p">,</span>
+    <span class="s">"path"</span><span class="p">:</span> <span class="s">"user/user_OvdRk/testLines-9425c8a5-08a6-4249-939a-2f060a4d0f25.txt"</span><span class="p">,</span>
+    <span class="s">"isUploaded"</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span>
+    <span class="s">"viewInBrowser"</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span>
+    <span class="s">"id"</span><span class="p">:</span> <span class="s">"dNEXtf"</span><span class="p">,</span>
+    <span class="s">"isDeleted"</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
+    <span class="s">"md5"</span><span class="p">:</span> <span class="s">"4d479b49d26318068d3e23aa9d81e9ee"</span>
+  <span class="p">},</span>
+  <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Token &lt;api-token&gt;'</span><span class="p">}</span>
+<span class="p">)</span>
+</code></pre>
+
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre><code class="highlight json"><span class="p">{</span><span class="w">
+    </span><span class="s2">"typeId"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"new_script.txt"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"dateUploaded"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-03-17T00:24:39.531384Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"relativePath"</span><span class="p">:</span><span class="w"> </span><span class="s2">"new_script.txt"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"encodedEncryptionKey"</span><span class="p">:</span><span class="w"> </span><span class="s2">"83TFwNf5QxFaCOmluBQBnJ/L0yAC/2Z9MPs2pKZuUi4="</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"downloadUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://platform.rescale.com/api/files/dNEXtf/contents/"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"sharedWith"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="s2">"decryptedSize"</span><span class="p">:</span><span class="w"> </span><span class="mi">112</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"owner"</span><span class="p">:</span><span class="w"> </span><span class="s2">"demouser@rescale.com"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"user/user_OvdRk/testLines-9425c8a5-08a6-4249-939a-2f060a4d0f25.txt"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"isUploaded"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"viewInBrowser"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dNEXtf"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"isDeleted"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"md5"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4d479b49d26318068d3e23aa9d81e9ee"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h3 id="response-properties">Response Properties</h3>
+
+<p>Same as <a href="#get-metadata-of-a-file">Get Metadata of a File</a></p>
+
+<p>This call allows you to update meta data of an exiting file.</p>
 
           <h1 id="tasks">Tasks</h1>
 
