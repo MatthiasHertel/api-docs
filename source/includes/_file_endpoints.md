@@ -395,13 +395,13 @@ requests.get(
 
 Property | Type  | Description
 -------- | ------|---------------
-lines | List&lt;Variable&gt; | A list of strings of the file.
+lines | List&lt;String&gt; | A list of strings of the file.
 
 
 This call allows you to retrieve the file contents in lines for a
 plain text file.
 
-## Get Metadata About a File
+## Get Metadata of a File
 
 `GET https://platform.rescale.com/api/files/{file_id}/`
 
@@ -451,7 +451,7 @@ dateUploaded | String | The ISO8601 encoded date of when the file is uploaded.
 relativePath | String | For output files (typeId = 5), the relative path is the path relative to the root output folder(user/{user_id}/output/{job_id}/{run_id}/{relative_path}).
 encodedEncryptionKey | String | The key used to encrypt the files.
 downloadUrl | String | The download URL of the file.
-sharedWith | List&lt;Variable&gt; | A list of users of the file shared with.
+sharedWith | List&lt;String&gt; | A list of users of the file shared with.
 decryptedSize | Integer | The decrypted file size in byte.
 owner | String | The owner of the file.
 path | String | The absolute path of the file being stored.
@@ -464,9 +464,84 @@ md5 | String | The md5 hash of the file.
 
 This call allows you to retrieve details for a single file.
 
-## Change Metadata About a File
-
-`PUT https://platform.rescale.com/api/files/{file_id}/`
+## Update Metadata of a File
 
 `PATCH https://platform.rescale.com/api/files/{file_id}/`
 
+```shell
+curl -X PATCH -H 'Content-Type: application/json'
+-H 'Authorization: Token \<token\>' --data 
+'{
+    "typeId": 4,
+    "name": "new_script.txt",
+    "dateUploaded": "2015-03-17T00:24:39.531384Z",
+    "relativePath": "new_script.txt",
+    "encodedEncryptionKey": "83TFwNf5QxFaCOmluBQBnJ/L0yAC/2Z9MPs2pKZuUi4=",
+    "downloadUrl": "https://platform.rescale.com/api/files/dNEXtf/contents/",
+    "sharedWith": [],
+    "decryptedSize": 112,
+    "owner": "demouser@rescale.com",
+    "path": "user/user_OvdRk/testLines-9425c8a5-08a6-4249-939a-2f060a4d0f25.txt",
+    "isUploaded": true,
+    "viewInBrowser": true,
+    "id": "dNEXtf",
+    "isDeleted": false,
+    "md5": "4d479b49d26318068d3e23aa9d81e9ee"
+}'
+https://platform.rescale.com/api/files/{file_id}/
+```
+
+```python
+import requests
+
+requests.patch(
+  'https://platform.rescale.com/api/files/{file_id}/',
+  {
+    "typeId": 4,
+    "name": "new_script.txt",
+    "dateUploaded": "2015-03-17T00:24:39.531384Z",
+    "relativePath": "new_script.txt",
+    "encodedEncryptionKey": "83TFwNf5QxFaCOmluBQBnJ/L0yAC/2Z9MPs2pKZuUi4=",
+    "downloadUrl": "https://platform.rescale.com/api/files/dNEXtf/contents/",
+    "sharedWith": [],
+    "decryptedSize": 112,
+    "owner": "demouser@rescale.com",
+    "path": "user/user_OvdRk/testLines-9425c8a5-08a6-4249-939a-2f060a4d0f25.txt",
+    "isUploaded": true,
+    "viewInBrowser": true,
+    "id": "dNEXtf",
+    "isDeleted": false,
+    "md5": "4d479b49d26318068d3e23aa9d81e9ee"
+  },
+  headers={'Authorization': 'Token <api-token>'}
+)
+```
+
+> Sample Response
+
+```json
+{
+    "typeId": 4,
+    "name": "new_script.txt",
+    "dateUploaded": "2015-03-17T00:24:39.531384Z",
+    "relativePath": "new_script.txt",
+    "encodedEncryptionKey": "83TFwNf5QxFaCOmluBQBnJ/L0yAC/2Z9MPs2pKZuUi4=",
+    "downloadUrl": "https://platform.rescale.com/api/files/dNEXtf/contents/",
+    "sharedWith": [],
+    "decryptedSize": 112,
+    "owner": "demouser@rescale.com",
+    "path": "user/user_OvdRk/testLines-9425c8a5-08a6-4249-939a-2f060a4d0f25.txt",
+    "isUploaded": true,
+    "viewInBrowser": true,
+    "id": "dNEXtf",
+    "isDeleted": false,
+    "md5": "4d479b49d26318068d3e23aa9d81e9ee"
+}
+```
+
+### Response Properties
+
+Same as (#get-metadata-about-a-file)
+
+
+This call allows you to update meta data of an exiting file.
