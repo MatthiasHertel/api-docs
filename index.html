@@ -203,7 +203,7 @@ submit jobs.</p>
 <tr>
 <td>compute</td>
 <td>String</td>
-<td>TODO</td>
+<td>The relative compute power of this core type</td>
 </tr>
 <tr>
 <td>name</td>
@@ -505,8 +505,8 @@ submit jobs.</p>
 </tr>
 <tr>
 <td>optimizerType</td>
-<td>Object</td>
-<td>TODO</td>
+<td>Integer</td>
+<td>If this analysis is an optimizer, indicates the type</td>
 </tr>
 <tr>
 <td>thumbnail</td>
@@ -667,59 +667,79 @@ cluster on rescale</p>
 <p>Sample Response</p>
 </blockquote>
 <pre><code class="highlight json"><span class="p">{</span><span class="w">
-  </span><span class="s2">"count"</span><span class="p">:</span><span class="mi">347</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"previous"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"results"</span><span class="p">:[</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"clusterStatusDisplay"</span><span class="p">:{</span><span class="w">
-        </span><span class="s2">"content"</span><span class="p">:</span><span class="s2">"Stopped"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"labelClass"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"useLabel"</span><span class="p">:</span><span class="kc">false</span><span class="w">
-      </span><span class="p">},</span><span class="w">
-      </span><span class="s2">"dateInserted"</span><span class="p">:</span><span class="s2">"2015-03-04T00:41:02.194615Z"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"Untitled Job"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"analysisNames"</span><span class="p">:[</span><span class="w">
-        </span><span class="s2">"Custom User-Defined Software"</span><span class="w">
-      </span><span class="p">],</span><span class="w">
-      </span><span class="s2">"storage"</span><span class="p">:</span><span class="mi">86</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"jobStatus"</span><span class="p">:{</span><span class="w">
-        </span><span class="s2">"content"</span><span class="p">:</span><span class="s2">"Completed"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"labelClass"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"useLabel"</span><span class="p">:</span><span class="kc">false</span><span class="w">
-      </span><span class="p">},</span><span class="w">
-      </span><span class="s2">"sharedWith"</span><span class="p">:[</span><span class="w">
-
-      </span><span class="p">],</span><span class="w">
-      </span><span class="s2">"isVisible"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"owner"</span><span class="p">:</span><span class="s2">"owner@example.com"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"id"</span><span class="p">:</span><span class="s2">"FtFSc"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"clusterStatusDisplay"</span><span class="p">:{</span><span class="w">
-        </span><span class="s2">"content"</span><span class="p">:</span><span class="s2">"Started"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"labelClass"</span><span class="p">:</span><span class="s2">"label-success"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"useLabel"</span><span class="p">:</span><span class="kc">true</span><span class="w">
-      </span><span class="p">},</span><span class="w">
-      </span><span class="s2">"dateInserted"</span><span class="p">:</span><span class="s2">"2015-03-03T03:06:14.902048Z"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"LS-Dyna (Cloned)"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"analysisNames"</span><span class="p">:[</span><span class="w">
-        </span><span class="s2">"LS-DYNA"</span><span class="w">
-      </span><span class="p">],</span><span class="w">
-      </span><span class="s2">"storage"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"jobStatus"</span><span class="p">:{</span><span class="w">
-        </span><span class="s2">"content"</span><span class="p">:</span><span class="s2">"Executing"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"labelClass"</span><span class="p">:</span><span class="s2">"label-success"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"useLabel"</span><span class="p">:</span><span class="kc">true</span><span class="w">
-      </span><span class="p">},</span><span class="w">
-      </span><span class="s2">"sharedWith"</span><span class="p">:[</span><span class="w">
-        </span><span class="s2">"recipient@example.com"</span><span class="w">
-      </span><span class="p">],</span><span class="w">
-      </span><span class="s2">"isVisible"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"owner"</span><span class="p">:</span><span class="s2">"owner@example.com"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"id"</span><span class="p">:</span><span class="s2">"KDFSc"</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">],</span><span class="w">
-  </span><span class="s2">"next"</span><span class="p">:</span><span class="s2">"https://platform.rescale.com/api/jobs/?page=2"</span><span class="w">
+    </span><span class="s2">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"next"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"previous"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"results"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"analysisNames"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="s2">"OpenFOAM"</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="s2">"clusterStatusDisplay"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"content"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Stopped"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"labelClass"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"useLabel"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"dateInserted"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-03-13T23:43:21.223052Z"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OsKBd"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"isVisible"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"jobStatus"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"content"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Completed"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"labelClass"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"useLabel"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"the FOAM 2"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"owner"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mark@rescale.com"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"sharedWith"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="s2">"storage"</span><span class="p">:</span><span class="w"> </span><span class="mi">8014908</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"analysisNames"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="s2">"OpenFOAM"</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="s2">"clusterStatusDisplay"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"content"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Stopped"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"labelClass"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"useLabel"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"dateInserted"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-02-07T01:57:14.332984Z"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"XZFQV"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"isVisible"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"jobStatus"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"content"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Completed"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"labelClass"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"useLabel"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"the FOAM"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"owner"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mark@rescale.com"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"sharedWith"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="s2">"someoneelse@example.com"</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="s2">"storage"</span><span class="p">:</span><span class="w"> </span><span class="mi">8014906</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"analysisNames"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="s2">"Custom User-Defined MPI Software"</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="s2">"clusterStatusDisplay"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"content"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"labelClass"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"useLabel"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"dateInserted"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-10-09T23:00:36.198759Z"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"kikcT"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"isVisible"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"jobStatus"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"content"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"labelClass"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"useLabel"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MPI Hello"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"owner"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mark@rescale.com"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"sharedWith"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="s2">"storage"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
@@ -738,7 +758,7 @@ cluster on rescale</p>
 <tr>
 <td>clusterStatusDisplay</td>
 <td>Object</td>
-<td>Describes the current status of the job&rsquo;s clusters</td>
+<td>Describes the current status of the job&rsquo;s compute clusters</td>
 </tr>
 <tr>
 <td>dateInserted</td>
@@ -767,8 +787,8 @@ cluster on rescale</p>
 </tr>
 <tr>
 <td>isVisible</td>
-<td>boolean</td>
-<td>TODO: Can this ever be false in the output?!</td>
+<td>Boolean</td>
+<td>Always true if you can retrieve the job</td>
 </tr>
 <tr>
 <td>owner</td>
@@ -780,19 +800,447 @@ cluster on rescale</p>
 <td>String</td>
 <td>A unique identifier for the job</td>
 </tr>
+<tr>
+<td>storage</td>
+<td>Integer</td>
+<td>Number of bytes used for the input and output files of this job</td>
+</tr>
 </tbody></table>
 
 <h2 id="get-a-specific-job">Get a Specific Job</h2>
 
 <p><code class="prettyprint">GET https://platform.rescale.com/api/jobs/{job_id}/</code></p>
+<pre><code class="highlight shell">curl -H <span class="s2">"Authorization: Token &lt;api-token&gt;"</span> https://platform.rescale.com/api/jobs/aabbcc/
+</code></pre>
+<pre><code class="highlight python"></code></pre>
+<pre><code class="highlight json"><span class="p">{</span><span class="w">
+    </span><span class="s2">"archiveFilters"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="s2">"caseFile"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"expectedRuns"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"aabbcc"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"includeNominalRun"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"isLowPriority"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"isTemplateDryRun"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"jobanalyses"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"analysis"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"openfoam"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OpenFOAM"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2.3.1-openmpi"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"versionName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2.3.1"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"command"</span><span class="p">:</span><span class="w"> </span><span class="s2">"./airFoil2D_DOE/Allrun"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"envVars"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+            </span><span class="s2">"flags"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+            </span><span class="s2">"hardware"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"coreSummary"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"memoryPerNode"</span><span class="p">:</span><span class="w"> </span><span class="mi">3750</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"numberOfNodes"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"storagePerNode"</span><span class="p">:</span><span class="w"> </span><span class="mi">4000</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="s2">"coreType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"standard-plus"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"coresPerSlot"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"slots"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"walltime"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"inputFiles"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"dateUploaded"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-03-26T23:08:33.700457Z"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"decryptedSize"</span><span class="p">:</span><span class="w"> </span><span class="mi">655816</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"downloadUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://platform.rescale.com/api/files/duMEdg/contents/"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"encodedEncryptionKey"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NYhibURTMAMKNWmWiDuUZxn+oUaRwp8iExaECpU6Dwo="</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"duMEdg"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"isDeleted"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"isUploaded"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"md5"</span><span class="p">:</span><span class="w"> </span><span class="s2">"60c6492014f73ad0c08da866b4ce9160"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"airfoid2d_doe.tar.gz"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"owner"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mark@rescale.com"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"user/user_KBdkT/airfoid2d_doe.tar.gz-12f94e2222a0feafea96d31e634af2c6"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"relativePath"</span><span class="p">:</span><span class="w"> </span><span class="s2">"airfoid2d_doe.tar.gz"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"sharedWith"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+                    </span><span class="s2">"typeId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"viewInBrowser"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="s2">"postProcessScript"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"postProcessScriptCommand"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"preProcessScript"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"preProcessScriptCommand"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"templateTasks"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"processedFilename"</span><span class="p">:</span><span class="w"> </span><span class="s2">"airFoil2D_DOE/0/U"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"templateFile"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"dateUploaded"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-03-26T23:09:46.256315Z"</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"decryptedSize"</span><span class="p">:</span><span class="w"> </span><span class="mi">1344</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"downloadUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://platform.rescale.com/api/files/qEMEdg/contents/"</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"encodedEncryptionKey"</span><span class="p">:</span><span class="w"> </span><span class="s2">"olx6Kn7vde1siRKoDqBRTkaT25k1x8P9IYy3PdhmFhk="</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"qEMEdg"</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"isDeleted"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"isUploaded"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"md5"</span><span class="p">:</span><span class="w"> </span><span class="s2">"b4ae5cb300c8b3d1410231e8fd474110"</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"utemplate"</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"owner"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mark@rescale.com"</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"user/user_KBdkT/utemplate-2f3c3004f5909acf0b7cc2a56c5be35c"</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"relativePath"</span><span class="p">:</span><span class="w"> </span><span class="s2">"utemplate"</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"sharedWith"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+                        </span><span class="s2">"typeId"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"viewInBrowser"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+                    </span><span class="p">}</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="s2">"useRescaleLicense"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"jobvariables"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"displayOrder"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Xvelocity"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"valueGeneratorSettings"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+            </span><span class="s2">"valueGeneratorType"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"variableType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Param"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"displayOrder"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Yvelocity"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"valueGeneratorSettings"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+            </span><span class="s2">"valueGeneratorType"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"variableType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Param"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"monteCarloIterations"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Untitled Job"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"optimizer"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"owner"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mark@rescale.com"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"paramFile"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"dateUploaded"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-03-26T23:09:25.532849Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"decryptedSize"</span><span class="p">:</span><span class="w"> </span><span class="mi">55</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"downloadUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://platform.rescale.com/api/files/sWErpg/contents/"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"encodedEncryptionKey"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6kvS7Y3M6HXFcHos0rLUcEf4hNyupzn8x1j7CUU3qko="</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sWErpg"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"isDeleted"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"isUploaded"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"md5"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9ba0663810a4568dece19b67533e2759"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"freestreamvalue.csv"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"owner"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mark@rescale.com"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"user/user_KBdkT/freestreamvalue.csv-5ebf0b8ddbf834ec2e8e7e727de91c82"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"relativePath"</span><span class="p">:</span><span class="w"> </span><span class="s2">"freestreamvalue.csv"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"sharedWith"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+        </span><span class="s2">"typeId"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"viewInBrowser"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"remoteVizConfig"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"resourceFilters"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Retreive the details of a saved job.</p>
+
+<h3 id="response-properties">Response Properties</h3>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>archiveFilters</td>
+<td>Array&lt;String&gt;</td>
+<td>Filters on job visibility related to whether it is archived</td>
+</tr>
+<tr>
+<td>caseFile</td>
+<td>Object</td>
+<td>File with case variables for DOE job</td>
+</tr>
+<tr>
+<td>expectedRuns</td>
+<td>Integer</td>
+<td>Number of runs for a DOE, will be 1 for basic jobs</td>
+</tr>
+<tr>
+<td>id</td>
+<td>String</td>
+<td>Job identifier</td>
+</tr>
+<tr>
+<td>includeNominalRun</td>
+<td>Boolean</td>
+<td>Whether to include a nominal baseline run for a DOE job</td>
+</tr>
+<tr>
+<td>isLowPriority</td>
+<td>Boolean</td>
+<td>Is this a low priority job?</td>
+</tr>
+<tr>
+<td>isTemplateDryRun</td>
+<td>Boolean</td>
+<td>Run this job in &ldquo;dry run&rdquo; mode to check DOE templates</td>
+</tr>
+<tr>
+<td>jobanalyses</td>
+<td>Array&lt;Object&gt;</td>
+<td>List of analyses for the job. Details below</td>
+</tr>
+<tr>
+<td>jobvariables</td>
+<td>Array&lt;Object&gt;</td>
+<td>List of job variables for DOE job. Details below</td>
+</tr>
+<tr>
+<td>monteCarloIterations</td>
+<td>Integer</td>
+<td>Number of iterations for Monte Carlo optimization job</td>
+</tr>
+<tr>
+<td>name</td>
+<td>String</td>
+<td>Name of job</td>
+</tr>
+<tr>
+<td>optimizer</td>
+<td>Object</td>
+<td>Job analysis representing optimizer used for optimization jobs</td>
+</tr>
+<tr>
+<td>owner</td>
+<td>String</td>
+<td>Email address of job owner</td>
+</tr>
+<tr>
+<td>paramFile</td>
+<td>Object</td>
+<td>CSV file with DOE parameters (DOE job only)</td>
+</tr>
+<tr>
+<td>remoteVizConfig</td>
+<td>Object</td>
+<td>(deprecated) Configuration for companion remote visualization node</td>
+</tr>
+<tr>
+<td>resourceFilters</td>
+<td>Array&lt;Object&gt;</td>
+<td>Filters on file resources</td>
+</tr>
+<tr>
+<td>jobvariables</td>
+<td>None</td>
+<td>No</td>
+</tr>
+<tr>
+<td>jobanalyses</td>
+<td>None</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>resourceFilters</td>
+<td>Default filters</td>
+<td>No</td>
+</tr>
+</tbody></table>
 
 <h2 id="list-job-output-files">List Job Output Files</h2>
 
 <p><code class="prettyprint">GET https://platform.rescale.com/api/jobs/{job_id}/files/</code></p>
+<pre><code class="highlight shell">curl -H <span class="s2">"Authorization: Token &lt;api-token&gt;"</span> https://platform.rescale.com/api/jobs/aabbcc/files/
+</code></pre>
+<pre><code class="highlight json"><span class="p">{</span><span class="w">
+    </span><span class="s2">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"next"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"previous"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"results"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"dateUploaded"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-03-13T23:56:37.184619Z"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"decryptedSize"</span><span class="p">:</span><span class="w"> </span><span class="mi">1680</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"downloadUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://platform.rescale.com/api/files/xTyjeg/contents/"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"encodedEncryptionKey"</span><span class="p">:</span><span class="w"> </span><span class="s2">"VkAWWRkKR9xJIDJTdkVK42O/7+Xo3M4LOaGvP6HjHMA="</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"xTyjeg"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"isDeleted"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"isUploaded"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"md5"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8632d6580e922bd9f8691cc2d6ea3443"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fvSchemes"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"owner"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mark@rescale.com"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"user/user_KBdkT/output/job_OsKBd/run1/airFoil2D/system/fvSchemes"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"relativePath"</span><span class="p">:</span><span class="w"> </span><span class="s2">"airFoil2D/system/fvSchemes"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"sharedWith"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="s2">"typeId"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"viewInBrowser"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>List OUTPUT files for a given job</p>
+
+<h3 id="response-properties">Response Properties</h3>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>dateUploaded</td>
+<td>DateTime</td>
+<td>Date file was uploaded to platform by job</td>
+</tr>
+<tr>
+<td>decryptedSize</td>
+<td>Integer</td>
+<td>File size in bytes</td>
+</tr>
+<tr>
+<td>downloadUrl</td>
+<td>URL</td>
+<td>URL for retrieving file</td>
+</tr>
+<tr>
+<td>encodedEncryptionKey</td>
+<td>String</td>
+<td>Key to decrypt file</td>
+</tr>
+<tr>
+<td>id</td>
+<td>String</td>
+<td>Id of file</td>
+</tr>
+<tr>
+<td>isDeleted</td>
+<td>Boolean</td>
+<td>Whether file has been marked deleted</td>
+</tr>
+<tr>
+<td>isUploaded</td>
+<td>Boolean</td>
+<td>Whether file has finished uploading (false means upload is in progress or failed)</td>
+</tr>
+<tr>
+<td>md5</td>
+<td>String</td>
+<td>MD5 string for file contents</td>
+</tr>
+<tr>
+<td>name</td>
+<td>String</td>
+<td>Name of file</td>
+</tr>
+<tr>
+<td>owner</td>
+<td>String</td>
+<td>Email address of file owner</td>
+</tr>
+<tr>
+<td>path</td>
+<td>String</td>
+<td>Path for file in Rescale storage</td>
+</tr>
+<tr>
+<td>relativePath</td>
+<td>String</td>
+<td>Path for file relative to job run</td>
+</tr>
+<tr>
+<td>sharedWith</td>
+<td>Array%gt;String&lt;</td>
+<td>List of email address the file was shared with</td>
+</tr>
+<tr>
+<td>typeId</td>
+<td>Integer</td>
+<td>Type of file (input, output, template, etc.), should be 5=output in this case</td>
+</tr>
+<tr>
+<td>viewInBrowser</td>
+<td>Boolean</td>
+<td>Whether the file can be viewed directly in on the Rescale platform</td>
+</tr>
+</tbody></table>
 
 <h2 id="create-a-job">Create a Job</h2>
 
 <p><code class="prettyprint">POST https://platform.rescale.com/api/jobs/</code></p>
+
+<blockquote>
+<p>Basic job, no input files</p>
+</blockquote>
+<pre><code class="highlight shell">curl -H <span class="s2">"Authorization: Token &lt;api-token&gt;"</span> -H <span class="s2">"Content-Type: application/json"</span> <span class="s2">"http://platform-local.rescale.com:8000/api/jobs/"</span> -d <span class="s1">'
+{
+    "name": "Jobbo",
+    "jobanalyses": [
+        {
+            "analysis": {
+                "code": "user_included",
+                "version": "0"
+            },
+            "command": "echo \"Hello world\"",
+            "hardware": {
+                "coreType": "standard-plus",
+                "coresPerSlot": 1
+            }
+        }
+    ]
+}
+'</span>
+</code></pre>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre><code class="highlight json"><span class="p">{</span><span class="w">
+    </span><span class="s2">"archiveFilters"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="s2">"caseFile"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"expectedRuns"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LeeKa"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"includeNominalRun"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"isLowPriority"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"isTemplateDryRun"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"jobanalyses"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"analysis"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"user_included"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Custom User-Defined Software"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"versionName"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"command"</span><span class="p">:</span><span class="w"> </span><span class="s2">"echo \"Hello world\""</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"envVars"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+            </span><span class="s2">"flags"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+            </span><span class="s2">"hardware"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"coreSummary"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"memoryPerNode"</span><span class="p">:</span><span class="w"> </span><span class="mi">3750</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"numberOfNodes"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"storagePerNode"</span><span class="p">:</span><span class="w"> </span><span class="mi">4000</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="s2">"coreType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"standard-plus"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"coresPerSlot"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"slots"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"walltime"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"inputFiles"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="s2">"postProcessScript"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"postProcessScriptCommand"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"preProcessScript"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"preProcessScriptCommand"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"templateTasks"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="s2">"useRescaleLicense"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"jobvariables"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="s2">"monteCarloIterations"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jobbo"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"optimizer"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"owner"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mark@rescale.com"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"paramFile"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"remoteVizConfig"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"resourceFilters"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Creates and saves a job, DOES NOT start job, see submit below.</p>
 
 <h3 id="job-level-fields">Job level fields</h3>
 
@@ -998,12 +1446,32 @@ in constructing your JSON blob.</p>
 <h2 id="submit-a-saved-job">Submit a Saved Job</h2>
 
 <p><code class="prettyprint">POST https://platform.rescale.com/api/jobs/{job_id}/submit/</code></p>
+<pre><code class="highlight shell">curl -H <span class="s2">"Authorization: Token &lt;api-token&gt;"</span> https://platform.rescale.com/api/jobs/LeeKa/submit/ -X POST
+</code></pre>
+
+<p>Submits a saved job to run.  No data returned.</p>
 
 <h2 id="update-a-job">Update a Job</h2>
 
 <p><code class="prettyprint">PUT https://platform.rescale.com/api/jobs/{job_id}</code></p>
 
 <p><code class="prettyprint">PATCH https://platform.rescale.com/api/jobs/{job_id}</code></p>
+<pre><code class="highlight shell">curl -H <span class="s2">"Authorization: Token e95aca40caabf137e71ba11469d7aa304dea4386"</span>  -H <span class="s2">"Content-Type:application/json"</span> <span class="s2">"https://platform.rescale.com/api/jobs/LeeKa/"</span> -X PATCH -d <span class="s1">'
+{
+    "name": "Jobster"
+}
+'</span>
+</code></pre>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre><code class="highlight json"><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LeeKa"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"isLowPriority"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jobster"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 
 <h2 id="delete-a-job">Delete a Job</h2>
 
