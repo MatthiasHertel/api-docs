@@ -2,17 +2,17 @@
 
 ## List All Jobs
 
-`GET https://platform.rescale.com/api/jobs/`
+`GET https://platform.rescale.com/api/v2/jobs/`
 
 ```shell
-curl -H "Authorization: Token <api-token>" https://platform.rescale.com/api/jobs/
+curl -H "Authorization: Token <api-token>" https://platform.rescale.com/api/v2/jobs/
 ```
 
 ```python
 import requests
 
 requests.get(
-  'https://platform.rescale.com/api/jobs/',
+  'https://platform.rescale.com/api/v2/jobs/',
   headers={'Authorization': 'Token <api-token>'}
 )
 ```
@@ -117,10 +117,10 @@ storage | Integer | Number of bytes used for the input and output files of this 
 
 ## Get a Specific Job
 
-`GET https://platform.rescale.com/api/jobs/{job_id}/`
+`GET https://platform.rescale.com/api/v2/jobs/{job_id}/`
 
 ```shell
-curl -H "Authorization: Token <api-token>" https://platform.rescale.com/api/jobs/aabbcc/
+curl -H "Authorization: Token <api-token>" https://platform.rescale.com/api/v2/jobs/aabbcc/
 ```
 
 ```python
@@ -161,7 +161,7 @@ curl -H "Authorization: Token <api-token>" https://platform.rescale.com/api/jobs
                 {
                     "dateUploaded": "2015-03-26T23:08:33.700457Z",
                     "decryptedSize": 655816,
-                    "downloadUrl": "https://platform.rescale.com/api/files/duMEdg/contents/",
+                    "downloadUrl": "https://platform.rescale.com/api/v2/files/duMEdg/contents/",
                     "encodedEncryptionKey": "NYhibURTMAMKNWmWiDuUZxn+oUaRwp8iExaECpU6Dwo=",
                     "id": "duMEdg",
                     "isDeleted": false,
@@ -186,7 +186,7 @@ curl -H "Authorization: Token <api-token>" https://platform.rescale.com/api/jobs
                     "templateFile": {
                         "dateUploaded": "2015-03-26T23:09:46.256315Z",
                         "decryptedSize": 1344,
-                        "downloadUrl": "https://platform.rescale.com/api/files/qEMEdg/contents/",
+                        "downloadUrl": "https://platform.rescale.com/api/v2/files/qEMEdg/contents/",
                         "encodedEncryptionKey": "olx6Kn7vde1siRKoDqBRTkaT25k1x8P9IYy3PdhmFhk=",
                         "id": "qEMEdg",
                         "isDeleted": false,
@@ -228,7 +228,7 @@ curl -H "Authorization: Token <api-token>" https://platform.rescale.com/api/jobs
     "paramFile": {
         "dateUploaded": "2015-03-26T23:09:25.532849Z",
         "decryptedSize": 55,
-        "downloadUrl": "https://platform.rescale.com/api/files/sWErpg/contents/",
+        "downloadUrl": "https://platform.rescale.com/api/v2/files/sWErpg/contents/",
         "encodedEncryptionKey": "6kvS7Y3M6HXFcHos0rLUcEf4hNyupzn8x1j7CUU3qko=",
         "id": "sWErpg",
         "isDeleted": false,
@@ -275,11 +275,11 @@ Property | Type  | Description
 
 ## List Job Output Files
 
-`GET https://platform.rescale.com/api/jobs/{job_id}/files/`
+`GET https://platform.rescale.com/api/v2/jobs/{job_id}/files/`
 
 
 ```shell
-curl -H "Authorization: Token <api-token>" https://platform.rescale.com/api/jobs/aabbcc/files/
+curl -H "Authorization: Token <api-token>" https://platform.rescale.com/api/v2/jobs/aabbcc/files/
 ```
 
 ```json
@@ -291,7 +291,7 @@ curl -H "Authorization: Token <api-token>" https://platform.rescale.com/api/jobs
         {
             "dateUploaded": "2015-03-13T23:56:37.184619Z",
             "decryptedSize": 1680,
-            "downloadUrl": "https://platform.rescale.com/api/files/xTyjeg/contents/",
+            "downloadUrl": "https://platform.rescale.com/api/v2/files/xTyjeg/contents/",
             "encodedEncryptionKey": "VkAWWRkKR9xJIDJTdkVK42O/7+Xo3M4LOaGvP6HjHMA=",
             "id": "xTyjeg",
             "isDeleted": false,
@@ -333,7 +333,7 @@ Property | Type  | Description
 
 ## Create a Job
 
-`POST https://platform.rescale.com/api/jobs/`
+`POST https://platform.rescale.com/api/v2/jobs/`
 
 > Basic job, no input files
 
@@ -466,22 +466,22 @@ in constructing your JSON blob.
 
 ## Submit a Saved Job
 
-`POST https://platform.rescale.com/api/jobs/{job_id}/submit/`
+`POST https://platform.rescale.com/api/v2/jobs/{job_id}/submit/`
 
 ```shell
-curl -H "Authorization: Token <api-token>" https://platform.rescale.com/api/jobs/LeeKa/submit/ -X POST
+curl -H "Authorization: Token <api-token>" https://platform.rescale.com/api/v2/jobs/LeeKa/submit/ -X POST
 ```
 
 Submits a saved job to run.  No data returned.
 
 ## Update a Job
 
-`PUT https://platform.rescale.com/api/jobs/{job_id}`
+`PUT https://platform.rescale.com/api/v2/jobs/{job_id}`
 
-`PATCH https://platform.rescale.com/api/jobs/{job_id}`
+`PATCH https://platform.rescale.com/api/v2/jobs/{job_id}`
 
 ```shell
-curl -H "Authorization: Token e95aca40caabf137e71ba11469d7aa304dea4386"  -H "Content-Type:application/json" "https://platform.rescale.com/api/jobs/LeeKa/" -X PATCH -d '
+curl -H "Authorization: Token e95aca40caabf137e71ba11469d7aa304dea4386"  -H "Content-Type:application/json" "https://platform.rescale.com/api/v2/jobs/LeeKa/" -X PATCH -d '
 {
     "name": "Jobster"
 }
@@ -501,19 +501,19 @@ curl -H "Authorization: Token e95aca40caabf137e71ba11469d7aa304dea4386"  -H "Con
 
 ## Delete a Job
 
-`DELETE https://platform.rescale.com/api/jobs/{job_id}/`
+`DELETE https://platform.rescale.com/api/v2/jobs/{job_id}/`
 
 ## Stop a Job
 
-`POST https://platform.rescale.com/api/jobs/{job_id/stop/`
+`POST https://platform.rescale.com/api/v2/jobs/{job_id/stop/`
 
 ## Share a Job
 
-`POST https://platform.rescale.com/api/jobs/{job_id/share/`
+`POST https://platform.rescale.com/api/v2/jobs/{job_id/share/`
 
 ## Get the Status History of a Job
 
-`GET https://platform.rescale.com/api/jobs/{job_id}/statuses`
+`GET https://platform.rescale.com/api/v2/jobs/{job_id}/statuses`
 
-`GET https://platform.rescale.com/api/jobs/{job_id}/cluster_statuses/`
+`GET https://platform.rescale.com/api/v2/jobs/{job_id}/cluster_statuses/`
 

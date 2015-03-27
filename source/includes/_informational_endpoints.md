@@ -5,17 +5,17 @@ information about options available in the system as a whole.
 
 ## Core Types
 
-`GET https://platform.rescale.com/api/coretypes/`
+`GET https://platform.rescale.com/api/v2/coretypes/`
 
 ```shell
-curl -H "Authorization: Token <api-token>" https://platform.rescale.com/api/coretypes/
+curl -H "Authorization: Token <api-token>" https://platform.rescale.com/api/v2/coretypes/
 ```
 
 ```python
 import requests
 
 requests.get(
-  'https://platform.rescale.com/api/coretypes/',
+  'https://platform.rescale.com/api/v2/coretypes/',
   headers={'Authorization': 'Token <api-token>'}
 )
 ```
@@ -75,7 +75,7 @@ requests.get(
       "description":""
     }
   ],
-  "next":"https://platform.rescale.com/api/coretypes?page=2"
+  "next":"https://platform.rescale.com/api/v2/coretypes?page=2"
 }
 ```
 
@@ -108,17 +108,17 @@ description | String | A description of this core type
 
 ## Analyses
 
-`GET https://platform.rescale.com/api/analyses/`
+`GET https://platform.rescale.com/api/v2/analyses/`
 
 ```shell
-curl -H "Authorization: Token <api-token>" https://platform.rescale.com/api/remote-viz-config/
+curl -H "Authorization: Token <api-token>" https://platform.rescale.com/api/v2/remote-viz-config/
 ```
 
 ```python
 import requests
 
 requests.get(
-  'https://platform.rescale.com/api/analyses/',
+  'https://platform.rescale.com/api/v2/analyses/',
   headers={'Authorization': 'Token <api-token>'}
 )
 ```
@@ -271,7 +271,7 @@ requests.get(
       "name":"Abaqus"
     }
   ],
-  "next":"https://platform.rescale.com/api/analyses/?page=2"
+  "next":"https://platform.rescale.com/api/v2/analyses/?page=2"
 }
 ```
 
@@ -311,20 +311,20 @@ Property | Type  | Description
 
 ## Remote Visualization Options
 
-`GET https://platform.rescale.com/api/remote-viz-config/`
+`GET https://platform.rescale.com/api/v2/remote-viz-config/`
 
 This endpoint lists the options for creating a remote visualization
 cluster on rescale
 
 ```shell
-curl -H "Authorization: Token <api-token>" https://platform.rescale.com/api/remote-viz-config/
+curl -H "Authorization: Token <api-token>" https://platform.rescale.com/api/v2/remote-viz-config/
 ```
 
 ```python
 import requests
 
 requests.get(
-  'https://platform.rescale.com/api/remote-viz-config/',
+  'https://platform.rescale.com/api/v2/remote-viz-config/',
   headers={'Authorization': 'Token <api-token>'}
 )
 ```

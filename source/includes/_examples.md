@@ -10,12 +10,12 @@ using the API.
 curl -X POST -H 'Content-Type:multipart/form-data' \
 -H 'Authorization: Token <api-token>' \
 -F "file=@airfoil2d.zip" \
-https://platform.rescale.com/api/files/contents/
+https://platform.rescale.com/api/v2/files/contents/
 ```
 
 ```python
 requests.post(
-  'https://platform.rescale.com/api/files/contents/',
+  'https://platform.rescale.com/api/v2/files/contents/',
   data=None,
   files={'file': open('airfoil2d.zip')},
   headers={'Authorization': 'Token <api-token>'}
@@ -56,14 +56,14 @@ file in all the other calls to the API.
 ## Choosing an analysis
 
 ```shell
-curl -H "Authorization: Token <api-token>" https://platform.rescale.com/api/analyses/
+curl -H "Authorization: Token <api-token>" https://platform.rescale.com/api/v2/analyses/
 ```
 
 ```python
 import requests
 
 requests.get(
-  'https://platform.rescale.com/api/analyses/',
+  'https://platform.rescale.com/api/v2/analyses/',
   headers={'Authorization': 'Token <api-token>'}
 )
 ```
@@ -219,14 +219,14 @@ EOF
 curl -X POST --data @data.json \
 -H "Authorization: Token <api-token>" \
 -H "Content-Type: application/json" \
-https://platform.rescale.com/api/jobs/
+https://platform.rescale.com/api/v2/jobs/
 ```
 
 ```python
 import requests
 
 requests.post(
-  'https://platform.rescale.com/api/jobs/',
+  'https://platform.rescale.com/api/v2/jobs/',
   data={
     'name': 'Basic Job',
     'jobanalyses': [
@@ -354,14 +354,14 @@ API from uploading the input file.
 
 ```shell
 curl -X POST -H 'Authorization: Token <api-token>' \
-https://platform.rescale.com/api/jobs/QTVia/submit/
+https://platform.rescale.com/api/v2/jobs/QTVia/submit/
 ```
 
 ```python
 import requests
 
 requests.post(
-  'https://platform.rescale.com/api/jobs/QTVia/submit/',
+  'https://platform.rescale.com/api/v2/jobs/QTVia/submit/',
   headers={'Authorization': 'Token <api-token>'}
 )
 ```
@@ -379,14 +379,14 @@ The id in the submit url at right is the job id returned by the API
 ## Monitoring your job
 
 ```shell
-curl -H 'Authorization: Token <api-token>'  https://platform.rescale.com/api/jobs/QTVia/statuses/
+curl -H 'Authorization: Token <api-token>'  https://platform.rescale.com/api/v2/jobs/QTVia/statuses/
 ```
 
 ```python
 import requests
 
 requests.post(
-  'https://platform.rescale.com/api/jobs/QTVia/submit/',
+  'https://platform.rescale.com/api/v2/jobs/QTVia/submit/',
   headers={'Authorization': 'Token <api-token>'}
 )
 ```
@@ -434,14 +434,14 @@ specified job in order of their recency.
 ## Getting results
 
 ``shell
-curl -H 'Authorization: Token <api-token>'  https://platform.rescale.com/api/jobs/QTVia/runs/
+curl -H 'Authorization: Token <api-token>'  https://platform.rescale.com/api/v2/jobs/QTVia/runs/
 ```
 
 ```python
 import requests
 
 requests.get(
-  'https://platform.rescale.com/api/jobs/QTVia/runs/',
+  'https://platform.rescale.com/api/v2/jobs/QTVia/runs/',
   headers={'Authorization': 'Token <api-token>'}
 )
 ```
@@ -483,14 +483,14 @@ to the [run endpoint](#get-a-run) with the run id in the path.
 
 ```shell
 curl -H 'Authorization: Token <api-token>' \
-https://platform.rescale.com/api/files/iudjqe/contents/ > process_output.log
+https://platform.rescale.com/api/v2/files/iudjqe/contents/ > process_output.log
 ```
 
 ```python
 import requests
 from contextlib import closing
 
-url='https://platform.rescale.com/api/files/iudjqe/contents/'
+url='https://platform.rescale.com/api/v2/files/iudjqe/contents/'
 headers={'Authorization': 'Token <api-token>'}
 
 with closing(requests.get(url, headers=headers, stream=True)) as r:

@@ -4,18 +4,18 @@ All file related operations are listed here.
 
 ## List all Files
 
-`GET https://platform.rescale.com/api/files/`
+`GET https://platform.rescale.com/api/v2/files/`
 
 ```shell
 curl -X GET -H 'Authorization: Token \<token\>'
-https://platform.rescale.com/api/files/
+https://platform.rescale.com/api/v2/files/
 ```
 
 ```python
 import requests
 
 requests.get(
-  'https://platform.rescale.com/api/files/',
+  'https://platform.rescale.com/api/v2/files/',
   headers={'Authorization': 'Token <api-token>'}
 )
 ```
@@ -33,7 +33,7 @@ requests.get(
             "dateUploaded": "2015-03-12T17:56:20.925043-07:00",
             "relativePath": "Crash_input.pc.gz",
             "encodedEncryptionKey": "LkkPk2L2mwuc4OibUs3kJe2RIQrzXbfdWXp9xJhoX0s=",
-            "downloadUrl": "https://platform.rescale.com/api/files/WvNKdb/contents/",
+            "downloadUrl": "https://platform.rescale.com/api/v2/files/WvNKdb/contents/",
             "sharedWith": [],
             "decryptedSize": 56425931,
             "owner": "demouser@rescale.com",
@@ -50,7 +50,7 @@ requests.get(
             "dateUploaded": "2015-01-27T11:06:57.418023-08:00",
             "relativePath": "fsi.in",
             "encodedEncryptionKey": "MQfYDI0UttkgN+N2K71N0/nodyTZi/GjNY1z/Jnmh88=",
-            "downloadUrl": "https://platform.rescale.com/api/files/oHyEm/contents/",
+            "downloadUrl": "https://platform.rescale.com/api/v2/files/oHyEm/contents/",
             "sharedWith": [
                 "shareduser@rescale.com"
             ],
@@ -69,7 +69,7 @@ requests.get(
             "dateUploaded": "2015-01-27T11:06:57.310163-08:00",
             "relativePath": "post.echo",
             "encodedEncryptionKey": "wmB+YNh2IDdZURd79NJjOiAnAGxl8mzPVlwS8kLPGnc=",
-            "downloadUrl": "https://platform.rescale.com/api/files/ZeFSa/contents/",
+            "downloadUrl": "https://platform.rescale.com/api/v2/files/ZeFSa/contents/",
             "sharedWith": [
                 "shareduser@rescale.com"
             ],
@@ -88,7 +88,7 @@ requests.get(
             "dateUploaded": "2015-01-27T11:06:57.205175-08:00",
             "relativePath": "therm.dat",
             "encodedEncryptionKey": "eQ2twVf8T8J+/lwK7FQNa2Q2PROzlTj2DIyeUPTnuW8=",
-            "downloadUrl": "https://platform.rescale.com/api/files/XgpAm/contents/",
+            "downloadUrl": "https://platform.rescale.com/api/v2/files/XgpAm/contents/",
             "sharedWith": [
                 "shareduser@rescale.com"
             ],
@@ -107,7 +107,7 @@ requests.get(
             "dateUploaded": "2015-01-27T11:06:57.103260-08:00",
             "relativePath": "inputs.in",
             "encodedEncryptionKey": "4FY1kB/Ejq9r3n+Jz1um7yS+F/rXskAzlnDWFABr1HM=",
-            "downloadUrl": "https://platform.rescale.com/api/files/JEvOa/contents/",
+            "downloadUrl": "https://platform.rescale.com/api/v2/files/JEvOa/contents/",
             "sharedWith": [
                 "shareduser@rescale.com"
             ],
@@ -126,7 +126,7 @@ requests.get(
             "dateUploaded": "2015-01-27T11:06:57.006959-08:00",
             "relativePath": "process_output.log",
             "encodedEncryptionKey": "haLrcqy/ePGyy7mJjr1J2ApBRQlEaH1UKvB49tNaflE=",
-            "downloadUrl": "https://platform.rescale.com/api/files/LWoAm/contents/",
+            "downloadUrl": "https://platform.rescale.com/api/v2/files/LWoAm/contents/",
             "sharedWith": [
                 "shareduser@rescale.com"
             ],
@@ -145,7 +145,7 @@ requests.get(
             "dateUploaded": "2015-01-27T11:06:56.901907-08:00",
             "relativePath": "post.in",
             "encodedEncryptionKey": "TRHGVF0LrDgJ+x6x/hzwYKG34ITfGWTvlhs2a/n1FP0=",
-            "downloadUrl": "https://platform.rescale.com/api/files/wuvOa/contents/",
+            "downloadUrl": "https://platform.rescale.com/api/v2/files/wuvOa/contents/",
             "sharedWith": [
                 "shareduser@rescale.com"
             ],
@@ -164,7 +164,7 @@ requests.get(
             "dateUploaded": "2015-01-27T11:06:56.801151-08:00",
             "relativePath": "restart0001.rst",
             "encodedEncryptionKey": "iHom7vaSMIVItK0RX1s+gLb6z+vxMn3MwKMLSjvkeCY=",
-            "downloadUrl": "https://platform.rescale.com/api/files/VgpAm/contents/",
+            "downloadUrl": "https://platform.rescale.com/api/v2/files/VgpAm/contents/",
             "sharedWith": [
                 "shareduser@rescale.com"
             ],
@@ -183,7 +183,7 @@ requests.get(
             "dateUploaded": "2015-01-27T11:06:56.703897-08:00",
             "relativePath": "dynamic.out",
             "encodedEncryptionKey": "213UMp+Rp2+d6wPzDCxge4X9pV9sIAYft+6WgdAq29M=",
-            "downloadUrl": "https://platform.rescale.com/api/files/GEvOa/contents/",
+            "downloadUrl": "https://platform.rescale.com/api/v2/files/GEvOa/contents/",
             "sharedWith": [
                 "shareduser@rescale.com"
             ],
@@ -202,7 +202,7 @@ requests.get(
             "dateUploaded": "2015-01-27T11:06:56.602278-08:00",
             "relativePath": "equiv_ratio_bin.out",
             "encodedEncryptionKey": "hJ2qEY9k5PiVXyAlxHZt4/Qwv3xXWygKefer9Kn23wE=",
-            "downloadUrl": "https://platform.rescale.com/api/files/JWoAm/contents/",
+            "downloadUrl": "https://platform.rescale.com/api/v2/files/JWoAm/contents/",
             "sharedWith": [
                 "shareduser@rescale.com"
             ],
@@ -216,7 +216,7 @@ requests.get(
             "md5": "1a2a0b8b3879726b9035cdd1b9308fd9"
         }
     ],
-    "next": "https://platform.rescale.com/api/files/?page=2"
+    "next": "https://platform.rescale.com/api/v2/files/?page=2"
 }
 ```
 
@@ -235,13 +235,13 @@ results | Array&lt;Object&gt; | An array of [File objects](#get-metadata-of-a-fi
 
 ## Upload a File
 
-`PUT/POST https://platform.rescale.com/api/files/contents/`
+`PUT/POST https://platform.rescale.com/api/v2/files/contents/`
 
 ```shell
 curl -X POST -H 'Content-Type:multipart/form-data' 
 -H 'Authorization: Token \<token\>' 
 -F 'file=@file_to_upload.txt' 
-https://platform.rescale.com/api/files/contents/
+https://platform.rescale.com/api/v2/files/contents/
 ```
 
 ```python
@@ -250,7 +250,7 @@ import requests
 # Simple input file upload
 
 requests.post(
-  'https://platform.rescale.com/api/files/contents/',
+  'https://platform.rescale.com/api/v2/files/contents/',
   headers={'Authorization': 'Token \<token\>'},
   files={'file': open('file_to_upload.txt', 'rb')}
 )
@@ -262,7 +262,7 @@ type_id = 1  # file type
 new_name = 'new_file.txt'  #  new file name
 
 requests.post(
-  'https://platform.rescale.com/api/files/contents/',
+  'https://platform.rescale.com/api/v2/files/contents/',
   headers={'Authorization': 'Token \<token\>'},
   files={'file': (new_name, open('file_to_upload.txt', 'rb'), {'type_id': type_id})}
 )
@@ -277,7 +277,7 @@ requests.post(
     "dateUploaded": "2015-03-16T19:43:21.679246Z",
     "relativePath": "testInput.txt",
     "encodedEncryptionKey": "j/nYgAlnGIywZHyDwwzv+FxYVIlmKveMkY7qxAOuRhY=",
-    "downloadUrl": "https://platform.rescale.com/api/files/iCdseg/contents/",
+    "downloadUrl": "https://platform.rescale.com/api/v2/files/iCdseg/contents/",
     "sharedWith":[],
     "decryptedSize":22,
     "owner": "demouser@rescale.com",
@@ -301,18 +301,18 @@ Same as [Get Metadata of a File](#get-metadata-of-a-file)
 
 ## Delete a File
 
-`DELETE https://platform.rescale.com/api/files/{file_id}/`
+`DELETE https://platform.rescale.com/api/v2/files/{file_id}/`
 
 ```shell
 curl -X DELETE -H 'Authorization: Token \<token\>' 
-https://platform.rescale.com/api/files/{file_id}/
+https://platform.rescale.com/api/v2/files/{file_id}/
 ```
 
 ```python
 import requests
 
 requests.delete(
-  'https://platform.rescale.com/api/files/{file_id}/',
+  'https://platform.rescale.com/api/v2/files/{file_id}/',
   headers={'Authorization': 'Token \<token\>'}
 )
 ```
@@ -329,18 +329,18 @@ N/A
 
 ## Download a File
 
-`GET https://platform.rescale.com/api/files/{file_id}/contents/`
+`GET https://platform.rescale.com/api/v2/files/{file_id}/contents/`
 
 ```shell
 curl -X GET -H 'Authorization: Token \<token\>' 
--o 'download_file.txt' https://platform.rescale.com/api/files/{file_id}/contents/
+-o 'download_file.txt' https://platform.rescale.com/api/v2/files/{file_id}/contents/
 ```
 
 ```python
 import requests
 
 response = requests.get(
-  'https://platform.rescale.com/api/files/{file_id}/',
+  'https://platform.rescale.com/api/v2/files/{file_id}/',
   headers={'Authorization': 'Token \<token\>'}
 )
 
@@ -362,18 +362,18 @@ This call allows you to download a file from Rescale platform.
 
 ## Get Plaintext Content of a File
 
-`GET https://platform.rescale.com/api/files/{file_id}/lines/`
+`GET https://platform.rescale.com/api/v2/files/{file_id}/lines/`
 
 ```shell
 curl -X GET -H 'Authorization: Token \<token\>'
-https://platform.rescale.com/api/files/{file_id}/lines/
+https://platform.rescale.com/api/v2/files/{file_id}/lines/
 ```
 
 ```python
 import requests
 
 requests.get(
-  'https://platform.rescale.com/api/files/{file_id}/lines',
+  'https://platform.rescale.com/api/v2/files/{file_id}/lines',
   headers={'Authorization': 'Token <api-token>'}
 )
 ```
@@ -403,18 +403,18 @@ plain text file.
 
 ## Get Metadata of a File
 
-`GET https://platform.rescale.com/api/files/{file_id}/`
+`GET https://platform.rescale.com/api/v2/files/{file_id}/`
 
 ```shell
 curl -X GET -H 'Authorization: Token \<token\>'
-https://platform.rescale.com/api/files/{file_id}/
+https://platform.rescale.com/api/v2/files/{file_id}/
 ```
 
 ```python
 import requests
 
 requests.get(
-  'https://platform.rescale.com/api/files/{file_id}/',
+  'https://platform.rescale.com/api/v2/files/{file_id}/',
   headers={'Authorization': 'Token <api-token>'}
 )
 ```
@@ -428,7 +428,7 @@ requests.get(
     "dateUploaded": "2015-03-12T17:56:20.925043-07:00", 
     "relativePath": "Crash_input.pc.gz", 
     "encodedEncryptionKey": "LkkPk2L2mwuc4OibUs3kJe2RIQrzXbfdWXp9xJhoX0s=", 
-    "downloadUrl": "https://platform.rescale.com/api/files/WvNKdb/contents/", 
+    "downloadUrl": "https://platform.rescale.com/api/v2/files/WvNKdb/contents/", 
     "sharedWith": [], 
     "decryptedSize": 56425931, 
     "owner": "demouser@rescale.com", 
@@ -466,7 +466,7 @@ This call allows you to retrieve details for a single file.
 
 ## Update Metadata of a File
 
-`PATCH https://platform.rescale.com/api/files/{file_id}/`
+`PATCH https://platform.rescale.com/api/v2/files/{file_id}/`
 
 ```shell
 curl -X PATCH -H 'Content-Type: application/json'
@@ -477,7 +477,7 @@ curl -X PATCH -H 'Content-Type: application/json'
     "dateUploaded": "2015-03-17T00:24:39.531384Z",
     "relativePath": "new_script.txt",
     "encodedEncryptionKey": "83TFwNf5QxFaCOmluBQBnJ/L0yAC/2Z9MPs2pKZuUi4=",
-    "downloadUrl": "https://platform.rescale.com/api/files/dNEXtf/contents/",
+    "downloadUrl": "https://platform.rescale.com/api/v2/files/dNEXtf/contents/",
     "sharedWith": [],
     "decryptedSize": 112,
     "owner": "demouser@rescale.com",
@@ -488,7 +488,7 @@ curl -X PATCH -H 'Content-Type: application/json'
     "isDeleted": false,
     "md5": "4d479b49d26318068d3e23aa9d81e9ee"
 }'
-https://platform.rescale.com/api/files/{file_id}/
+https://platform.rescale.com/api/v2/files/{file_id}/
 ```
 
 ```python

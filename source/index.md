@@ -26,7 +26,13 @@ search: true
 Welcome to the Rescale REST API! Using the API you can upload input files, create jobs, and view the status of existing jobs.
 This documentation inludes examples using cURL and python. The python examples use [requests](https://docs.python-requests.org/en/latest/) for https.
 
-All request paths must include the trailing slash (e.g. `/api/jobs/` instead of `/api/jobs`)
+All request paths must include the trailing slash (e.g. `/api/v2/jobs/` instead of `/api/v2/jobs`)
+
+## Versioning
+
+All request paths should include a version identifier immediately after the `/api/` prefix (e.g, `/api/v2/jobs/` instead of `/api/jobs/`).
+
+Requests that do not include a version identifier will use `v1` of the API.
 
 ## Authentication
 
@@ -42,14 +48,14 @@ requests to be authenticated by passing an https header of the form:
 If you don't have an api key, you can generate one [here](https://platform.rescale.com/user/settings/api-key/).
 
 ```shell
-curl -H "Authorization: Token <api-token>" https://platform.rescale.com/api/jobs/
+curl -H "Authorization: Token <api-token>" https://platform.rescale.com/api/v2/jobs/
 ```
 
 ```python
 import requests
 
 requests.get(
-  'https://platform.rescale.com/api/jobs/',
+  'https://platform.rescale.com/api/v2/jobs/',
   headers={'Authorization': 'Token <api-token>'}
 )
 ```
@@ -57,14 +63,14 @@ requests.get(
 ## Pagination
 
 ```shell
-curl -H "Authorization: Token <api-token>" "https://platform.rescale.com/api/jobs/?page_size=2&page=4"
+curl -H "Authorization: Token <api-token>" "https://platform.rescale.com/api/v2/jobs/?page_size=2&page=4"
 ```
 
 ```python
 import requests
 
 requests.get(
-  'https://platform.rescale.com/api/jobs/',
+  'https://platform.rescale.com/api/v2/jobs/',
   params={'page_size': 2, 'page': 4},
   headers={'Authorization': 'Token <api-token>'}
 )
@@ -76,7 +82,7 @@ requests.get(
   "results": [
 
   ],
-  "next":"https://platform.rescale.com/api/jobs/?page_size=2&page=5"
+  "next":"https://platform.rescale.com/api/v2/jobs/?page_size=2&page=5"
 }
 ```
 

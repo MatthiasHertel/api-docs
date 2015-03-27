@@ -4,18 +4,18 @@ A single execution of your workflow is called a *run* in Rescale parlance.
 
 ## List Runs for a Job
 
-`GET https://platform.rescale.com/api/jobs/{job_id}/runs/`
+`GET https://platform.rescale.com/api/v2/jobs/{job_id}/runs/`
 
 ```shell
 curl -X GET -H 'Authorization: Token \<token\>'
-https://platform.rescale.com/api/jobs/XXXXXX/runs/
+https://platform.rescale.com/api/v2/jobs/XXXXXX/runs/
 ```
 
 ```python
 import requests
 
 requests.get(
-  'https://platform.rescale.com/api/jobs/XXXXXX/runs/',
+  'https://platform.rescale.com/api/v2/jobs/XXXXXX/runs/',
   headers={'Authorization': 'Token <api-token>'}
 )
 ```
@@ -25,7 +25,7 @@ requests.get(
 ```json
 {
   "count": 121, 
-  "next": "https://platform.rescale.com/api/jobs/XXXXXX/runs/?page=2", 
+  "next": "https://platform.rescale.com/api/v2/jobs/XXXXXX/runs/?page=2", 
   "previous": null, 
   "results": [
     {
@@ -122,18 +122,18 @@ results | Array&lt;Object&gt; | An array of [Run objects](#get-a-run)
 
 ## Get a Run
 
-`GET https://platform.rescale.com/api/jobs/{job_id}/runs/{run_id}/`
+`GET https://platform.rescale.com/api/v2/jobs/{job_id}/runs/{run_id}/`
 
 ```shell
 curl -X GET -H 'Authorization: Token \<token\>'
-https://platform.rescale.com/api/jobs/XXXXXX/runs/1/
+https://platform.rescale.com/api/v2/jobs/XXXXXX/runs/1/
 ```
 
 ```python
 import requests
 
 requests.get(
-  'https://platform.rescale.com/api/jobs/XXXXXX/runs/1/',
+  'https://platform.rescale.com/api/v2/jobs/XXXXXX/runs/1/',
   headers={'Authorization': 'Token <api-token>'}
 )
 ```
@@ -207,18 +207,18 @@ This call allows you to retrieve details for a single run within a job.
 
 ## Stop a Run
 
-`POST https://platform.rescale.com/api/jobs/{job_id}/runs/{run_id}/stop/`
+`POST https://platform.rescale.com/api/v2/jobs/{job_id}/runs/{run_id}/stop/`
 
 ```shell
 curl -X POST -H 'Authorization: Token \<token\>'
-https://platform.rescale.com/api/jobs/XXXXX/runs/1/stop/
+https://platform.rescale.com/api/v2/jobs/XXXXX/runs/1/stop/
 ```
 
 ```python
 import requests
 
 requests.post(
-  'https://platform.rescale.com/api/jobs/XXXXX/runs/1/stop/',
+  'https://platform.rescale.com/api/v2/jobs/XXXXX/runs/1/stop/',
   headers={'Authorization': 'Token <api-token>'}
 )
 ```
@@ -234,18 +234,18 @@ available output files will be uploaded to Rescale Cloud Storage.
 
 ## Take a Snapshot
 
-`POST https://platform.rescale.com/api/jobs/{job_id}/runs/{run_id}/snapshot/`
+`POST https://platform.rescale.com/api/v2/jobs/{job_id}/runs/{run_id}/snapshot/`
 
 ```shell
 curl -X POST -H 'Authorization: Token \<token\>'
-https://platform.rescale.com/api/jobs/XXXXX/runs/1/snapshot/
+https://platform.rescale.com/api/v2/jobs/XXXXX/runs/1/snapshot/
 ```
 
 ```python
 import requests
 
 requests.post(
-  'https://platform.rescale.com/api/jobs/XXXXX/runs/1/snapshot/',
+  'https://platform.rescale.com/api/v2/jobs/XXXXX/runs/1/snapshot/',
   headers={'Authorization': 'Token <api-token>'}
 )
 ```
@@ -277,18 +277,18 @@ available as a run output file.
 
 ## List Output Files
 
-`GET https://platform.rescale.com/api/jobs/{job_id}/runs/{run_id}/files/`
+`GET https://platform.rescale.com/api/v2/jobs/{job_id}/runs/{run_id}/files/`
 
 ```shell
 curl -X GET -H 'Authorization: Token \<token\>'
-https://platform.rescale.com/api/jobs/XXXXX/runs/1/files/
+https://platform.rescale.com/api/v2/jobs/XXXXX/runs/1/files/
 ```
 
 ```python
 import requests
 
 requests.get(
-  'https://platform.rescale.com/api/jobs/XXXXX/runs/1/files/',
+  'https://platform.rescale.com/api/v2/jobs/XXXXX/runs/1/files/',
   headers={'Authorization': 'Token <api-token>'}
 )
 ```
@@ -452,7 +452,7 @@ requests.get(
       "md5": "62ac76eb8aae234370613d7350ac8685"
     }
   ],
-  "next": "https://platform.rescale.com/api/jobs/XXXXX/runs/1/files/?page=2"
+  "next": "https://platform.rescale.com/api/v2/jobs/XXXXX/runs/1/files/?page=2"
 }
 ```
 
@@ -471,18 +471,18 @@ should use the _/api/jobs/< job-id >/runs/< run-id >/directory-contents/_
 
 ## List Directory Contents
 
-`GET https://platform.rescale.com/api/jobs/{job_id}/runs/{run_id}/directory-contents/`
+`GET https://platform.rescale.com/api/v2/jobs/{job_id}/runs/{run_id}/directory-contents/`
 
 ```shell
 curl -X GET -H 'Authorization: Token \<token\>'
-https://platform.rescale.com/api/jobs/XXXXX/runs/1/directory-contents/
+https://platform.rescale.com/api/v2/jobs/XXXXX/runs/1/directory-contents/
 ```
 
 ```python
 import requests
 
 requests.get(
-  'https://platform.rescale.com/api/jobs/XXXXX/runs/1/directory-contents/',
+  'https://platform.rescale.com/api/v2/jobs/XXXXX/runs/1/directory-contents/',
   headers={'Authorization': 'Token <api-token>'}
 )
 ```
@@ -522,7 +522,7 @@ _/api/jobs/< job-id >/runs/< run-id >/files/_ [endpoint](#list-output-files) to 
 
 ## Tail File Content
 
-`GET https://platform.rescale.com/api/jobs/{job_id}/runs/{run_id}/tail/{path}/`
+`GET https://platform.rescale.com/api/v2/jobs/{job_id}/runs/{run_id}/tail/{path}/`
 
 | Field        | Default | Required | Description  |
 | ------------ | --------| -------- | ------------ |
@@ -530,14 +530,14 @@ _/api/jobs/< job-id >/runs/< run-id >/files/_ [endpoint](#list-output-files) to 
 
 ```shell
 curl -v -X GET -H 'Authorization: Token \<token\>'
-http://platform.rescale.com/api/jobs/XXXXX/runs/1/tail/airFoil2D/0/U?lines=100
+http://platform.rescale.com/api/v2/jobs/XXXXX/runs/1/tail/airFoil2D/0/U?lines=100
 ```
 
 ```python
 import requests
 
 requests.get(
-  'http://platform.rescale.com/api/jobs/XXXXX/runs/1/tail/airFoil2D/0/U',
+  'http://platform.rescale.com/api/v2/jobs/XXXXX/runs/1/tail/airFoil2D/0/U',
   headers={'Authorization': 'Token <api-token>'},
   params={'lines': 100}
 )
