@@ -7,7 +7,7 @@ language_tabs:
   - python
 
 toc_footers:
-  - <a href='https://rescale.com/signup'>Sign Up for Rescale</a>
+  - <a href='https://www.rescale.com/signup/'>Sign Up for Rescale</a>
   - <a href='https://github.com/tripit/slate'>Documentation Powered by Slate</a>
 
 includes:
@@ -89,6 +89,5 @@ requests.get(
 All API requests for lists of objects will return paginated results. The `page`
 and `page_size` query parameters can be used to control pagination.
 
-
-
-Some info about `page_size` and `page` parameters here
+`page_size` indicates the maximum number of results to return for a page. The
+`page` value starts at 1.

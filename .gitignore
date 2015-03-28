@@ -20,6 +20,8 @@ build/
 _yardoc
 doc/
 .idea/
+# Eclipse
+.project
 
 # rbenv
 .ruby-version
