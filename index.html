@@ -50,7 +50,13 @@
 <p>Welcome to the Rescale REST API! Using the API you can upload input files, create jobs, and view the status of existing jobs.
 This documentation inludes examples using cURL and python. The python examples use <a href="https://docs.python-requests.org/en/latest/">requests</a> for https.</p>
 
-<p>All request paths must include the trailing slash (e.g. <code class="prettyprint">/api/jobs/</code> instead of <code class="prettyprint">/api/jobs</code>)</p>
+<p>All request paths must include the trailing slash (e.g. <code class="prettyprint">/api/v2/jobs/</code> instead of <code class="prettyprint">/api/v2/jobs</code>)</p>
+
+<h2 id="versioning">Versioning</h2>
+
+<p>All request paths should include a version identifier immediately after the <code class="prettyprint">/api/</code> prefix (e.g, <code class="prettyprint">/api/v2/jobs/</code> instead of <code class="prettyprint">/api/jobs/</code>).</p>
+
+<p>Requests that do not include a version identifier will use <code class="prettyprint">v1</code> of the API.</p>
 
 <h2 id="authentication">Authentication</h2>
 
@@ -64,23 +70,23 @@ requests to be authenticated by passing an https header of the form:</p>
 </aside>
 
 <p>If you don&rsquo;t have an api key, you can generate one <a href="https://platform.rescale.com/user/settings/api-key/">here</a>.</p>
-<pre><code class="highlight shell">curl -H <span class="s2">"Authorization: Token &lt;api-token&gt;"</span> https://platform.rescale.com/api/jobs/
+<pre><code class="highlight shell">curl -H <span class="s2">"Authorization: Token &lt;api-token&gt;"</span> https://platform.rescale.com/api/v2/jobs/
 </code></pre>
 <pre><code class="highlight python"><span class="kn">import</span> <span class="nn">requests</span>
 
 <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
-  <span class="s">'https://platform.rescale.com/api/jobs/'</span><span class="p">,</span>
+  <span class="s">'https://platform.rescale.com/api/v2/jobs/'</span><span class="p">,</span>
   <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Token &lt;api-token&gt;'</span><span class="p">}</span>
 <span class="p">)</span>
 </code></pre>
 
 <h2 id="pagination">Pagination</h2>
-<pre><code class="highlight shell">curl -H <span class="s2">"Authorization: Token &lt;api-token&gt;"</span> <span class="s2">"https://platform.rescale.com/api/jobs/?page_size=2&amp;page=4"</span>
+<pre><code class="highlight shell">curl -H <span class="s2">"Authorization: Token &lt;api-token&gt;"</span> <span class="s2">"https://platform.rescale.com/api/v2/jobs/?page_size=2&amp;page=4"</span>
 </code></pre>
 <pre><code class="highlight python"><span class="kn">import</span> <span class="nn">requests</span>
 
 <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
-  <span class="s">'https://platform.rescale.com/api/jobs/'</span><span class="p">,</span>
+  <span class="s">'https://platform.rescale.com/api/v2/jobs/'</span><span class="p">,</span>
   <span class="n">params</span><span class="o">=</span><span class="p">{</span><span class="s">'page_size'</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s">'page'</span><span class="p">:</span> <span class="mi">4</span><span class="p">},</span>
   <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Token &lt;api-token&gt;'</span><span class="p">}</span>
 <span class="p">)</span>
@@ -91,7 +97,7 @@ requests to be authenticated by passing an https header of the form:</p>
   </span><span class="s2">"results"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
 
   </span><span class="p">],</span><span class="w">
-  </span><span class="s2">"next"</span><span class="p">:</span><span class="s2">"https://platform.rescale.com/api/jobs/?page_size=2&amp;page=5"</span><span class="w">
+  </span><span class="s2">"next"</span><span class="p">:</span><span class="s2">"https://platform.rescale.com/api/v2/jobs/?page_size=2&amp;page=5"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
@@ -107,13 +113,13 @@ information about options available in the system as a whole.</p>
 
 <h2 id="core-types">Core Types</h2>
 
-<p><code class="prettyprint">GET https://platform.rescale.com/api/coretypes/</code></p>
-<pre><code class="highlight shell">curl -H <span class="s2">"Authorization: Token &lt;api-token&gt;"</span> https://platform.rescale.com/api/coretypes/
+<p><code class="prettyprint">GET https://platform.rescale.com/api/v2/coretypes/</code></p>
+<pre><code class="highlight shell">curl -H <span class="s2">"Authorization: Token &lt;api-token&gt;"</span> https://platform.rescale.com/api/v2/coretypes/
 </code></pre>
 <pre><code class="highlight python"><span class="kn">import</span> <span class="nn">requests</span>
 
 <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
-  <span class="s">'https://platform.rescale.com/api/coretypes/'</span><span class="p">,</span>
+  <span class="s">'https://platform.rescale.com/api/v2/coretypes/'</span><span class="p">,</span>
   <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Token &lt;api-token&gt;'</span><span class="p">}</span>
 <span class="p">)</span>
 </code></pre>
@@ -173,7 +179,7 @@ information about options available in the system as a whole.</p>
       </span><span class="s2">"description"</span><span class="p">:</span><span class="s2">""</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">],</span><span class="w">
-  </span><span class="s2">"next"</span><span class="p">:</span><span class="s2">"https://platform.rescale.com/api/coretypes?page=2"</span><span class="w">
+  </span><span class="s2">"next"</span><span class="p">:</span><span class="s2">"https://platform.rescale.com/api/v2/coretypes?page=2"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
@@ -203,7 +209,7 @@ submit jobs.</p>
 <tr>
 <td>compute</td>
 <td>String</td>
-<td>The relative compute power of this core type</td>
+<td>TODO</td>
 </tr>
 <tr>
 <td>name</td>
@@ -284,13 +290,13 @@ submit jobs.</p>
 
 <h2 id="analyses">Analyses</h2>
 
-<p><code class="prettyprint">GET https://platform.rescale.com/api/analyses/</code></p>
-<pre><code class="highlight shell">curl -H <span class="s2">"Authorization: Token &lt;api-token&gt;"</span> https://platform.rescale.com/api/remote-viz-config/
+<p><code class="prettyprint">GET https://platform.rescale.com/api/v2/analyses/</code></p>
+<pre><code class="highlight shell">curl -H <span class="s2">"Authorization: Token &lt;api-token&gt;"</span> https://platform.rescale.com/api/v2/remote-viz-config/
 </code></pre>
 <pre><code class="highlight python"><span class="kn">import</span> <span class="nn">requests</span>
 
 <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
-  <span class="s">'https://platform.rescale.com/api/analyses/'</span><span class="p">,</span>
+  <span class="s">'https://platform.rescale.com/api/v2/analyses/'</span><span class="p">,</span>
   <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Token &lt;api-token&gt;'</span><span class="p">}</span>
 <span class="p">)</span>
 </code></pre>
@@ -443,7 +449,7 @@ submit jobs.</p>
       </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"Abaqus"</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">],</span><span class="w">
-  </span><span class="s2">"next"</span><span class="p">:</span><span class="s2">"https://platform.rescale.com/api/analyses/?page=2"</span><span class="w">
+  </span><span class="s2">"next"</span><span class="p">:</span><span class="s2">"https://platform.rescale.com/api/v2/analyses/?page=2"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
@@ -505,8 +511,8 @@ submit jobs.</p>
 </tr>
 <tr>
 <td>optimizerType</td>
-<td>Integer</td>
-<td>If this analysis is an optimizer, indicates the type</td>
+<td>Object</td>
+<td>TODO</td>
 </tr>
 <tr>
 <td>thumbnail</td>
@@ -549,16 +555,16 @@ submit jobs.</p>
 
 <h2 id="remote-visualization-options">Remote Visualization Options</h2>
 
-<p><code class="prettyprint">GET https://platform.rescale.com/api/remote-viz-config/</code></p>
+<p><code class="prettyprint">GET https://platform.rescale.com/api/v2/remote-viz-config/</code></p>
 
 <p>This endpoint lists the options for creating a remote visualization
 cluster on rescale</p>
-<pre><code class="highlight shell">curl -H <span class="s2">"Authorization: Token &lt;api-token&gt;"</span> https://platform.rescale.com/api/remote-viz-config/
+<pre><code class="highlight shell">curl -H <span class="s2">"Authorization: Token &lt;api-token&gt;"</span> https://platform.rescale.com/api/v2/remote-viz-config/
 </code></pre>
 <pre><code class="highlight python"><span class="kn">import</span> <span class="nn">requests</span>
 
 <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
-  <span class="s">'https://platform.rescale.com/api/remote-viz-config/'</span><span class="p">,</span>
+  <span class="s">'https://platform.rescale.com/api/v2/remote-viz-config/'</span><span class="p">,</span>
   <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Token &lt;api-token&gt;'</span><span class="p">}</span>
 <span class="p">)</span>
 </code></pre>
@@ -652,13 +658,13 @@ cluster on rescale</p>
 
 <h2 id="list-all-jobs">List All Jobs</h2>
 
-<p><code class="prettyprint">GET https://platform.rescale.com/api/jobs/</code></p>
-<pre><code class="highlight shell">curl -H <span class="s2">"Authorization: Token &lt;api-token&gt;"</span> https://platform.rescale.com/api/jobs/
+<p><code class="prettyprint">GET https://platform.rescale.com/api/v2/jobs/</code></p>
+<pre><code class="highlight shell">curl -H <span class="s2">"Authorization: Token &lt;api-token&gt;"</span> https://platform.rescale.com/api/v2/jobs/
 </code></pre>
 <pre><code class="highlight python"><span class="kn">import</span> <span class="nn">requests</span>
 
 <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
-  <span class="s">'https://platform.rescale.com/api/jobs/'</span><span class="p">,</span>
+  <span class="s">'https://platform.rescale.com/api/v2/jobs/'</span><span class="p">,</span>
   <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Token &lt;api-token&gt;'</span><span class="p">}</span>
 <span class="p">)</span>
 </code></pre>
@@ -809,8 +815,8 @@ cluster on rescale</p>
 
 <h2 id="get-a-specific-job">Get a Specific Job</h2>
 
-<p><code class="prettyprint">GET https://platform.rescale.com/api/jobs/{job_id}/</code></p>
-<pre><code class="highlight shell">curl -H <span class="s2">"Authorization: Token &lt;api-token&gt;"</span> https://platform.rescale.com/api/jobs/aabbcc/
+<p><code class="prettyprint">GET https://platform.rescale.com/api/v2/jobs/{job_id}/</code></p>
+<pre><code class="highlight shell">curl -H <span class="s2">"Authorization: Token &lt;api-token&gt;"</span> https://platform.rescale.com/api/v2/jobs/aabbcc/
 </code></pre>
 <pre><code class="highlight python"></code></pre>
 <pre><code class="highlight json"><span class="p">{</span><span class="w">
@@ -847,7 +853,7 @@ cluster on rescale</p>
                 </span><span class="p">{</span><span class="w">
                     </span><span class="s2">"dateUploaded"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-03-26T23:08:33.700457Z"</span><span class="p">,</span><span class="w">
                     </span><span class="s2">"decryptedSize"</span><span class="p">:</span><span class="w"> </span><span class="mi">655816</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"downloadUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://platform.rescale.com/api/files/duMEdg/contents/"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"downloadUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://platform.rescale.com/api/v2/files/duMEdg/contents/"</span><span class="p">,</span><span class="w">
                     </span><span class="s2">"encodedEncryptionKey"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NYhibURTMAMKNWmWiDuUZxn+oUaRwp8iExaECpU6Dwo="</span><span class="p">,</span><span class="w">
                     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"duMEdg"</span><span class="p">,</span><span class="w">
                     </span><span class="s2">"isDeleted"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
@@ -872,7 +878,7 @@ cluster on rescale</p>
                     </span><span class="s2">"templateFile"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
                         </span><span class="s2">"dateUploaded"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-03-26T23:09:46.256315Z"</span><span class="p">,</span><span class="w">
                         </span><span class="s2">"decryptedSize"</span><span class="p">:</span><span class="w"> </span><span class="mi">1344</span><span class="p">,</span><span class="w">
-                        </span><span class="s2">"downloadUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://platform.rescale.com/api/files/qEMEdg/contents/"</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"downloadUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://platform.rescale.com/api/v2/files/qEMEdg/contents/"</span><span class="p">,</span><span class="w">
                         </span><span class="s2">"encodedEncryptionKey"</span><span class="p">:</span><span class="w"> </span><span class="s2">"olx6Kn7vde1siRKoDqBRTkaT25k1x8P9IYy3PdhmFhk="</span><span class="p">,</span><span class="w">
                         </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"qEMEdg"</span><span class="p">,</span><span class="w">
                         </span><span class="s2">"isDeleted"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
@@ -914,7 +920,7 @@ cluster on rescale</p>
     </span><span class="s2">"paramFile"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="s2">"dateUploaded"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-03-26T23:09:25.532849Z"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"decryptedSize"</span><span class="p">:</span><span class="w"> </span><span class="mi">55</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"downloadUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://platform.rescale.com/api/files/sWErpg/contents/"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"downloadUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://platform.rescale.com/api/v2/files/sWErpg/contents/"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"encodedEncryptionKey"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6kvS7Y3M6HXFcHos0rLUcEf4hNyupzn8x1j7CUU3qko="</span><span class="p">,</span><span class="w">
         </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sWErpg"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"isDeleted"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
@@ -1043,8 +1049,8 @@ cluster on rescale</p>
 
 <h2 id="list-job-output-files">List Job Output Files</h2>
 
-<p><code class="prettyprint">GET https://platform.rescale.com/api/jobs/{job_id}/files/</code></p>
-<pre><code class="highlight shell">curl -H <span class="s2">"Authorization: Token &lt;api-token&gt;"</span> https://platform.rescale.com/api/jobs/aabbcc/files/
+<p><code class="prettyprint">GET https://platform.rescale.com/api/v2/jobs/{job_id}/files/</code></p>
+<pre><code class="highlight shell">curl -H <span class="s2">"Authorization: Token &lt;api-token&gt;"</span> https://platform.rescale.com/api/v2/jobs/aabbcc/files/
 </code></pre>
 <pre><code class="highlight json"><span class="p">{</span><span class="w">
     </span><span class="s2">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
@@ -1054,7 +1060,7 @@ cluster on rescale</p>
         </span><span class="p">{</span><span class="w">
             </span><span class="s2">"dateUploaded"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-03-13T23:56:37.184619Z"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"decryptedSize"</span><span class="p">:</span><span class="w"> </span><span class="mi">1680</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"downloadUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://platform.rescale.com/api/files/xTyjeg/contents/"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"downloadUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://platform.rescale.com/api/v2/files/xTyjeg/contents/"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"encodedEncryptionKey"</span><span class="p">:</span><span class="w"> </span><span class="s2">"VkAWWRkKR9xJIDJTdkVK42O/7+Xo3M4LOaGvP6HjHMA="</span><span class="p">,</span><span class="w">
             </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"xTyjeg"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"isDeleted"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
@@ -1162,7 +1168,7 @@ cluster on rescale</p>
 
 <h2 id="create-a-job">Create a Job</h2>
 
-<p><code class="prettyprint">POST https://platform.rescale.com/api/jobs/</code></p>
+<p><code class="prettyprint">POST https://platform.rescale.com/api/v2/jobs/</code></p>
 
 <blockquote>
 <p>Basic job, no input files</p>
@@ -1445,18 +1451,18 @@ in constructing your JSON blob.</p>
 
 <h2 id="submit-a-saved-job">Submit a Saved Job</h2>
 
-<p><code class="prettyprint">POST https://platform.rescale.com/api/jobs/{job_id}/submit/</code></p>
-<pre><code class="highlight shell">curl -H <span class="s2">"Authorization: Token &lt;api-token&gt;"</span> https://platform.rescale.com/api/jobs/LeeKa/submit/ -X POST
+<p><code class="prettyprint">POST https://platform.rescale.com/api/v2/jobs/{job_id}/submit/</code></p>
+<pre><code class="highlight shell">curl -H <span class="s2">"Authorization: Token &lt;api-token&gt;"</span> https://platform.rescale.com/api/v2/jobs/LeeKa/submit/ -X POST
 </code></pre>
 
 <p>Submits a saved job to run.  No data returned.</p>
 
 <h2 id="update-a-job">Update a Job</h2>
 
-<p><code class="prettyprint">PUT https://platform.rescale.com/api/jobs/{job_id}</code></p>
+<p><code class="prettyprint">PUT https://platform.rescale.com/api/v2/jobs/{job_id}</code></p>
 
-<p><code class="prettyprint">PATCH https://platform.rescale.com/api/jobs/{job_id}</code></p>
-<pre><code class="highlight shell">curl -H <span class="s2">"Authorization: Token e95aca40caabf137e71ba11469d7aa304dea4386"</span>  -H <span class="s2">"Content-Type:application/json"</span> <span class="s2">"https://platform.rescale.com/api/jobs/LeeKa/"</span> -X PATCH -d <span class="s1">'
+<p><code class="prettyprint">PATCH https://platform.rescale.com/api/v2/jobs/{job_id}</code></p>
+<pre><code class="highlight shell">curl -H <span class="s2">"Authorization: Token e95aca40caabf137e71ba11469d7aa304dea4386"</span>  -H <span class="s2">"Content-Type:application/json"</span> <span class="s2">"https://platform.rescale.com/api/v2/jobs/LeeKa/"</span> -X PATCH -d <span class="s1">'
 {
     "name": "Jobster"
 }
@@ -1475,21 +1481,21 @@ in constructing your JSON blob.</p>
 
 <h2 id="delete-a-job">Delete a Job</h2>
 
-<p><code class="prettyprint">DELETE https://platform.rescale.com/api/jobs/{job_id}/</code></p>
+<p><code class="prettyprint">DELETE https://platform.rescale.com/api/v2/jobs/{job_id}/</code></p>
 
 <h2 id="stop-a-job">Stop a Job</h2>
 
-<p><code class="prettyprint">POST https://platform.rescale.com/api/jobs/{job_id/stop/</code></p>
+<p><code class="prettyprint">POST https://platform.rescale.com/api/v2/jobs/{job_id/stop/</code></p>
 
 <h2 id="share-a-job">Share a Job</h2>
 
-<p><code class="prettyprint">POST https://platform.rescale.com/api/jobs/{job_id/share/</code></p>
+<p><code class="prettyprint">POST https://platform.rescale.com/api/v2/jobs/{job_id/share/</code></p>
 
 <h2 id="get-the-status-history-of-a-job">Get the Status History of a Job</h2>
 
-<p><code class="prettyprint">GET https://platform.rescale.com/api/jobs/{job_id}/statuses</code></p>
+<p><code class="prettyprint">GET https://platform.rescale.com/api/v2/jobs/{job_id}/statuses</code></p>
 
-<p><code class="prettyprint">GET https://platform.rescale.com/api/jobs/{job_id}/cluster_statuses/</code></p>
+<p><code class="prettyprint">GET https://platform.rescale.com/api/v2/jobs/{job_id}/cluster_statuses/</code></p>
 
           <h1 id="runs">Runs</h1>
 
@@ -1497,14 +1503,14 @@ in constructing your JSON blob.</p>
 
 <h2 id="list-runs-for-a-job">List Runs for a Job</h2>
 
-<p><code class="prettyprint">GET https://platform.rescale.com/api/jobs/{job_id}/runs/</code></p>
+<p><code class="prettyprint">GET https://platform.rescale.com/api/v2/jobs/{job_id}/runs/</code></p>
 <pre><code class="highlight shell">curl -X GET -H <span class="s1">'Authorization: Token \&lt;token\&gt;'</span>
-https://platform.rescale.com/api/jobs/XXXXXX/runs/
+https://platform.rescale.com/api/v2/jobs/XXXXXX/runs/
 </code></pre>
 <pre><code class="highlight python"><span class="kn">import</span> <span class="nn">requests</span>
 
 <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
-  <span class="s">'https://platform.rescale.com/api/jobs/XXXXXX/runs/'</span><span class="p">,</span>
+  <span class="s">'https://platform.rescale.com/api/v2/jobs/XXXXXX/runs/'</span><span class="p">,</span>
   <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Token &lt;api-token&gt;'</span><span class="p">}</span>
 <span class="p">)</span>
 </code></pre>
@@ -1514,7 +1520,7 @@ https://platform.rescale.com/api/jobs/XXXXXX/runs/
 </blockquote>
 <pre><code class="highlight json"><span class="p">{</span><span class="w">
   </span><span class="s2">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">121</span><span class="p">,</span><span class="w"> 
-  </span><span class="s2">"next"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://platform.rescale.com/api/jobs/XXXXXX/runs/?page=2"</span><span class="p">,</span><span class="w"> 
+  </span><span class="s2">"next"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://platform.rescale.com/api/v2/jobs/XXXXXX/runs/?page=2"</span><span class="p">,</span><span class="w"> 
   </span><span class="s2">"previous"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w"> 
   </span><span class="s2">"results"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
@@ -1631,14 +1637,14 @@ https://platform.rescale.com/api/jobs/XXXXXX/runs/
 
 <h2 id="get-a-run">Get a Run</h2>
 
-<p><code class="prettyprint">GET https://platform.rescale.com/api/jobs/{job_id}/runs/{run_id}/</code></p>
+<p><code class="prettyprint">GET https://platform.rescale.com/api/v2/jobs/{job_id}/runs/{run_id}/</code></p>
 <pre><code class="highlight shell">curl -X GET -H <span class="s1">'Authorization: Token \&lt;token\&gt;'</span>
-https://platform.rescale.com/api/jobs/XXXXXX/runs/1/
+https://platform.rescale.com/api/v2/jobs/XXXXXX/runs/1/
 </code></pre>
 <pre><code class="highlight python"><span class="kn">import</span> <span class="nn">requests</span>
 
 <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
-  <span class="s">'https://platform.rescale.com/api/jobs/XXXXXX/runs/1/'</span><span class="p">,</span>
+  <span class="s">'https://platform.rescale.com/api/v2/jobs/XXXXXX/runs/1/'</span><span class="p">,</span>
   <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Token &lt;api-token&gt;'</span><span class="p">}</span>
 <span class="p">)</span>
 </code></pre>
@@ -1781,14 +1787,14 @@ https://platform.rescale.com/api/jobs/XXXXXX/runs/1/
 
 <h2 id="stop-a-run">Stop a Run</h2>
 
-<p><code class="prettyprint">POST https://platform.rescale.com/api/jobs/{job_id}/runs/{run_id}/stop/</code></p>
+<p><code class="prettyprint">POST https://platform.rescale.com/api/v2/jobs/{job_id}/runs/{run_id}/stop/</code></p>
 <pre><code class="highlight shell">curl -X POST -H <span class="s1">'Authorization: Token \&lt;token\&gt;'</span>
-https://platform.rescale.com/api/jobs/XXXXX/runs/1/stop/
+https://platform.rescale.com/api/v2/jobs/XXXXX/runs/1/stop/
 </code></pre>
 <pre><code class="highlight python"><span class="kn">import</span> <span class="nn">requests</span>
 
 <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span>
-  <span class="s">'https://platform.rescale.com/api/jobs/XXXXX/runs/1/stop/'</span><span class="p">,</span>
+  <span class="s">'https://platform.rescale.com/api/v2/jobs/XXXXX/runs/1/stop/'</span><span class="p">,</span>
   <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Token &lt;api-token&gt;'</span><span class="p">}</span>
 <span class="p">)</span>
 </code></pre>
@@ -1804,14 +1810,14 @@ available output files will be uploaded to Rescale Cloud Storage. </p>
 
 <h2 id="take-a-snapshot">Take a Snapshot</h2>
 
-<p><code class="prettyprint">POST https://platform.rescale.com/api/jobs/{job_id}/runs/{run_id}/snapshot/</code></p>
+<p><code class="prettyprint">POST https://platform.rescale.com/api/v2/jobs/{job_id}/runs/{run_id}/snapshot/</code></p>
 <pre><code class="highlight shell">curl -X POST -H <span class="s1">'Authorization: Token \&lt;token\&gt;'</span>
-https://platform.rescale.com/api/jobs/XXXXX/runs/1/snapshot/
+https://platform.rescale.com/api/v2/jobs/XXXXX/runs/1/snapshot/
 </code></pre>
 <pre><code class="highlight python"><span class="kn">import</span> <span class="nn">requests</span>
 
 <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span>
-  <span class="s">'https://platform.rescale.com/api/jobs/XXXXX/runs/1/snapshot/'</span><span class="p">,</span>
+  <span class="s">'https://platform.rescale.com/api/v2/jobs/XXXXX/runs/1/snapshot/'</span><span class="p">,</span>
   <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Token &lt;api-token&gt;'</span><span class="p">}</span>
 <span class="p">)</span>
 </code></pre>
@@ -1865,14 +1871,14 @@ available as a run output file.</p>
 
 <h2 id="list-output-files">List Output Files</h2>
 
-<p><code class="prettyprint">GET https://platform.rescale.com/api/jobs/{job_id}/runs/{run_id}/files/</code></p>
+<p><code class="prettyprint">GET https://platform.rescale.com/api/v2/jobs/{job_id}/runs/{run_id}/files/</code></p>
 <pre><code class="highlight shell">curl -X GET -H <span class="s1">'Authorization: Token \&lt;token\&gt;'</span>
-https://platform.rescale.com/api/jobs/XXXXX/runs/1/files/
+https://platform.rescale.com/api/v2/jobs/XXXXX/runs/1/files/
 </code></pre>
 <pre><code class="highlight python"><span class="kn">import</span> <span class="nn">requests</span>
 
 <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
-  <span class="s">'https://platform.rescale.com/api/jobs/XXXXX/runs/1/files/'</span><span class="p">,</span>
+  <span class="s">'https://platform.rescale.com/api/v2/jobs/XXXXX/runs/1/files/'</span><span class="p">,</span>
   <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Token &lt;api-token&gt;'</span><span class="p">}</span>
 <span class="p">)</span>
 </code></pre>
@@ -2036,7 +2042,7 @@ https://platform.rescale.com/api/jobs/XXXXX/runs/1/files/
       </span><span class="s2">"md5"</span><span class="p">:</span><span class="w"> </span><span class="s2">"62ac76eb8aae234370613d7350ac8685"</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">],</span><span class="w">
-  </span><span class="s2">"next"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://platform.rescale.com/api/jobs/XXXXX/runs/1/files/?page=2"</span><span class="w">
+  </span><span class="s2">"next"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://platform.rescale.com/api/v2/jobs/XXXXX/runs/1/files/?page=2"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
@@ -2055,14 +2061,14 @@ should use the <em>/api/jobs/&lt; job-id &gt;/runs/&lt; run-id &gt;/directory-co
 
 <h2 id="list-directory-contents">List Directory Contents</h2>
 
-<p><code class="prettyprint">GET https://platform.rescale.com/api/jobs/{job_id}/runs/{run_id}/directory-contents/</code></p>
+<p><code class="prettyprint">GET https://platform.rescale.com/api/v2/jobs/{job_id}/runs/{run_id}/directory-contents/</code></p>
 <pre><code class="highlight shell">curl -X GET -H <span class="s1">'Authorization: Token \&lt;token\&gt;'</span>
-https://platform.rescale.com/api/jobs/XXXXX/runs/1/directory-contents/
+https://platform.rescale.com/api/v2/jobs/XXXXX/runs/1/directory-contents/
 </code></pre>
 <pre><code class="highlight python"><span class="kn">import</span> <span class="nn">requests</span>
 
 <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
-  <span class="s">'https://platform.rescale.com/api/jobs/XXXXX/runs/1/directory-contents/'</span><span class="p">,</span>
+  <span class="s">'https://platform.rescale.com/api/v2/jobs/XXXXX/runs/1/directory-contents/'</span><span class="p">,</span>
   <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Token &lt;api-token&gt;'</span><span class="p">}</span>
 <span class="p">)</span>
 </code></pre>
@@ -2116,7 +2122,7 @@ Rescale Cloud Storage and are made available as output files. Use the
 
 <h2 id="tail-file-content">Tail File Content</h2>
 
-<p><code class="prettyprint">GET https://platform.rescale.com/api/jobs/{job_id}/runs/{run_id}/tail/{path}/</code></p>
+<p><code class="prettyprint">GET https://platform.rescale.com/api/v2/jobs/{job_id}/runs/{run_id}/tail/{path}/</code></p>
 
 <table><thead>
 <tr>
@@ -2134,12 +2140,12 @@ Rescale Cloud Storage and are made available as output files. Use the
 </tr>
 </tbody></table>
 <pre><code class="highlight shell">curl -v -X GET -H <span class="s1">'Authorization: Token \&lt;token\&gt;'</span>
-http://platform.rescale.com/api/jobs/XXXXX/runs/1/tail/airFoil2D/0/U?lines<span class="o">=</span>100
+http://platform.rescale.com/api/v2/jobs/XXXXX/runs/1/tail/airFoil2D/0/U?lines<span class="o">=</span>100
 </code></pre>
 <pre><code class="highlight python"><span class="kn">import</span> <span class="nn">requests</span>
 
 <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
-  <span class="s">'http://platform.rescale.com/api/jobs/XXXXX/runs/1/tail/airFoil2D/0/U'</span><span class="p">,</span>
+  <span class="s">'http://platform.rescale.com/api/v2/jobs/XXXXX/runs/1/tail/airFoil2D/0/U'</span><span class="p">,</span>
   <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Token &lt;api-token&gt;'</span><span class="p">},</span>
   <span class="n">params</span><span class="o">=</span><span class="p">{</span><span class="s">'lines'</span><span class="p">:</span> <span class="mi">100</span><span class="p">}</span>
 <span class="p">)</span>
@@ -2239,14 +2245,14 @@ After a run has completed, the <em>/api/files/&lt; file-id &gt;/contents/</em>
 
 <h2 id="list-all-files">List all Files</h2>
 
-<p><code class="prettyprint">GET https://platform.rescale.com/api/files/</code></p>
+<p><code class="prettyprint">GET https://platform.rescale.com/api/v2/files/</code></p>
 <pre><code class="highlight shell">curl -X GET -H <span class="s1">'Authorization: Token \&lt;token\&gt;'</span>
-https://platform.rescale.com/api/files/
+https://platform.rescale.com/api/v2/files/
 </code></pre>
 <pre><code class="highlight python"><span class="kn">import</span> <span class="nn">requests</span>
 
 <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
-  <span class="s">'https://platform.rescale.com/api/files/'</span><span class="p">,</span>
+  <span class="s">'https://platform.rescale.com/api/v2/files/'</span><span class="p">,</span>
   <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Token &lt;api-token&gt;'</span><span class="p">}</span>
 <span class="p">)</span>
 </code></pre>
@@ -2264,7 +2270,7 @@ https://platform.rescale.com/api/files/
             </span><span class="s2">"dateUploaded"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-03-12T17:56:20.925043-07:00"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"relativePath"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Crash_input.pc.gz"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"encodedEncryptionKey"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LkkPk2L2mwuc4OibUs3kJe2RIQrzXbfdWXp9xJhoX0s="</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"downloadUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://platform.rescale.com/api/files/WvNKdb/contents/"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"downloadUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://platform.rescale.com/api/v2/files/WvNKdb/contents/"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"sharedWith"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
             </span><span class="s2">"decryptedSize"</span><span class="p">:</span><span class="w"> </span><span class="mi">56425931</span><span class="p">,</span><span class="w">
             </span><span class="s2">"owner"</span><span class="p">:</span><span class="w"> </span><span class="s2">"demouser@rescale.com"</span><span class="p">,</span><span class="w">
@@ -2281,7 +2287,7 @@ https://platform.rescale.com/api/files/
             </span><span class="s2">"dateUploaded"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-01-27T11:06:57.418023-08:00"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"relativePath"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fsi.in"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"encodedEncryptionKey"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MQfYDI0UttkgN+N2K71N0/nodyTZi/GjNY1z/Jnmh88="</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"downloadUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://platform.rescale.com/api/files/oHyEm/contents/"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"downloadUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://platform.rescale.com/api/v2/files/oHyEm/contents/"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"sharedWith"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
                 </span><span class="s2">"shareduser@rescale.com"</span><span class="w">
             </span><span class="p">],</span><span class="w">
@@ -2300,7 +2306,7 @@ https://platform.rescale.com/api/files/
             </span><span class="s2">"dateUploaded"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-01-27T11:06:57.310163-08:00"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"relativePath"</span><span class="p">:</span><span class="w"> </span><span class="s2">"post.echo"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"encodedEncryptionKey"</span><span class="p">:</span><span class="w"> </span><span class="s2">"wmB+YNh2IDdZURd79NJjOiAnAGxl8mzPVlwS8kLPGnc="</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"downloadUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://platform.rescale.com/api/files/ZeFSa/contents/"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"downloadUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://platform.rescale.com/api/v2/files/ZeFSa/contents/"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"sharedWith"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
                 </span><span class="s2">"shareduser@rescale.com"</span><span class="w">
             </span><span class="p">],</span><span class="w">
@@ -2319,7 +2325,7 @@ https://platform.rescale.com/api/files/
             </span><span class="s2">"dateUploaded"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-01-27T11:06:57.205175-08:00"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"relativePath"</span><span class="p">:</span><span class="w"> </span><span class="s2">"therm.dat"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"encodedEncryptionKey"</span><span class="p">:</span><span class="w"> </span><span class="s2">"eQ2twVf8T8J+/lwK7FQNa2Q2PROzlTj2DIyeUPTnuW8="</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"downloadUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://platform.rescale.com/api/files/XgpAm/contents/"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"downloadUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://platform.rescale.com/api/v2/files/XgpAm/contents/"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"sharedWith"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
                 </span><span class="s2">"shareduser@rescale.com"</span><span class="w">
             </span><span class="p">],</span><span class="w">
@@ -2338,7 +2344,7 @@ https://platform.rescale.com/api/files/
             </span><span class="s2">"dateUploaded"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-01-27T11:06:57.103260-08:00"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"relativePath"</span><span class="p">:</span><span class="w"> </span><span class="s2">"inputs.in"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"encodedEncryptionKey"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4FY1kB/Ejq9r3n+Jz1um7yS+F/rXskAzlnDWFABr1HM="</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"downloadUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://platform.rescale.com/api/files/JEvOa/contents/"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"downloadUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://platform.rescale.com/api/v2/files/JEvOa/contents/"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"sharedWith"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
                 </span><span class="s2">"shareduser@rescale.com"</span><span class="w">
             </span><span class="p">],</span><span class="w">
@@ -2357,7 +2363,7 @@ https://platform.rescale.com/api/files/
             </span><span class="s2">"dateUploaded"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-01-27T11:06:57.006959-08:00"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"relativePath"</span><span class="p">:</span><span class="w"> </span><span class="s2">"process_output.log"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"encodedEncryptionKey"</span><span class="p">:</span><span class="w"> </span><span class="s2">"haLrcqy/ePGyy7mJjr1J2ApBRQlEaH1UKvB49tNaflE="</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"downloadUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://platform.rescale.com/api/files/LWoAm/contents/"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"downloadUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://platform.rescale.com/api/v2/files/LWoAm/contents/"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"sharedWith"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
                 </span><span class="s2">"shareduser@rescale.com"</span><span class="w">
             </span><span class="p">],</span><span class="w">
@@ -2376,7 +2382,7 @@ https://platform.rescale.com/api/files/
             </span><span class="s2">"dateUploaded"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-01-27T11:06:56.901907-08:00"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"relativePath"</span><span class="p">:</span><span class="w"> </span><span class="s2">"post.in"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"encodedEncryptionKey"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TRHGVF0LrDgJ+x6x/hzwYKG34ITfGWTvlhs2a/n1FP0="</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"downloadUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://platform.rescale.com/api/files/wuvOa/contents/"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"downloadUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://platform.rescale.com/api/v2/files/wuvOa/contents/"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"sharedWith"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
                 </span><span class="s2">"shareduser@rescale.com"</span><span class="w">
             </span><span class="p">],</span><span class="w">
@@ -2395,7 +2401,7 @@ https://platform.rescale.com/api/files/
             </span><span class="s2">"dateUploaded"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-01-27T11:06:56.801151-08:00"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"relativePath"</span><span class="p">:</span><span class="w"> </span><span class="s2">"restart0001.rst"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"encodedEncryptionKey"</span><span class="p">:</span><span class="w"> </span><span class="s2">"iHom7vaSMIVItK0RX1s+gLb6z+vxMn3MwKMLSjvkeCY="</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"downloadUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://platform.rescale.com/api/files/VgpAm/contents/"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"downloadUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://platform.rescale.com/api/v2/files/VgpAm/contents/"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"sharedWith"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
                 </span><span class="s2">"shareduser@rescale.com"</span><span class="w">
             </span><span class="p">],</span><span class="w">
@@ -2414,7 +2420,7 @@ https://platform.rescale.com/api/files/
             </span><span class="s2">"dateUploaded"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-01-27T11:06:56.703897-08:00"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"relativePath"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dynamic.out"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"encodedEncryptionKey"</span><span class="p">:</span><span class="w"> </span><span class="s2">"213UMp+Rp2+d6wPzDCxge4X9pV9sIAYft+6WgdAq29M="</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"downloadUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://platform.rescale.com/api/files/GEvOa/contents/"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"downloadUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://platform.rescale.com/api/v2/files/GEvOa/contents/"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"sharedWith"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
                 </span><span class="s2">"shareduser@rescale.com"</span><span class="w">
             </span><span class="p">],</span><span class="w">
@@ -2433,7 +2439,7 @@ https://platform.rescale.com/api/files/
             </span><span class="s2">"dateUploaded"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-01-27T11:06:56.602278-08:00"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"relativePath"</span><span class="p">:</span><span class="w"> </span><span class="s2">"equiv_ratio_bin.out"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"encodedEncryptionKey"</span><span class="p">:</span><span class="w"> </span><span class="s2">"hJ2qEY9k5PiVXyAlxHZt4/Qwv3xXWygKefer9Kn23wE="</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"downloadUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://platform.rescale.com/api/files/JWoAm/contents/"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"downloadUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://platform.rescale.com/api/v2/files/JWoAm/contents/"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"sharedWith"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
                 </span><span class="s2">"shareduser@rescale.com"</span><span class="w">
             </span><span class="p">],</span><span class="w">
@@ -2447,7 +2453,7 @@ https://platform.rescale.com/api/files/
             </span><span class="s2">"md5"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1a2a0b8b3879726b9035cdd1b9308fd9"</span><span class="w">
         </span><span class="p">}</span><span class="w">
     </span><span class="p">],</span><span class="w">
-    </span><span class="s2">"next"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://platform.rescale.com/api/files/?page=2"</span><span class="w">
+    </span><span class="s2">"next"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://platform.rescale.com/api/v2/files/?page=2"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
@@ -2487,18 +2493,18 @@ current user.</p>
 
 <h2 id="upload-a-file">Upload a File</h2>
 
-<p><code class="prettyprint">PUT/POST https://platform.rescale.com/api/files/contents/</code></p>
+<p><code class="prettyprint">PUT/POST https://platform.rescale.com/api/v2/files/contents/</code></p>
 <pre><code class="highlight shell">curl -X POST -H <span class="s1">'Content-Type:multipart/form-data'</span> 
 -H <span class="s1">'Authorization: Token \&lt;token\&gt;'</span> 
 -F <span class="s1">'file=@file_to_upload.txt'</span> 
-https://platform.rescale.com/api/files/contents/
+https://platform.rescale.com/api/v2/files/contents/
 </code></pre>
 <pre><code class="highlight python"><span class="kn">import</span> <span class="nn">requests</span>
 
 <span class="c"># Simple input file upload</span>
 
 <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span>
-  <span class="s">'https://platform.rescale.com/api/files/contents/'</span><span class="p">,</span>
+  <span class="s">'https://platform.rescale.com/api/v2/files/contents/'</span><span class="p">,</span>
   <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Token </span><span class="err">\</span><span class="s">&lt;token</span><span class="err">\</span><span class="s">&gt;'</span><span class="p">},</span>
   <span class="n">files</span><span class="o">=</span><span class="p">{</span><span class="s">'file'</span><span class="p">:</span> <span class="nb">open</span><span class="p">(</span><span class="s">'file_to_upload.txt'</span><span class="p">,</span> <span class="s">'rb'</span><span class="p">)}</span>
 <span class="p">)</span>
@@ -2510,7 +2516,7 @@ https://platform.rescale.com/api/files/contents/
 <span class="n">new_name</span> <span class="o">=</span> <span class="s">'new_file.txt'</span>  <span class="c">#  new file name</span>
 
 <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span>
-  <span class="s">'https://platform.rescale.com/api/files/contents/'</span><span class="p">,</span>
+  <span class="s">'https://platform.rescale.com/api/v2/files/contents/'</span><span class="p">,</span>
   <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Token </span><span class="err">\</span><span class="s">&lt;token</span><span class="err">\</span><span class="s">&gt;'</span><span class="p">},</span>
   <span class="n">files</span><span class="o">=</span><span class="p">{</span><span class="s">'file'</span><span class="p">:</span> <span class="p">(</span><span class="n">new_name</span><span class="p">,</span> <span class="nb">open</span><span class="p">(</span><span class="s">'file_to_upload.txt'</span><span class="p">,</span> <span class="s">'rb'</span><span class="p">),</span> <span class="p">{</span><span class="s">'type_id'</span><span class="p">:</span> <span class="n">type_id</span><span class="p">})}</span>
 <span class="p">)</span>
@@ -2525,7 +2531,7 @@ https://platform.rescale.com/api/files/contents/
     </span><span class="s2">"dateUploaded"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-03-16T19:43:21.679246Z"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"relativePath"</span><span class="p">:</span><span class="w"> </span><span class="s2">"testInput.txt"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"encodedEncryptionKey"</span><span class="p">:</span><span class="w"> </span><span class="s2">"j/nYgAlnGIywZHyDwwzv+FxYVIlmKveMkY7qxAOuRhY="</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"downloadUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://platform.rescale.com/api/files/iCdseg/contents/"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"downloadUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://platform.rescale.com/api/v2/files/iCdseg/contents/"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"sharedWith"</span><span class="p">:[],</span><span class="w">
     </span><span class="s2">"decryptedSize"</span><span class="p">:</span><span class="mi">22</span><span class="p">,</span><span class="w">
     </span><span class="s2">"owner"</span><span class="p">:</span><span class="w"> </span><span class="s2">"demouser@rescale.com"</span><span class="p">,</span><span class="w">
@@ -2547,14 +2553,14 @@ Rescale platform.</p>
 
 <h2 id="delete-a-file">Delete a File</h2>
 
-<p><code class="prettyprint">DELETE https://platform.rescale.com/api/files/{file_id}/</code></p>
+<p><code class="prettyprint">DELETE https://platform.rescale.com/api/v2/files/{file_id}/</code></p>
 <pre><code class="highlight shell">curl -X DELETE -H <span class="s1">'Authorization: Token \&lt;token\&gt;'</span> 
-https://platform.rescale.com/api/files/<span class="o">{</span>file_id<span class="o">}</span>/
+https://platform.rescale.com/api/v2/files/<span class="o">{</span>file_id<span class="o">}</span>/
 </code></pre>
 <pre><code class="highlight python"><span class="kn">import</span> <span class="nn">requests</span>
 
 <span class="n">requests</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span>
-  <span class="s">'https://platform.rescale.com/api/files/{file_id}/'</span><span class="p">,</span>
+  <span class="s">'https://platform.rescale.com/api/v2/files/{file_id}/'</span><span class="p">,</span>
   <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Token </span><span class="err">\</span><span class="s">&lt;token</span><span class="err">\</span><span class="s">&gt;'</span><span class="p">}</span>
 <span class="p">)</span>
 </code></pre>
@@ -2573,14 +2579,14 @@ https://platform.rescale.com/api/files/<span class="o">{</span>file_id<span clas
 
 <h2 id="download-a-file">Download a File</h2>
 
-<p><code class="prettyprint">GET https://platform.rescale.com/api/files/{file_id}/contents/</code></p>
+<p><code class="prettyprint">GET https://platform.rescale.com/api/v2/files/{file_id}/contents/</code></p>
 <pre><code class="highlight shell">curl -X GET -H <span class="s1">'Authorization: Token \&lt;token\&gt;'</span> 
--o <span class="s1">'download_file.txt'</span> https://platform.rescale.com/api/files/<span class="o">{</span>file_id<span class="o">}</span>/contents/
+-o <span class="s1">'download_file.txt'</span> https://platform.rescale.com/api/v2/files/<span class="o">{</span>file_id<span class="o">}</span>/contents/
 </code></pre>
 <pre><code class="highlight python"><span class="kn">import</span> <span class="nn">requests</span>
 
 <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
-  <span class="s">'https://platform.rescale.com/api/files/{file_id}/'</span><span class="p">,</span>
+  <span class="s">'https://platform.rescale.com/api/v2/files/{file_id}/'</span><span class="p">,</span>
   <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Token </span><span class="err">\</span><span class="s">&lt;token</span><span class="err">\</span><span class="s">&gt;'</span><span class="p">}</span>
 <span class="p">)</span>
 
@@ -2603,14 +2609,14 @@ https://platform.rescale.com/api/files/<span class="o">{</span>file_id<span clas
 
 <h2 id="get-plaintext-content-of-a-file">Get Plaintext Content of a File</h2>
 
-<p><code class="prettyprint">GET https://platform.rescale.com/api/files/{file_id}/lines/</code></p>
+<p><code class="prettyprint">GET https://platform.rescale.com/api/v2/files/{file_id}/lines/</code></p>
 <pre><code class="highlight shell">curl -X GET -H <span class="s1">'Authorization: Token \&lt;token\&gt;'</span>
-https://platform.rescale.com/api/files/<span class="o">{</span>file_id<span class="o">}</span>/lines/
+https://platform.rescale.com/api/v2/files/<span class="o">{</span>file_id<span class="o">}</span>/lines/
 </code></pre>
 <pre><code class="highlight python"><span class="kn">import</span> <span class="nn">requests</span>
 
 <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
-  <span class="s">'https://platform.rescale.com/api/files/{file_id}/lines'</span><span class="p">,</span>
+  <span class="s">'https://platform.rescale.com/api/v2/files/{file_id}/lines'</span><span class="p">,</span>
   <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Token &lt;api-token&gt;'</span><span class="p">}</span>
 <span class="p">)</span>
 </code></pre>
@@ -2649,14 +2655,14 @@ plain text file.</p>
 
 <h2 id="get-metadata-of-a-file">Get Metadata of a File</h2>
 
-<p><code class="prettyprint">GET https://platform.rescale.com/api/files/{file_id}/</code></p>
+<p><code class="prettyprint">GET https://platform.rescale.com/api/v2/files/{file_id}/</code></p>
 <pre><code class="highlight shell">curl -X GET -H <span class="s1">'Authorization: Token \&lt;token\&gt;'</span>
-https://platform.rescale.com/api/files/<span class="o">{</span>file_id<span class="o">}</span>/
+https://platform.rescale.com/api/v2/files/<span class="o">{</span>file_id<span class="o">}</span>/
 </code></pre>
 <pre><code class="highlight python"><span class="kn">import</span> <span class="nn">requests</span>
 
 <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
-  <span class="s">'https://platform.rescale.com/api/files/{file_id}/'</span><span class="p">,</span>
+  <span class="s">'https://platform.rescale.com/api/v2/files/{file_id}/'</span><span class="p">,</span>
   <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Token &lt;api-token&gt;'</span><span class="p">}</span>
 <span class="p">)</span>
 </code></pre>
@@ -2670,7 +2676,7 @@ https://platform.rescale.com/api/files/<span class="o">{</span>file_id<span clas
     </span><span class="s2">"dateUploaded"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-03-12T17:56:20.925043-07:00"</span><span class="p">,</span><span class="w"> 
     </span><span class="s2">"relativePath"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Crash_input.pc.gz"</span><span class="p">,</span><span class="w"> 
     </span><span class="s2">"encodedEncryptionKey"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LkkPk2L2mwuc4OibUs3kJe2RIQrzXbfdWXp9xJhoX0s="</span><span class="p">,</span><span class="w"> 
-    </span><span class="s2">"downloadUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://platform.rescale.com/api/files/WvNKdb/contents/"</span><span class="p">,</span><span class="w"> 
+    </span><span class="s2">"downloadUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://platform.rescale.com/api/v2/files/WvNKdb/contents/"</span><span class="p">,</span><span class="w"> 
     </span><span class="s2">"sharedWith"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w"> 
     </span><span class="s2">"decryptedSize"</span><span class="p">:</span><span class="w"> </span><span class="mi">56425931</span><span class="p">,</span><span class="w"> 
     </span><span class="s2">"owner"</span><span class="p">:</span><span class="w"> </span><span class="s2">"demouser@rescale.com"</span><span class="p">,</span><span class="w"> 
@@ -2773,7 +2779,7 @@ https://platform.rescale.com/api/files/<span class="o">{</span>file_id<span clas
 
 <h2 id="update-metadata-of-a-file">Update Metadata of a File</h2>
 
-<p><code class="prettyprint">PATCH https://platform.rescale.com/api/files/{file_id}/</code></p>
+<p><code class="prettyprint">PATCH https://platform.rescale.com/api/v2/files/{file_id}/</code></p>
 <pre><code class="highlight shell">curl -X PATCH -H <span class="s1">'Content-Type: application/json'</span>
 -H <span class="s1">'Authorization: Token \&lt;token\&gt;'</span> --data 
 <span class="s1">'{
@@ -2782,7 +2788,7 @@ https://platform.rescale.com/api/files/<span class="o">{</span>file_id<span clas
     "dateUploaded": "2015-03-17T00:24:39.531384Z",
     "relativePath": "new_script.txt",
     "encodedEncryptionKey": "83TFwNf5QxFaCOmluBQBnJ/L0yAC/2Z9MPs2pKZuUi4=",
-    "downloadUrl": "https://platform.rescale.com/api/files/dNEXtf/contents/",
+    "downloadUrl": "https://platform.rescale.com/api/v2/files/dNEXtf/contents/",
     "sharedWith": [],
     "decryptedSize": 112,
     "owner": "demouser@rescale.com",
@@ -2793,7 +2799,7 @@ https://platform.rescale.com/api/files/<span class="o">{</span>file_id<span clas
     "isDeleted": false,
     "md5": "4d479b49d26318068d3e23aa9d81e9ee"
 }'</span>
-https://platform.rescale.com/api/files/<span class="o">{</span>file_id<span class="o">}</span>/
+https://platform.rescale.com/api/v2/files/<span class="o">{</span>file_id<span class="o">}</span>/
 </code></pre>
 <pre><code class="highlight python"><span class="kn">import</span> <span class="nn">requests</span>
 
@@ -2852,7 +2858,7 @@ https://platform.rescale.com/api/files/<span class="o">{</span>file_id<span clas
 
 <h2 id="poll-a-running-task">Poll a Running Task</h2>
 
-<p><code class="prettyprint">GET https://platform.rescale.com/api/tasks/{token}/</code></p>
+<p><code class="prettyprint">GET https://platform.rescale.com/api/v2/tasks/{token}/</code></p>
 
           <h1 id="job-creation-tutorial">Job Creation Tutorial</h1>
 
@@ -2864,10 +2870,10 @@ using the API.</p>
 <pre><code class="highlight shell">curl -X POST -H <span class="s1">'Content-Type:multipart/form-data'</span> <span class="se">\</span>
 -H <span class="s1">'Authorization: Token &lt;api-token&gt;'</span> <span class="se">\</span>
 -F <span class="s2">"file=@airfoil2d.zip"</span> <span class="se">\</span>
-https://platform.rescale.com/api/files/contents/
+https://platform.rescale.com/api/v2/files/contents/
 </code></pre>
 <pre><code class="highlight python"><span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span>
-  <span class="s">'https://platform.rescale.com/api/files/contents/'</span><span class="p">,</span>
+  <span class="s">'https://platform.rescale.com/api/v2/files/contents/'</span><span class="p">,</span>
   <span class="n">data</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
   <span class="n">files</span><span class="o">=</span><span class="p">{</span><span class="s">'file'</span><span class="p">:</span> <span class="nb">open</span><span class="p">(</span><span class="s">'airfoil2d.zip'</span><span class="p">)},</span>
   <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Token &lt;api-token&gt;'</span><span class="p">}</span>
@@ -2905,12 +2911,12 @@ This field is going to come in handy when referring to this particular
 file in all the other calls to the API.</p>
 
 <h2 id="choosing-an-analysis">Choosing an analysis</h2>
-<pre><code class="highlight shell">curl -H <span class="s2">"Authorization: Token &lt;api-token&gt;"</span> https://platform.rescale.com/api/analyses/
+<pre><code class="highlight shell">curl -H <span class="s2">"Authorization: Token &lt;api-token&gt;"</span> https://platform.rescale.com/api/v2/analyses/
 </code></pre>
 <pre><code class="highlight python"><span class="kn">import</span> <span class="nn">requests</span>
 
 <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
-  <span class="s">'https://platform.rescale.com/api/analyses/'</span><span class="p">,</span>
+  <span class="s">'https://platform.rescale.com/api/v2/analyses/'</span><span class="p">,</span>
   <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Token &lt;api-token&gt;'</span><span class="p">}</span>
 <span class="p">)</span>
 </code></pre>
@@ -3062,12 +3068,12 @@ EOF
 </span>curl -X POST --data @data.json <span class="se">\</span>
 -H <span class="s2">"Authorization: Token &lt;api-token&gt;"</span> <span class="se">\</span>
 -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
-https://platform.rescale.com/api/jobs/
+https://platform.rescale.com/api/v2/jobs/
 </code></pre>
 <pre><code class="highlight python"><span class="kn">import</span> <span class="nn">requests</span>
 
 <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span>
-  <span class="s">'https://platform.rescale.com/api/jobs/'</span><span class="p">,</span>
+  <span class="s">'https://platform.rescale.com/api/v2/jobs/'</span><span class="p">,</span>
   <span class="n">data</span><span class="o">=</span><span class="p">{</span>
     <span class="s">'name'</span><span class="p">:</span> <span class="s">'Basic Job'</span><span class="p">,</span>
     <span class="s">'jobanalyses'</span><span class="p">:</span> <span class="p">[</span>
@@ -3192,12 +3198,12 @@ API from uploading the input file.
 
 <h2 id="submitting-your-job">Submitting your job</h2>
 <pre><code class="highlight shell">curl -X POST -H <span class="s1">'Authorization: Token &lt;api-token&gt;'</span> <span class="se">\</span>
-https://platform.rescale.com/api/jobs/QTVia/submit/
+https://platform.rescale.com/api/v2/jobs/QTVia/submit/
 </code></pre>
 <pre><code class="highlight python"><span class="kn">import</span> <span class="nn">requests</span>
 
 <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span>
-  <span class="s">'https://platform.rescale.com/api/jobs/QTVia/submit/'</span><span class="p">,</span>
+  <span class="s">'https://platform.rescale.com/api/v2/jobs/QTVia/submit/'</span><span class="p">,</span>
   <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Token &lt;api-token&gt;'</span><span class="p">}</span>
 <span class="p">)</span>
 </code></pre>
@@ -3212,12 +3218,12 @@ The id in the submit url at right is the job id returned by the API
 </aside>
 
 <h2 id="monitoring-your-job">Monitoring your job</h2>
-<pre><code class="highlight shell">curl -H <span class="s1">'Authorization: Token &lt;api-token&gt;'</span>  https://platform.rescale.com/api/jobs/QTVia/statuses/
+<pre><code class="highlight shell">curl -H <span class="s1">'Authorization: Token &lt;api-token&gt;'</span>  https://platform.rescale.com/api/v2/jobs/QTVia/statuses/
 </code></pre>
 <pre><code class="highlight python"><span class="kn">import</span> <span class="nn">requests</span>
 
 <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span>
-  <span class="s">'https://platform.rescale.com/api/jobs/QTVia/submit/'</span><span class="p">,</span>
+  <span class="s">'https://platform.rescale.com/api/v2/jobs/QTVia/submit/'</span><span class="p">,</span>
   <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Token &lt;api-token&gt;'</span><span class="p">}</span>
 <span class="p">)</span>
 </code></pre>
@@ -3265,12 +3271,12 @@ specified job in order of their recency.</p>
 <h2 id="getting-results">Getting results</h2>
 
 <p><code class="prettyprint">shell
-curl -H &#39;Authorization: Token &lt;api-token&gt;&#39;  https://platform.rescale.com/api/jobs/QTVia/runs/
+curl -H &#39;Authorization: Token &lt;api-token&gt;&#39;  https://platform.rescale.com/api/v2/jobs/QTVia/runs/
 </code>`</p>
 <pre><code class="highlight python"><span class="kn">import</span> <span class="nn">requests</span>
 
 <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
-  <span class="s">'https://platform.rescale.com/api/jobs/QTVia/runs/'</span><span class="p">,</span>
+  <span class="s">'https://platform.rescale.com/api/v2/jobs/QTVia/runs/'</span><span class="p">,</span>
   <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Token &lt;api-token&gt;'</span><span class="p">}</span>
 <span class="p">)</span>
 </code></pre>
@@ -3310,12 +3316,12 @@ to the <a href="#get-a-run">run endpoint</a> with the run id in the path.</p>
 
 <h2 id="file-download">File download</h2>
 <pre><code class="highlight shell">curl -H <span class="s1">'Authorization: Token &lt;api-token&gt;'</span> <span class="se">\</span>
-https://platform.rescale.com/api/files/iudjqe/contents/ &gt; process_output.log
+https://platform.rescale.com/api/v2/files/iudjqe/contents/ &gt; process_output.log
 </code></pre>
 <pre><code class="highlight python"><span class="kn">import</span> <span class="nn">requests</span>
 <span class="kn">from</span> <span class="nn">contextlib</span> <span class="kn">import</span> <span class="n">closing</span>
 
-<span class="n">url</span><span class="o">=</span><span class="s">'https://platform.rescale.com/api/files/iudjqe/contents/'</span>
+<span class="n">url</span><span class="o">=</span><span class="s">'https://platform.rescale.com/api/v2/files/iudjqe/contents/'</span>
 <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Token &lt;api-token&gt;'</span><span class="p">}</span>
 
 <span class="k">with</span> <span class="n">closing</span><span class="p">(</span><span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">stream</span><span class="o">=</span><span class="bp">True</span><span class="p">))</span> <span class="k">as</span> <span class="n">r</span><span class="p">:</span>
