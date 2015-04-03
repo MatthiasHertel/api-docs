@@ -480,8 +480,10 @@ Submits a saved job to run.  No data returned.
 
 `PATCH https://platform.rescale.com/api/v2/jobs/{job_id}`
 
+> Change the name
+
 ```shell
-curl -H "Authorization: Token e95aca40caabf137e71ba11469d7aa304dea4386"  -H "Content-Type:application/json" "https://platform.rescale.com/api/v2/jobs/LeeKa/" -X PATCH -d '
+curl -H "Authorization: Token <api_token>"  -H "Content-Type:application/json" "https://platform.rescale.com/api/v2/jobs/LeeKa/" -X PATCH -d '
 {
     "name": "Jobster"
 }
