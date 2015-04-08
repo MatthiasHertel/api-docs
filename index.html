@@ -1463,7 +1463,11 @@ in constructing your JSON blob.</p>
 <p><code class="prettyprint">PUT https://platform.rescale.com/api/v2/jobs/{job_id}</code></p>
 
 <p><code class="prettyprint">PATCH https://platform.rescale.com/api/v2/jobs/{job_id}</code></p>
-<pre><code class="highlight shell">curl -H <span class="s2">"Authorization: Token e95aca40caabf137e71ba11469d7aa304dea4386"</span>  -H <span class="s2">"Content-Type:application/json"</span> <span class="s2">"https://platform.rescale.com/api/v2/jobs/LeeKa/"</span> -X PATCH -d <span class="s1">'
+
+<blockquote>
+<p>Change the name</p>
+</blockquote>
+<pre><code class="highlight shell">curl -H <span class="s2">"Authorization: Token &lt;api_token&gt;"</span>  -H <span class="s2">"Content-Type:application/json"</span> <span class="s2">"https://platform.rescale.com/api/v2/jobs/LeeKa/"</span> -X PATCH -d <span class="s1">'
 {
     "name": "Jobster"
 }
@@ -2864,7 +2868,7 @@ https://platform.rescale.com/api/v2/files/<span class="o">{</span>file_id<span c
           <h1 id="job-creation-tutorial">Job Creation Tutorial</h1>
 
 <p>In this tutorial we are going to create a basic job as described on the
-<a href="https://www.rescale.com/resources/getting-started/job-types/basic/">resources</a>
+<a href="https://www.rescale.com/resources/getting-started/basic/">resources</a>
 using the API.</p>
 
 <h2 id="uploading-your-data">Uploading your data</h2>
