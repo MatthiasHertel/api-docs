@@ -17,7 +17,7 @@ Getting Started
  1. Install all dependencies: `bundle install`
  2. Start the test server: `bundle exec middleman server`
 
-Your local copy of the API documentation is now available at <https://localhost:4567>.
+Your local copy of the API documentation is now available at <http://localhost:4567>.
 
 ### Editing
 

@@ -1,7 +1,7 @@
 # Job Creation Tutorial
 
 In this tutorial we are going to create a basic job as described on the
-[resources](https://www.rescale.com/resources/getting-started/job-types/basic/)
+[resources](https://www.rescale.com/resources/getting-started/basic/)
 using the API.
 
 ## Uploading your data

@@ -25,3 +25,5 @@ doc/
 
 # rbenv
 .ruby-version
+
+vendor
