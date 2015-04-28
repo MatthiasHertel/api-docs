@@ -544,4 +544,4 @@ requests.patch(
 Same as [Get Metadata of a File](#get-metadata-of-a-file)
 
 
-This call allows you to update meta data of an exiting file.
+This call allows you to update meta data of an existing file.
