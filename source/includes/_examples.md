@@ -386,7 +386,7 @@ curl -H 'Authorization: Token <api-token>'  https://platform.rescale.com/api/v2/
 import requests
 
 requests.post(
-  'https://platform.rescale.com/api/v2/jobs/QTVia/submit/',
+  'https://platform.rescale.com/api/v2/jobs/QTVia/statuses/',
   headers={'Authorization': 'Token <api-token>'}
 )
 ```
