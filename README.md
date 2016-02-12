@@ -1,7 +1,9 @@
 Rescale API Documentation
 ========
 
-Rescale's API documentation is built with [Slate](https://tripit.github.io/slate).
+Rescale's [API documentation](https://rescale.github.io/api-docs/) is built 
+with [Slate](https://tripit.github.io/slate).
+
 
 Getting Started
 ------------------------------
@@ -32,5 +34,5 @@ to the `includes` section in `index.md`.
 
 
  1. Merge your markdown changes into `origin/master`
- 2. Run `rake publish` to compile the changes and push to github pages
+ 1. Run `bundle exec rake publish` to compile the changes and push to github pages
     deployment
