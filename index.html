@@ -1079,7 +1079,38 @@ cluster on rescale</p>
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>List OUTPUT files for a given job</p>
+<p>List output files for a given job</p>
+
+<p>This will return a paginated list of all output files in the job. There are some querystring
+arguments that can be used to filter the returned files:</p>
+
+<table><thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>search</td>
+<td>String</td>
+<td>Limits the returned output files to the ones that contain this value.</td>
+</tr>
+<tr>
+<td>page</td>
+<td>int</td>
+<td>The results page to return. Starts at 1.</td>
+</tr>
+<tr>
+<td>page_size</td>
+<td>int</td>
+<td>The number of results to include on a single page.</td>
+</tr>
+</tbody></table>
+
+<p>For example: To return results 1-10 for all files that contain the string &lsquo;residuals&rsquo;:</p>
+
+<p><code class="prettyprint">GET https://platform.rescale.com/api/v2/jobs/{job_id}/files/?search=residuals&amp;page=1&amp;page_size=10</code></p>
 
 <h3 id="response-properties">Response Properties</h3>
 
@@ -1339,7 +1370,7 @@ platform.</p>
 <td>variableType</td>
 <td style="text-align: center">None</td>
 <td style="text-align: left">Yes</td>
-<td>Options are: &lsquo;Param&rsquo;, &#39;Design&rsquo;, &#39;Output&rsquo;, &#39;Case&rsquo;, &#39;Constraint&rsquo; &amp; &#39;Objective&rsquo;</td>
+<td>Options are: &#39;Param&rsquo;, &#39;Design&rsquo;, &#39;Output&rsquo;, &#39;Case&rsquo;, &#39;Constraint&rsquo; &amp; &#39;Objective&rsquo;</td>
 </tr>
 <tr>
 <td>displayOrder</td>
@@ -1467,7 +1498,7 @@ in constructing your JSON blob.</p>
 <blockquote>
 <p>Change the name</p>
 </blockquote>
-<pre><code class="highlight shell">curl -H <span class="s2">"Authorization: Token &lt;api_token&gt;"</span>  -H <span class="s2">"Content-Type:application/json"</span> <span class="s2">"https://platform.rescale.com/api/v2/jobs/LeeKa/"</span> -X PATCH -d <span class="s1">'
+<pre><code class="highlight shell">curl -H <span class="s2">"Authorization: Token &lt;api-token&gt;"</span>  -H <span class="s2">"Content-Type:application/json"</span> <span class="s2">"https://platform.rescale.com/api/v2/jobs/LeeKa/"</span> -X PATCH -d <span class="s1">'
 {
     "name": "Jobster"
 }
@@ -1488,19 +1519,229 @@ in constructing your JSON blob.</p>
 
 <p><code class="prettyprint">DELETE https://platform.rescale.com/api/v2/jobs/{job_id}/</code></p>
 
+<p>Note that jobs that are currently executing cannot be deleted. You will need to stop the job first.</p>
+<pre><code class="highlight shell">curl -H <span class="s1">'Authorization: Token &lt;api-token&gt;'</span> -H <span class="s1">'Content-Type: application/json'</span> https://platform.rescale.com/api/v2/jobs/gVWWdb/ -X DELETE
+</code></pre>
+<pre><code class="highlight python"><span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="n">requests</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span>
+    <span class="s">'https://platform.rescale.com/api/v2/jobs/gVWWdb/'</span><span class="p">,</span>
+    <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Token &lt;api-token&gt;'</span><span class="p">}</span>
+<span class="p">)</span>
+</code></pre>
+
+<p>A 204 response code is returned upon a successful delete. No data returned.</p>
+
 <h2 id="stop-a-job">Stop a Job</h2>
 
-<p><code class="prettyprint">POST https://platform.rescale.com/api/v2/jobs/{job_id/stop/</code></p>
+<p><code class="prettyprint">POST https://platform.rescale.com/api/v2/jobs/{job_id}/stop/</code></p>
+
+<p>Submits a request to stop a running job. Poll the job/cluster status endpoints to monitor the exact time when the job is stopped.</p>
+<pre><code class="highlight shell">curl -H <span class="s1">'Authorization: Token &lt;api-token&gt;'</span> -H <span class="s1">'Content-Type: application/json'</span> https://platform.rescale.com/api/v2/jobs/SsdkT/stop/ -X POST
+</code></pre>
+<pre><code class="highlight python"><span class="kn">import</span> <span class="nn">requests</span>
+<span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span>
+  <span class="s">'https://platform.rescale.com/api/v2/jobs/SsdkT/stop/'</span><span class="p">,</span>
+  <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Token &lt;api-token&gt;'</span><span class="p">}</span>
+<span class="p">)</span>
+</code></pre>
+
+<p>A 202 response code is returned if the stop request was successfully submitted. No data returned.</p>
 
 <h2 id="share-a-job">Share a Job</h2>
 
-<p><code class="prettyprint">POST https://platform.rescale.com/api/v2/jobs/{job_id/share/</code></p>
+<p><code class="prettyprint">POST https://platform.rescale.com/api/v2/jobs/{job_id}/share/</code></p>
 
-<h2 id="get-the-status-history-of-a-job">Get the Status History of a Job</h2>
+<p>Share a job with another user. If your account is associated with a company, you will only be allowed to share your job with another
+user in your company or an ISV support desk.</p>
+<pre><code class="highlight shell">curl -H <span class="s2">"Authorization: Token &lt;api-token&gt;"</span> -H <span class="s2">"Content-Type: application/json"</span> <span class="s2">"https://platform.rescale.com/api/v2/jobs/LeeKa/share/"</span> -X POST -d <span class="s1">'
+{
+    "email": "support@rescale.com",
+    "message": "This job is not converging as quickly as I was expecting"
+}
+'</span>
+</code></pre>
+<pre><code class="highlight python"><span class="kn">import</span> <span class="nn">requests</span>
 
-<p><code class="prettyprint">GET https://platform.rescale.com/api/v2/jobs/{job_id}/statuses</code></p>
+<span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span>
+  <span class="s">'https://platform.rescale.com/api/v2/jobs/LeeKa/share/'</span><span class="p">,</span>
+  <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Token &lt;api-token&gt;'</span><span class="p">},</span>
+  <span class="n">json</span><span class="o">=</span><span class="p">{</span>
+    <span class="s">"email"</span><span class="p">:</span> <span class="s">"support@rescale.com"</span><span class="p">,</span>
+    <span class="s">"message"</span><span class="p">:</span> <span class="s">"This job is not converging as quickly as I was expecting"</span>
+  <span class="p">}</span>
+<span class="p">)</span>
+</code></pre>
+
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre><code class="highlight json"><span class="p">{</span><span class="w">
+    </span><span class="s2">"recipient"</span><span class="p">:</span><span class="s2">"support@rescale.com"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"supportDesk"</span><span class="p">:</span><span class="kc">null</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h2 id="list-job-status-history">List Job status history</h2>
+
+<p><code class="prettyprint">GET https://platform.rescale.com/api/v2/jobs/{job_id}/statuses/</code></p>
+<pre><code class="highlight shell">curl -H <span class="s1">'Authorization: Token &lt;api-token&gt;'</span> -H <span class="s1">'Content-Type: application/json'</span> https://platform.rescale.com/api/v2/jobs/cHDtgb/statuses/
+</code></pre>
+<pre><code class="highlight python"><span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+  <span class="s">'https://platform.rescale.com/api/v2/jobs/cHDtgb/statuses/'</span><span class="p">,</span>
+  <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Token &lt;api-token&gt;'</span><span class="p">}</span>
+<span class="p">)</span>
+</code></pre>
+
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre><code class="highlight json"><span class="p">{</span><span class="w">
+  </span><span class="s2">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"previous"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"results"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Completed"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"statusDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-04-21T17:24:34.898495Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"statusReason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Completed successfully"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Executing"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"statusDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-04-21T17:15:59.012000Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"statusReason"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Validated"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"statusDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-04-21T17:07:18.088000Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"statusReason"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Started"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"statusDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-04-21T17:07:15.153000Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"statusReason"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Queued"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"statusDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-04-21T17:07:04.761050Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"statusReason"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pending"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"statusDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-04-21T17:06:32.086507Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"statusReason"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"next"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h3 id="response-properties">Response Properties</h3>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>status</td>
+<td>String</td>
+<td>A job status code</td>
+</tr>
+<tr>
+<td>statusDate</td>
+<td>Date</td>
+<td>ISO8601 encoded date of when the job status changed</td>
+</tr>
+<tr>
+<td>statusReason</td>
+<td>String</td>
+<td>(Optional) Extra context for the status. Eg, a failure reason</td>
+</tr>
+</tbody></table>
+
+<h2 id="list-cluster-status-history-for-a-job">List cluster status history for a Job</h2>
 
 <p><code class="prettyprint">GET https://platform.rescale.com/api/v2/jobs/{job_id}/cluster_statuses/</code></p>
+<pre><code class="highlight shell">curl -H <span class="s1">'Authorization: Token &lt;api-token&gt;'</span> -H <span class="s1">'Content-Type: application/json'</span> https://platform.rescale.com/api/v2/jobs/cHDtgb/cluster_statuses/
+</code></pre>
+<pre><code class="highlight python"><span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+  <span class="s">'https://platform.rescale.com/api/v2/jobs/cHDtgb/cluster_statuses/'</span><span class="p">,</span>
+  <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Token &lt;api-token&gt;'</span><span class="p">}</span>
+<span class="p">)</span>
+</code></pre>
+
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre><code class="highlight json"><span class="p">{</span><span class="w">
+  </span><span class="s2">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"previous"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"results"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Stopped"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"statusDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-04-21T17:25:20.717000Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"statusReason"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Stopping"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"statusDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-04-21T17:24:38.158000Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"statusReason"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Stop Requested"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"statusDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-04-21T17:24:35.260585Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"statusReason"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Started"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"statusDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-04-21T17:15:47.790000Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"statusReason"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Starting"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"statusDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-04-21T17:07:25.127000Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"statusReason"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Not Started"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"statusDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-04-21T17:07:04.719293Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"statusReason"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h3 id="response-properties">Response Properties</h3>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>status</td>
+<td>String</td>
+<td>A cluster status code</td>
+</tr>
+<tr>
+<td>statusDate</td>
+<td>Date</td>
+<td>ISO8601 encoded date of when the cluster status changed</td>
+</tr>
+<tr>
+<td>statusReason</td>
+<td>String</td>
+<td>(Optional) Extra context for the status. Eg, a failure reason</td>
+</tr>
+</tbody></table>
 
           <h1 id="runs">Runs</h1>
 
