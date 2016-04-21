@@ -277,7 +277,6 @@ Property | Type  | Description
 
 `GET https://platform.rescale.com/api/v2/jobs/{job_id}/files/`
 
-
 ```shell
 curl -H "Authorization: Token <api-token>" https://platform.rescale.com/api/v2/jobs/aabbcc/files/
 ```
@@ -309,7 +308,21 @@ curl -H "Authorization: Token <api-token>" https://platform.rescale.com/api/v2/j
 }
 ```
 
-List OUTPUT files for a given job
+List output files for a given job
+
+This will return a paginated list of all output files in the job. There are some querystring
+arguments that can be used to filter the returned files:
+
+Argument | Type | Description
+-------- | ---- | -----------
+search | String | Limits the returned output files to the ones that contain this value.
+page | int | The results page to return. Starts at 1.
+page_size | int | The number of results to include on a single page.
+
+For example: To return results 1-10 for all files that contain the string 'residuals':
+
+`GET https://platform.rescale.com/api/v2/jobs/{job_id}/files/?search=residuals&page=1&page_size=10`
+
 
 ### Response Properties
 
@@ -483,7 +496,7 @@ Submits a saved job to run.  No data returned.
 > Change the name
 
 ```shell
-curl -H "Authorization: Token <api_token>"  -H "Content-Type:application/json" "https://platform.rescale.com/api/v2/jobs/LeeKa/" -X PATCH -d '
+curl -H "Authorization: Token <api-token>"  -H "Content-Type:application/json" "https://platform.rescale.com/api/v2/jobs/LeeKa/" -X PATCH -d '
 {
     "name": "Jobster"
 }
@@ -505,17 +518,211 @@ curl -H "Authorization: Token <api_token>"  -H "Content-Type:application/json" "
 
 `DELETE https://platform.rescale.com/api/v2/jobs/{job_id}/`
 
+Note that jobs that are currently executing cannot be deleted. You will need to stop the job first.
+
+```shell
+curl -H 'Authorization: Token <api-token>' -H 'Content-Type: application/json' https://platform.rescale.com/api/v2/jobs/gVWWdb/ -X DELETE
+```
+
+```python
+import requests
+
+requests.delete(
+    'https://platform.rescale.com/api/v2/jobs/gVWWdb/',
+    headers={'Authorization': 'Token <api-token>'}
+)
+```
+
+A 204 response code is returned upon a successful delete. No data returned.
+
 ## Stop a Job
 
-`POST https://platform.rescale.com/api/v2/jobs/{job_id/stop/`
+`POST https://platform.rescale.com/api/v2/jobs/{job_id}/stop/`
+
+Submits a request to stop a running job. Poll the job/cluster status endpoints to monitor the exact time when the job is stopped.
+
+```shell
+curl -H 'Authorization: Token <api-token>' -H 'Content-Type: application/json' https://platform.rescale.com/api/v2/jobs/SsdkT/stop/ -X POST
+```
+
+```python
+import requests
+requests.post(
+  'https://platform.rescale.com/api/v2/jobs/SsdkT/stop/',
+  headers={'Authorization': 'Token <api-token>'}
+)
+```
+
+A 202 response code is returned if the stop request was successfully submitted. No data returned.
+
 
 ## Share a Job
 
-`POST https://platform.rescale.com/api/v2/jobs/{job_id/share/`
+`POST https://platform.rescale.com/api/v2/jobs/{job_id}/share/`
 
-## Get the Status History of a Job
+Share a job with another user. If your account is associated with a company, you will only be allowed to share your job with another
+user in your company or an ISV support desk.
 
-`GET https://platform.rescale.com/api/v2/jobs/{job_id}/statuses`
+```shell
+curl -H "Authorization: Token <api-token>" -H "Content-Type: application/json" "https://platform.rescale.com/api/v2/jobs/LeeKa/share/" -X POST -d '
+{
+    "email": "support@rescale.com",
+    "message": "This job is not converging as quickly as I was expecting"
+}
+'
+```
+
+```python
+import requests
+
+requests.post(
+  'https://platform.rescale.com/api/v2/jobs/LeeKa/share/',
+  headers={'Authorization': 'Token <api-token>'},
+  json={
+    "email": "support@rescale.com",
+    "message": "This job is not converging as quickly as I was expecting"
+  }
+)
+```
+
+> Sample Response
+
+```json
+{
+    "recipient":"support@rescale.com",
+    "supportDesk":null
+}
+```
+
+## List Job status history
+
+`GET https://platform.rescale.com/api/v2/jobs/{job_id}/statuses/`
+
+```shell
+curl -H 'Authorization: Token <api-token>' -H 'Content-Type: application/json' https://platform.rescale.com/api/v2/jobs/cHDtgb/statuses/
+```
+
+```python
+import requests
+
+requests.get(
+  'https://platform.rescale.com/api/v2/jobs/cHDtgb/statuses/',
+  headers={'Authorization': 'Token <api-token>'}
+)
+```
+
+> Sample Response
+
+```json
+{
+  "count": 6,
+  "previous": null,
+  "results": [
+    {
+      "status": "Completed",
+      "statusDate": "2016-04-21T17:24:34.898495Z",
+      "statusReason": "Completed successfully"
+    },
+    {
+      "status": "Executing",
+      "statusDate": "2016-04-21T17:15:59.012000Z",
+      "statusReason": null
+    },
+    {
+      "status": "Validated",
+      "statusDate": "2016-04-21T17:07:18.088000Z",
+      "statusReason": null
+    },
+    {
+      "status": "Started",
+      "statusDate": "2016-04-21T17:07:15.153000Z",
+      "statusReason": null
+    },
+    {
+      "status": "Queued",
+      "statusDate": "2016-04-21T17:07:04.761050Z",
+      "statusReason": null
+    },
+    {
+      "status": "Pending",
+      "statusDate": "2016-04-21T17:06:32.086507Z",
+      "statusReason": null
+    }
+  ],
+  "next": null
+}
+```
+
+### Response Properties
+
+Property | Type  | Description
+-------- | ------|---------------
+| status | String | A job status code |
+| statusDate | Date | ISO8601 encoded date of when the job status changed |
+| statusReason | String | (Optional) Extra context for the status. Eg, a failure reason |
+
+
+## List cluster status history for a Job
 
 `GET https://platform.rescale.com/api/v2/jobs/{job_id}/cluster_statuses/`
 
+```shell
+curl -H 'Authorization: Token <api-token>' -H 'Content-Type: application/json' https://platform.rescale.com/api/v2/jobs/cHDtgb/cluster_statuses/
+```
+
+```python
+import requests
+
+requests.get(
+  'https://platform.rescale.com/api/v2/jobs/cHDtgb/cluster_statuses/',
+  headers={'Authorization': 'Token <api-token>'}
+)
+```
+
+> Sample Response
+
+```json
+{
+  "count": 6,
+  "previous": null,
+  "results": [
+    {
+      "status": "Stopped",
+      "statusDate": "2016-04-21T17:25:20.717000Z",
+      "statusReason": null
+    },
+    {
+      "status": "Stopping",
+      "statusDate": "2016-04-21T17:24:38.158000Z",
+      "statusReason": null
+    },
+    {
+      "status": "Stop Requested",
+      "statusDate": "2016-04-21T17:24:35.260585Z",
+      "statusReason": null
+    },
+    {
+      "status": "Started",
+      "statusDate": "2016-04-21T17:15:47.790000Z",
+      "statusReason": null
+    },
+    {
+      "status": "Starting",
+      "statusDate": "2016-04-21T17:07:25.127000Z",
+      "statusReason": null
+    },
+    {
+      "status": "Not Started",
+      "statusDate": "2016-04-21T17:07:04.719293Z",
+      "statusReason": null
+    }
+  ]
+}
+```
+### Response Properties
+
+Property | Type  | Description
+-------- | ------|---------------
+| status | String | A cluster status code |
+| statusDate | Date | ISO8601 encoded date of when the cluster status changed |
+| statusReason | String | (Optional) Extra context for the status. Eg, a failure reason |
