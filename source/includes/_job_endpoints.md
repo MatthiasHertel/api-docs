@@ -351,7 +351,7 @@ Property | Type  | Description
 > Basic job, no input files
 
 ```shell
-curl -H "Authorization: Token <api-token>" -H "Content-Type: application/json" "http://platform-local.rescale.com:8000/api/jobs/" -d '
+curl -H "Authorization: Token <api-token>" -H "Content-Type: application/json" "https://platform.rescale.com/api/v2/jobs/" -d '
 {
     "name": "Jobbo",
     "jobanalyses": [
