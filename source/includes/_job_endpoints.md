@@ -124,6 +124,12 @@ curl -H "Authorization: Token <api-token>" https://platform.rescale.com/api/v2/j
 ```
 
 ```python
+import requests
+
+req = requests.get(
+  'https://platform.rescale.com/api/v2/jobs/aabbcc',
+  headers={'Authorization': 'Token <api-token>'}
+)
 ```
 
 ```json
@@ -353,7 +359,7 @@ Property | Type  | Description
 ```shell
 curl -H "Authorization: Token <api-token>" -H "Content-Type: application/json" "https://platform.rescale.com/api/v2/jobs/" -d '
 {
-    "name": "Jobbo",
+    "name": "Example Job",
     "jobanalyses": [
         {
             "analysis": {
@@ -369,6 +375,31 @@ curl -H "Authorization: Token <api-token>" -H "Content-Type: application/json" "
     ]
 }
 '
+```
+
+```python
+import requests
+
+requests.post(
+  'https://platform.rescale.com/api/v2/jobs/',
+  headers={'Authorization': 'Token <api-token>'},
+  json={
+      'name': 'Example Job',
+      'jobanalyses': [
+          {
+              'analysis': {
+                  'code': 'user_included',
+                  'version': '0'
+              },
+              'command': 'echo "Hello world"',
+              'hardware': {
+                  'coreType': 'standard-plus',
+                  'coresPerSlot': 1
+              }
+          }
+      ]
+  }
+)
 ```
 
 > Response
