@@ -819,7 +819,13 @@ cluster on rescale</p>
 <p><code class="prettyprint">GET https://platform.rescale.com/api/v2/jobs/{job_id}/</code></p>
 <pre><code class="highlight shell">curl -H <span class="s2">"Authorization: Token &lt;api-token&gt;"</span> https://platform.rescale.com/api/v2/jobs/aabbcc/
 </code></pre>
-<pre><code class="highlight python"></code></pre>
+<pre><code class="highlight python"><span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="n">req</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+  <span class="s">'https://platform.rescale.com/api/v2/jobs/aabbcc'</span><span class="p">,</span>
+  <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Token &lt;api-token&gt;'</span><span class="p">}</span>
+<span class="p">)</span>
+</code></pre>
 <pre><code class="highlight json"><span class="p">{</span><span class="w">
     </span><span class="s2">"archiveFilters"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
     </span><span class="s2">"caseFile"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
@@ -1207,7 +1213,7 @@ arguments that can be used to filter the returned files:</p>
 </blockquote>
 <pre><code class="highlight shell">curl -H <span class="s2">"Authorization: Token &lt;api-token&gt;"</span> -H <span class="s2">"Content-Type: application/json"</span> <span class="s2">"https://platform.rescale.com/api/v2/jobs/"</span> -d <span class="s1">'
 {
-    "name": "Jobbo",
+    "name": "Example Job",
     "jobanalyses": [
         {
             "analysis": {
@@ -1223,6 +1229,29 @@ arguments that can be used to filter the returned files:</p>
     ]
 }
 '</span>
+</code></pre>
+<pre><code class="highlight python"><span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span>
+  <span class="s">'https://platform.rescale.com/api/v2/jobs/'</span><span class="p">,</span>
+  <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Token &lt;api-token&gt;'</span><span class="p">},</span>
+  <span class="n">json</span><span class="o">=</span><span class="p">{</span>
+      <span class="s">'name'</span><span class="p">:</span> <span class="s">'Example Job'</span><span class="p">,</span>
+      <span class="s">'jobanalyses'</span><span class="p">:</span> <span class="p">[</span>
+          <span class="p">{</span>
+              <span class="s">'analysis'</span><span class="p">:</span> <span class="p">{</span>
+                  <span class="s">'code'</span><span class="p">:</span> <span class="s">'user_included'</span><span class="p">,</span>
+                  <span class="s">'version'</span><span class="p">:</span> <span class="s">'0'</span>
+              <span class="p">},</span>
+              <span class="s">'command'</span><span class="p">:</span> <span class="s">'echo "Hello world"'</span><span class="p">,</span>
+              <span class="s">'hardware'</span><span class="p">:</span> <span class="p">{</span>
+                  <span class="s">'coreType'</span><span class="p">:</span> <span class="s">'standard-plus'</span><span class="p">,</span>
+                  <span class="s">'coresPerSlot'</span><span class="p">:</span> <span class="mi">1</span>
+              <span class="p">}</span>
+          <span class="p">}</span>
+      <span class="p">]</span>
+  <span class="p">}</span>
+<span class="p">)</span>
 </code></pre>
 
 <blockquote>
