@@ -359,7 +359,7 @@ Property | Type  | Description
 ```shell
 curl -H "Authorization: Token <api-token>" -H "Content-Type: application/json" "https://platform.rescale.com/api/v2/jobs/" -d '
 {
-    "name": "Jobbo",
+    "name": "Example Job",
     "jobanalyses": [
         {
             "analysis": {
@@ -384,7 +384,7 @@ requests.post(
   'https://platform.rescale.com/api/v2/jobs/',
   headers={'Authorization': 'Token <api-token>'},
   json={
-      'name': 'Jobbo',
+      'name': 'Example Job',
       'jobanalyses': [
           {
               'analysis': {
