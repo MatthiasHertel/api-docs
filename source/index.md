@@ -28,7 +28,10 @@ This documentation inludes examples using cURL and python. The python examples u
 
 All request paths must include the trailing slash (e.g. `/api/v2/jobs/` instead of `/api/v2/jobs`).
 
-**NOTE** that in the examples that follow, you should modify your request endpoint to correspond to your platform's region (e.g. `platform.rescale.com`, `eu.rescale.com`, `platform.rescale.jp`).
+<aside class="notice">
+  In the examples that follow, you should modify your request endpoint to correspond to your platform's region (e.g. `platform.rescale.com`, `eu.rescale.com`, `platform.rescale.jp`).
+</aside>
+
 
 ## Versioning
 
