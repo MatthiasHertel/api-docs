@@ -196,7 +196,6 @@ cat <<EOF > data.json
   "name": "Basic Job",
   "jobanalyses": [
     {
-      "useMpi": false,
       "command": "./airFoil2D/Allrun",
       "analysis": {
         "code": "openfoam",
@@ -227,11 +226,10 @@ import requests
 
 requests.post(
   'https://platform.rescale.com/api/v2/jobs/',
-  data={
+  json={
     'name': 'Basic Job',
     'jobanalyses': [
       {
-        'useMpi': false,
         'command': './airFoil2D/Allrun',
         'analysis': {
           'code': 'openfoam',
@@ -265,7 +263,6 @@ requests.post(
   "jobanalyses": [
     {
       "envVars": null,
-      "useMpi": false,
       "postProcessScriptCommand": "",
       "preProcessScriptCommand": "",
       "useRescaleLicense": false,
@@ -385,7 +382,7 @@ curl -H 'Authorization: Token <api-token>'  https://platform.rescale.com/api/v2/
 ```python
 import requests
 
-requests.post(
+requests.get(
   'https://platform.rescale.com/api/v2/jobs/QTVia/statuses/',
   headers={'Authorization': 'Token <api-token>'}
 )
